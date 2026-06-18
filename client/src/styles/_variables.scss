@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+
+//fonts
+$font-primary: "Josefin Sans", sans-serif;
+$font-w-400: 400;
+$font-w-700: 700;
+
+//spacing
+$p-0-5: 0.5rem;
+$p-1: 1rem;
+$p-1-5: 1.5rem;
+$p-2: 2rem;
+$p-2-5: 2.5rem;
+$p-3: 3rem;
+$p-3-5: 3.5rem;
+$p-4: 4rem;
+$p-4-5: 4.5rem;
+$p-5: 5rem;
+
+:root {
+  //colors
+  --white: #ffffff;
+  --black: #000000;
+  --gray: #d0d0d0;
+  --dark-gray: #888;
+  --light-gray: #aaa;
+
+  --shadow-nav: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}

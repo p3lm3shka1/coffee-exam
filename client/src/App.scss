@@ -3,3 +3,8 @@
 @use "./styles/reset";
 @use "./styles/media";
 @use "./styles/variables";
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}

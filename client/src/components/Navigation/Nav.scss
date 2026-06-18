@@ -1,0 +1,239 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 64px;
+  background-color: var(--white);
+  box-shadow: var(--shadow-nav);
+  z-index: 1000;
+  @include transition;
+
+  &__wrapper {
+    max-width: 1440px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 $p-1-5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $p-2;
+  }
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: $p-1-5;
+    flex-shrink: 0;
+  }
+
+  &__logo {
+    cursor: pointer;
+
+    img {
+      width: 44px;
+      height: auto;
+      display: block;
+    }
+  }
+
+  &__search {
+    display: flex;
+    align-items: center;
+    gap: $p-0-5;
+    padding: $p-0-5 $p-1;
+    border: 1px solid var(--gray);
+    border-radius: 999px;
+    width: 220px;
+    @include transition;
+
+    &:focus-within {
+      border-color: var(--black);
+    }
+
+    &__icon {
+      color: var(--dark-gray);
+      flex-shrink: 0;
+    }
+
+    input {
+      border: none;
+      outline: none;
+      width: 100%;
+      font-family: $font-primary;
+      font-weight: $font-w-400;
+      font-size: 0.9rem;
+      color: var(--black);
+      background: transparent;
+
+      &::placeholder {
+        color: var(--light-gray);
+      }
+    }
+  }
+
+  &__links {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 0;
+
+    li {
+      display: flex;
+      align-items: center;
+    }
+
+    a {
+      font-family: $font-primary;
+      font-weight: $font-w-400;
+      font-size: 0.95rem;
+      color: var(--black);
+      text-decoration: none;
+      padding: 0 $p-1;
+      @include transition;
+
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+
+    &__divider {
+      color: var(--gray);
+      font-size: 1rem;
+      user-select: none;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: $p-1;
+    flex-shrink: 0;
+
+    &__theme,
+    &__account {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      color: var(--black);
+      padding: $p-0-5;
+      border-radius: 8px;
+      @include transition;
+
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+
+    &__cart {
+      display: flex;
+      align-items: center;
+      gap: $p-0-5;
+      background-color: var(--black);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      padding: $p-0-5 $p-1;
+      cursor: pointer;
+      font-family: $font-primary;
+      font-weight: $font-w-700;
+      font-size: 0.9rem;
+      @include transition;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  &__toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--black);
+    @include transition;
+  }
+
+  @media (max-width: 1024px) {
+    &__search {
+      width: 160px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    height: auto;
+    min-height: 64px;
+
+    &__wrapper {
+      flex-wrap: wrap;
+      padding: $p-0-5 $p-1;
+      gap: $p-0-5;
+    }
+
+    &__left {
+      flex: 1;
+    }
+
+    &__search {
+      width: 140px;
+    }
+
+    &__links {
+      display: none;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+      padding: $p-0-5 0 $p-1;
+      gap: $p-0-5;
+      order: 3;
+
+      li {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+      }
+
+      a {
+        padding: $p-0-5 0;
+        font-size: 1rem;
+      }
+
+      &__divider {
+        display: none;
+      }
+
+      &--open {
+        display: flex;
+      }
+    }
+
+    &__actions {
+      &__theme,
+      &__account {
+        display: none;
+      }
+    }
+
+    &__toggle {
+      display: flex;
+    }
+  }
+
+  @media (max-width: 480px) {
+    &__search {
+      width: 110px;
+    }
+
+    &__actions__cart span {
+      display: none;
+    }
+  }
+}
