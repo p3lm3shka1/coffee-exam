@@ -1,0 +1,126 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.footer {
+  width: 100%;
+  padding: $p-3 $p-1-5;
+  background-color: var(--white);
+  box-shadow: var(--shadow-footer);
+  height: 50px;
+
+  &__wrapper {
+    max-width: 1440px;
+
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr repeat(3, 1fr);
+    gap: $p-3;
+    align-items: start;
+  }
+
+  &__brand {
+    display: flex;
+    flex-direction: column;
+    gap: $p-1;
+
+    &__logo {
+      img {
+        width: 48px;
+        height: auto;
+      }
+    }
+
+    &__address {
+      font-family: $font-primary;
+      font-size: 0.85rem;
+      color: var(--dark-gray);
+      line-height: 1.5;
+    }
+
+    &__copy {
+      display: flex;
+      align-items: center;
+      gap: $p-0-5;
+      font-family: $font-primary;
+      font-size: 0.8rem;
+      color: var(--dark-gray);
+    }
+  }
+
+  &__col {
+    display: flex;
+    flex-direction: column;
+    gap: $p-1;
+
+    &__title {
+      font-family: $font-primary;
+      font-weight: $font-w-700;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--dark-gray);
+      margin: 0;
+    }
+
+    &__social {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      gap: $p-1;
+
+      a {
+        color: var(--dark-gray);
+        @include transition;
+
+        &:hover {
+          color: var(--black);
+        }
+      }
+    }
+
+    &__links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: $p-0-5;
+
+      li a {
+        font-family: $font-primary;
+        font-size: 0.9rem;
+        color: var(--dark-gray);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: $p-0-5;
+        @include transition;
+
+        &:hover {
+          color: var(--black);
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    &__wrapper {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    &__brand {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 600px) {
+    &__wrapper {
+      grid-template-columns: 1fr 1fr;
+      gap: $p-2;
+    }
+
+    &__brand {
+      grid-column: 1 / -1;
+    }
+  }
+}
