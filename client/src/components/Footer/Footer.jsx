@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { CiInstagram, CiFacebook, CiTwitter } from "react-icons/ci";
+
 import "./Footer.scss";
+
 import Logo from "../../assets/images/logo.svg";
 
 const Footer = () => {

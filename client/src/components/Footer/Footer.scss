@@ -2,19 +2,22 @@
 @use "../../styles/mixins" as *;
 
 .footer {
+  position: fixed;
+  bottom: 0;
   width: 100%;
-  padding: $p-3 $p-1-5;
+  height: 250px;
+  padding: $p-2 0;
   background-color: var(--white);
   box-shadow: var(--shadow-footer);
-  height: 50px;
 
   &__wrapper {
     max-width: 1440px;
-
+    height: 100%;
+    padding: $p-1-5;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1.5fr repeat(3, 1fr);
-    gap: $p-3;
+    gap: $p-4;
     align-items: start;
   }
 
@@ -109,7 +112,7 @@
     }
 
     &__brand {
-      grid-column: 1 / -1;
+      grid-column: 1;
     }
   }
 

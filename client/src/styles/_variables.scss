@@ -18,13 +18,23 @@ $p-4-5: 4.5rem;
 $p-5: 5rem;
 
 :root {
-  //colors
   --white: #ffffff;
-  --black: #000000;
+  --black: #2e3338;
   --gray: #d0d0d0;
-  --dark-gray: #888;
+  --dark-gray: #747f8d;
   --light-gray: #aaa;
 
   --shadow-nav: 0px 2px 4px rgba(0, 0, 0, 0.1);
   --shadow-footer: 0px -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+  --white: #313338;
+  --black: #dbdee1;
+  --gray: #3f4248;
+  --dark-gray: #949ba4;
+  --light-gray: #6d6f78;
+
+  --shadow-nav: 0px 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-footer: 0px -2px 8px rgba(0, 0, 0, 0.4);
 }

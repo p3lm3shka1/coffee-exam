@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { useHiddenScroll } from "../../hooks/useHiddenScroll";
 import { Link } from "react-router-dom";
+
+import { useHiddenScroll } from "../../hooks/useHiddenScroll";
+import { useDarkMode } from "../../context/DarkModeProvider";
 
 import "./Nav.scss";
 
@@ -18,9 +20,9 @@ import {
 } from "react-icons/hi";
 
 const Nav = () => {
-  const [theme, setTheme] = useState("light");
   const [menuOpen, setMenuOpen] = useState(false);
   const hidden = useHiddenScroll({ threshold: 150, delta: 2 });
+  const { theme, toggleTheme } = useDarkMode();
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -29,10 +31,6 @@ const Nav = () => {
     { name: "About", href: "/about" },
     { name: "Contact", href: "/contact" },
   ];
-
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === "light" ? "dark" : "light"));
-  };
 
   const handleLinkClick = () => setMenuOpen(false);
 
@@ -72,14 +70,15 @@ const Nav = () => {
         </ul>
 
         <div className="navbar__actions">
-          <button className="navbar__actions__theme" onClick={toggleTheme}>
-            {theme === "dark" ? (
-              <HiOutlineSun size={24} />
-            ) : (
-              <HiOutlineMoon size={24} />
-            )}
-          </button>
-
+          <div className="theme-switcher">
+            <button className="theme-switcher__button" onClick={toggleTheme}>
+              {theme === "light" ? (
+                <HiOutlineSun size={24} />
+              ) : (
+                <HiOutlineMoon size={24} />
+              )}
+            </button>
+          </div>
           <button className="navbar__actions__account">
             <HiOutlineUserCircle size={24} />
           </button>
