@@ -1,5 +1,6 @@
 @use "../../styles/variables" as *;
 @use "../../styles/mixins" as *;
+@use "../../styles/media" as *;
 
 .footer {
   position: fixed;
@@ -106,7 +107,7 @@
     }
   }
 
-  @media (max-width: 1024px) {
+  @include desktop {
     &__wrapper {
       grid-template-columns: 1fr 1fr 1fr;
     }
@@ -116,9 +117,20 @@
     }
   }
 
-  @media (max-width: 600px) {
+  @include tablet {
     &__wrapper {
       grid-template-columns: 1fr 1fr;
+      gap: $p-2;
+    }
+
+    &__brand {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @include mobile {
+    &__wrapper {
+      grid-template-columns: 1fr;
       gap: $p-2;
     }
 

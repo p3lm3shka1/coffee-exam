@@ -1,5 +1,6 @@
 @use "../../styles/variables" as *;
 @use "../../styles/mixins" as *;
+@use "../../styles/media" as *;
 
 .navbar {
   position: fixed;
@@ -162,13 +163,13 @@
     @include transition;
   }
 
-  @media (max-width: 1024px) {
+  @include desktop {
     &__search {
       width: 160px;
     }
   }
 
-  @media (max-width: 768px) {
+  @include tablet {
     height: auto;
     min-height: 64px;
 
@@ -227,7 +228,7 @@
     }
   }
 
-  @media (max-width: 480px) {
+  @include mobile {
     &__search {
       width: 110px;
     }
