@@ -1,0 +1,50 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.product-swiper {
+  width: 100%;
+  padding-bottom: $p-2-5;
+
+  .swiper-pagination-bullet {
+    background-color: var(--black);
+    opacity: 0.3;
+
+    &-active {
+      opacity: 1;
+    }
+  }
+
+  &__card {
+    @include home-card;
+
+    &__image {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background-color: var(--gray);
+      border-radius: 8px;
+    }
+
+    &__info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &__name {
+      font-family: $font-primary;
+      font-weight: $font-w-700;
+      font-size: 0.9rem;
+      color: var(--black);
+    }
+
+    &__price {
+      font-family: $font-primary;
+      font-size: 0.9rem;
+      color: var(--dark-gray);
+    }
+
+    &__button {
+      @include button-home-card;
+    }
+  }
+}

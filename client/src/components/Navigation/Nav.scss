@@ -38,6 +38,7 @@
       width: 44px;
       height: auto;
       display: block;
+      filter: var(--filter-logo);
     }
   }
 
@@ -116,7 +117,7 @@
     gap: $p-1;
     flex-shrink: 0;
 
-    &__theme,
+    .theme-switcher__button,
     &__account {
       background: none;
       border: none;
@@ -134,23 +135,7 @@
     }
 
     &__cart {
-      display: flex;
-      align-items: center;
-      gap: $p-0-5;
-      background-color: var(--black);
-      color: var(--white);
-      border: none;
-      border-radius: 8px;
-      padding: $p-0-5 $p-1;
-      cursor: pointer;
-      font-family: $font-primary;
-      font-weight: $font-w-700;
-      font-size: 0.9rem;
-      @include transition;
-
-      &:hover {
-        opacity: 0.8;
-      }
+      @include button-nav;
     }
   }
 
@@ -213,13 +198,6 @@
 
       &--open {
         display: flex;
-      }
-    }
-
-    &__actions {
-      &__theme,
-      &__account {
-        display: none;
       }
     }
 

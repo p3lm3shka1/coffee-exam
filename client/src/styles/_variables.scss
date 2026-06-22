@@ -1,7 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap");
 
 //fonts
 $font-primary: "Josefin Sans", sans-serif;
+$font-secondary: "Caveat", cursive;
 $font-w-400: 400;
 $font-w-700: 700;
 
@@ -26,6 +28,9 @@ $p-5: 5rem;
 
   --shadow-nav: 0px 2px 4px rgba(0, 0, 0, 0.1);
   --shadow-footer: 0px -2px 4px rgba(0, 0, 0, 0.1);
+
+  --filter-logo: brightness(0) saturate(100%) invert(0%) sepia(100%)
+    saturate(7500%) hue-rotate(214deg) brightness(112%) contrast(110%);
 }
 
 [data-theme="dark"] {
@@ -37,4 +42,7 @@ $p-5: 5rem;
 
   --shadow-nav: 0px 2px 8px rgba(0, 0, 0, 0.4);
   --shadow-footer: 0px -2px 8px rgba(0, 0, 0, 0.4);
+
+  --filter-logo: brightness(0) saturate(100%) invert(99%) sepia(0%)
+    saturate(43%) hue-rotate(94deg) brightness(123%) contrast(100%);
 }

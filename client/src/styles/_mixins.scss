@@ -3,3 +3,77 @@
 @mixin transition {
   transition: all 0.3s ease;
 }
+
+@mixin button-nav {
+  display: flex;
+  align-items: center;
+  gap: $p-0-5;
+  background-color: var(--black);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  padding: $p-0-5 $p-1;
+  cursor: pointer;
+  font-family: $font-primary;
+  font-weight: $font-w-700;
+  font-size: 0.9rem;
+  @include transition;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+@mixin button-home {
+  display: inline-block;
+  font-family: $font-primary;
+  font-weight: $font-w-700;
+  letter-spacing: 3px;
+  font-size: 1rem;
+  padding: $p-1 $p-2-5;
+  background-color: var(--black);
+  color: var(--white);
+  border: none;
+  border-radius: $p-0-5;
+  cursor: pointer;
+  text-decoration: none;
+  @include transition;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+@mixin home-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: $p-1;
+  padding: $p-1;
+  border: none;
+  border-radius: 12px;
+  background-color: var(--white);
+  @include transition;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+@mixin button-home-card {
+  width: 100%;
+  padding: $p-0-5;
+  background-color: var(--black);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-family: $font-primary;
+  font-weight: $font-w-700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  @include transition;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
