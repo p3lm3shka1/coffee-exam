@@ -26,8 +26,7 @@ const Home = () => {
       <div className="home__wrapper">
         <div className="home__hero">
           <h1 className="home__hero__title">
-            Welcome to Coffee <span>Explorer</span>, your daily coffeine
-            provider
+            Welcome to Coffee <span>Explorer</span>
           </h1>
           <p className="home__hero__subtitle">
             Your daily caffeine provider discover blends, gear and more.

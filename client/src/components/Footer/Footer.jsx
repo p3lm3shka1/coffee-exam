@@ -13,8 +13,8 @@ const Footer = () => {
       title: "Main Menu",
       links: [
         { name: "Home", href: "/" },
-        { name: "About", href: "/about" },
         { name: "Shop", href: "/shop" },
+        { name: "About", href: "/about" },
         { name: "Contact", href: "/contact" },
       ],
     },
@@ -52,7 +52,7 @@ const Footer = () => {
           </div>
           <p className="footer__brand__address">Vilnius, Lithuania</p>
           <p className="footer__brand__copy">
-            &copy; {currentYear} Coffee by Vitalijus
+            &copy; {currentYear} Exam Project for VCS
           </p>
         </div>
 
