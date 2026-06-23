@@ -20,7 +20,7 @@
     &__image {
       width: 100%;
       aspect-ratio: 1 / 1;
-      background-color: var(--gray);
+
       border-radius: 8px;
     }
 
@@ -33,13 +33,13 @@
     &__name {
       font-family: $font-primary;
       font-weight: $font-w-700;
-      font-size: 0.9rem;
+      font-size: 16px;
       color: var(--black);
     }
 
     &__price {
       font-family: $font-primary;
-      font-size: 0.9rem;
+      font-size: 16px;
       color: var(--dark-gray);
     }
 

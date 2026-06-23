@@ -92,3 +92,21 @@
     opacity: 0.8;
   }
 }
+
+@mixin button-form {
+  padding: $p-1 $p-2;
+  background-color: var(--black);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-family: $font-primary;
+  font-weight: $font-w-700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  @include transition;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}

@@ -1,5 +1,6 @@
 @use "../../styles/variables" as *;
 @use "../../styles/mixins" as *;
+@use "../../styles/media" as *;
 
 .contact {
   background-color: var(--white);
@@ -22,9 +23,9 @@
     gap: $p-3;
 
     &__title {
-      font-family: $font-primary;
+      font-family: $font-secondary;
       font-weight: $font-w-700;
-      font-size: clamp(2rem, 4vw, 3rem);
+      font-size: 32px;
       color: var(--black);
       text-transform: uppercase;
       letter-spacing: 2px;
@@ -38,7 +39,7 @@
       &__heading {
         font-family: $font-primary;
         font-weight: $font-w-700;
-        font-size: 1rem;
+        font-size: 16px;
         text-transform: uppercase;
         letter-spacing: 1px;
         color: var(--black);
@@ -46,7 +47,7 @@
 
       &__text {
         font-family: $font-primary;
-        font-size: 0.9rem;
+        font-size: 16px;
         color: var(--dark-gray);
         line-height: 1.7;
 
@@ -64,7 +65,7 @@
       &__link {
         display: inline-block;
         margin-top: $p-0-5;
-        font-size: 0.85rem;
+        font-size: 14px;
       }
     }
   }
@@ -101,7 +102,7 @@
 
       label {
         font-family: $font-primary;
-        font-size: 0.8rem;
+        font-size: 14px;
         color: var(--dark-gray);
         text-transform: uppercase;
         letter-spacing: 1px;
@@ -114,7 +115,7 @@
         border-bottom: 1px solid var(--gray);
         padding: $p-0-5 0;
         font-family: $font-primary;
-        font-size: 0.95rem;
+        font-size: 16px;
         color: var(--black);
         outline: none;
         resize: none;
@@ -135,27 +136,12 @@
       justify-content: flex-end;
 
       button {
-        background-color: var(--black);
-        color: var(--white);
-        border: none;
-        padding: $p-1 $p-2;
-        font-family: $font-primary;
-        font-weight: $font-w-700;
-        font-size: 0.85rem;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        cursor: pointer;
-        border-radius: 4px;
-        @include transition;
-
-        &:hover {
-          opacity: 0.8;
-        }
+        @include button-form;
       }
     }
   }
 
-  @media (max-width: 768px) {
+  @include tablet {
     &__wrapper {
       grid-template-columns: 1fr;
       padding: $p-2 $p-1;
@@ -164,6 +150,13 @@
 
     &__form__row {
       grid-template-columns: 1fr;
+    }
+  }
+
+  @include mobile {
+    &__wrapper {
+      padding: $p-2 $p-1;
+      gap: $p-2;
     }
   }
 }
