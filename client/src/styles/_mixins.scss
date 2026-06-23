@@ -4,6 +4,21 @@
   transition: all 0.3s ease;
 }
 
+@mixin animBlink {
+  animation: blink 2s infinite;
+  @keyframes blink {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.2;
+    }
+  }
+}
+
 @mixin button-nav {
   display: flex;
   align-items: center;
