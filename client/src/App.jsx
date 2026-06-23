@@ -1,6 +1,7 @@
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import DarkModeProvider from "./context/DarkModeProvider";
 
+import NotFound from "./components/NotFound/NotFound";
 import Nav from "./components/Navigation/Nav";
 import Home from "./pages/Home/Home";
 import Shop from "./pages/Shop/Shop";
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/articles" element={<Articles />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </BrowserRouter>

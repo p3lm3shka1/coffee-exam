@@ -7,7 +7,7 @@ import { useDarkMode } from "../../context/DarkModeProvider";
 
 import "./Nav.scss";
 
-import Logo from "../../assets/images/logo.svg";
+import Logo from "../../assets/images/logo.png";
 
 import {
   HiOutlineShoppingCart,

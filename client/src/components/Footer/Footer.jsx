@@ -3,7 +3,7 @@ import { CiInstagram, CiFacebook, CiTwitter } from "react-icons/ci";
 
 import "./Footer.scss";
 
-import Logo from "../../assets/images/logo.svg";
+import Logo from "../../assets/images/logo.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
