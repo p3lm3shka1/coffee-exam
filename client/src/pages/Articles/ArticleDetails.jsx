@@ -13,13 +13,14 @@ const ArticleDetails = () => {
     data: article,
     loading,
     error,
+    timer,
   } = useFetch(`${API_URL}/api/articles/${slug}`);
 
   if (loading)
     return (
-      <div className="article-page__state">
+      <div className="articles__state">
         <GiCoffeeCup className="loading-icon" />
-        Loading...
+        {timer && <p>Server is drinking coffee to wake up...</p>}
       </div>
     );
   if (error) return <div className="article-page__state">Error: {error}</div>;

@@ -18,9 +18,15 @@
     color: var(--dark-gray);
 
     .loading-icon {
-      font-size: 60px;
+      font-size: 72px;
       color: var(--dark-gray);
       @include animBlink;
+
+      p {
+        font-size: 32px;
+        color: var(--dark-gray);
+        margin-top: $p-1;
+      }
     }
   }
 
