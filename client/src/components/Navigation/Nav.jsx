@@ -23,16 +23,25 @@ const Nav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const hidden = useHiddenScroll({ threshold: 150, delta: 2 });
   const { theme, toggleTheme } = useDarkMode();
+  const [subMenu, setSubMenu] = useState(false);
 
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "Shop", href: "/shop" },
+    { name: "Shop", href: "/shop", hasSubmenu: true },
     { name: "Articles", href: "/articles" },
     { name: "About", href: "/about" },
     { name: "Contact", href: "/contact" },
   ];
 
-  const handleLinkClick = () => setMenuOpen(false);
+  const shopSubmenu = [
+    { name: "Coffee Blends", href: "/shop/coffee" },
+    { name: "Accessories", href: "/shop/accessories" },
+  ];
+
+  const handleLinkClick = () => {
+    setMenuOpen(false);
+    setSubMenu(false);
+  };
 
   return (
     <motion.nav
@@ -58,12 +67,39 @@ const Nav = () => {
           className={`navbar__links ${menuOpen ? "navbar__links--open" : ""}`}
         >
           {navLinks.map((link, index) => (
-            <li key={link.name}>
-              <a href={link.href} onClick={handleLinkClick}>
-                {link.name}
-              </a>
+            <li
+              key={link.name}
+              className={link.hasSubmenu ? "navbar__links__item--has-sub" : ""}
+            >
+              {link.hasSubmenu ? (
+                <button
+                  className="navbar__links__shop-btn"
+                  onClick={() => setSubMenu(!subMenu)}
+                >
+                  {link.name}
+                </button>
+              ) : (
+                <Link to={link.href} onClick={handleLinkClick}>
+                  {link.name}
+                </Link>
+              )}
+
               {index < navLinks.length - 1 && (
                 <span className="navbar__links__divider">|</span>
+              )}
+
+              {link.hasSubmenu && (
+                <ul
+                  className={`navbar__links__submenu ${subMenu ? "navbar__links__submenu--open" : ""}`}
+                >
+                  {shopSubmenu.map((sub) => (
+                    <li key={sub.name}>
+                      <Link to={sub.href} onClick={handleLinkClick}>
+                        {sub.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               )}
             </li>
           ))}

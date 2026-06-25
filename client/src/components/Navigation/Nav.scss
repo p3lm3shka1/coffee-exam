@@ -109,6 +109,96 @@
       font-size: 1rem;
       user-select: none;
     }
+
+    &__shop-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      font-family: $font-primary;
+      font-weight: $font-w-400;
+      font-size: 0.95rem;
+      color: var(--black);
+      padding: 0 $p-1;
+      @include transition;
+
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+
+    &__chevron {
+      @include transition;
+
+      &--open {
+        transform: rotate(180deg);
+      }
+    }
+
+    &__item--has-sub {
+      position: relative;
+    }
+
+    &__submenu {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 160px;
+      background-color: var(--white);
+      border: 1px solid var(--gray);
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      padding: $p-0-5 0;
+      list-style: none;
+      margin: 0;
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      @include transition;
+
+      &--open {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      li a {
+        display: block;
+        padding: $p-0-5 $p-1-5;
+        font-size: 0.9rem;
+        white-space: nowrap;
+      }
+    }
+
+    @include tablet {
+      &__submenu {
+        position: static;
+        transform: none;
+        box-shadow: none;
+        border: none;
+        border-left: 2px solid var(--gray);
+        border-radius: 0;
+        padding: 0 0 0 $p-1;
+        margin-top: $p-0-5;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+
+        &--open {
+          opacity: 1;
+          visibility: visible;
+          max-height: 200px;
+        }
+      }
+
+      &__shop-btn {
+        padding: $p-0-5 0;
+        font-size: 1rem;
+      }
+    }
   }
 
   &__actions {
@@ -173,6 +263,7 @@
     }
 
     &__links {
+      position: relative;
       display: none;
       flex-direction: column;
       align-items: flex-start;
