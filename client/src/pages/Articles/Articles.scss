@@ -127,15 +127,8 @@
       color: var(--dark-gray);
     }
 
-    &__link {
-      @include transition;
-      text-decoration: none;
-      color: var(--primary);
-      cursor: pointer;
-
-      &:hover {
-        opacity: 0.6;
-      }
+    &__link:hover {
+      color: var(--black);
     }
   }
 }

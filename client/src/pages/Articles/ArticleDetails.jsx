@@ -1,60 +1,50 @@
-import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import { API_URL } from "../../api/config";
+
+import useFetch from "../../hooks/useFetch";
 
 import "./ArticleDetails.scss";
 
 const ArticleDetails = () => {
   const { id } = useParams();
-  const [article, setArticle] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const {
+    data: article,
+    loading,
+    error,
+  } = useFetch(`${API_URL}/api/articles/${id}`);
 
-  useEffect(() => {
-    const fetchArticle = async () => {
-      try {
-        const res = await fetch(`http://localhost:3000/api/articles/${id}`);
-        if (!res.ok) {
-          throw new Error("Failed to fetch article");
-        }
-        const data = await res.json();
-        setArticle(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchArticle();
-  }, [id]);
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p>Error: {error}</p>;
-  }
-
-  if (!article) {
-    return <p>No article found</p>;
-  }
+  if (loading) return <div className="article-page__state">Loading...</div>;
+  if (error) return <div className="article-page__state">Error: {error}</div>;
+  if (!article) return null;
 
   return (
-    <section className="article-details">
-      <div className="article-details__wrapper">
-        <h1 className="article-details__title">{article.title}</h1>
-        <div className="article-details__image">
-          <img src={article.imageURL} alt={article.title} />
-        </div>
-        <p className="article-details__text">{article.text}</p>
-        <div className="article-details__footer">
-          <span className="article-details__author">{article.author}</span>
-          <span className="article-details__category">{article.category}</span>
-        </div>
-        <Link to="/articles" className="article-details__back-link">
+    <section className="article-page">
+      <div className="article-page__wrapper">
+        <Link to="/articles" className="article-page__back">
           Back to Articles
         </Link>
+
+        <h1 className="article-page__title">{article.title}</h1>
+
+        <div className="article-page__hero">
+          <img src={article.imageurl} alt={article.title} />
+        </div>
+        <p className="article-page__text">{article.text}</p>
+
+        {article.subtitle && (
+          <h2 className="article-page__subtitle">{article.subtitle}</h2>
+        )}
+        {article.imageurl2 && (
+          <div className="article-page__hero">
+            <img src={article.imageurl2} alt={article.subtitle} />
+          </div>
+        )}
+        {article.text2 && <p className="article-page__text">{article.text2}</p>}
+        {article.text3 && <p className="article-page__text">{article.text3}</p>}
+
+        <div className="article-page__meta">
+          <span>{article.author}</span>
+        </div>
       </div>
     </section>
   );

@@ -1,33 +1,21 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { API_URL } from "../../api/config";
+
+import useFetch from "../../hooks/useFetch";
 
 import "./Articles.scss";
 
 const Articles = () => {
-  const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchArticles = async () => {
-      try {
-        const res = await fetch("http://localhost:3000/api/articles");
-        if (!res.ok) throw new Error("Server error ");
-        const data = await res.json();
-        setArticles(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchArticles();
-  }, []);
+  const {
+    data: articles,
+    loading,
+    error,
+  } = useFetch(`${API_URL}/api/articles`);
 
   if (loading) return <div className="articles__state">Loading...</div>;
   if (error) return <div className="articles__state">Error: {error}</div>;
-  if (articles.length === 0)
+  if (!articles || articles.length === 0)
     return <div className="articles__state">No articles found.</div>;
 
   return (
@@ -39,12 +27,9 @@ const Articles = () => {
           {articles.map((article) => (
             <div key={article._id} className="articles__card">
               <div className="articles__card__image">
-                <img src={article.imageURL} alt={article.title} />
+                <img src={article.imageurl} alt={article.title} />
               </div>
               <div className="articles__card__body">
-                <span className="articles__card__category">
-                  {article.category}
-                </span>
                 <h2 className="articles__card__title">{article.title}</h2>
                 <p className="articles__card__text">{article.text}</p>
                 <div className="articles__card__footer">
