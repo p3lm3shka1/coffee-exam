@@ -11,7 +11,7 @@ export const getAllArticles = async (req, res) => {
 
 export const getArticleById = async (req, res) => {
   try {
-    const article = await Article.findOne({ slug: req.params.id });
+    const article = await Article.findOne({ slug: req.params.slug });
     if (!article) return res.status(404).json({ message: "Article not found" });
     res.json(article);
   } catch (err) {

@@ -7,6 +7,6 @@ import {
 const router = express.Router();
 
 router.get("/", getAllArticles);
-router.get("/:id", getArticleById);
+router.get("/:slug", getArticleById);
 
 export default router;
