@@ -9,12 +9,19 @@
 
   &__state {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 60vh;
     font-family: $font-primary;
     font-size: 16px;
     color: var(--dark-gray);
+
+    .loading-icon {
+      font-size: 60px;
+      color: var(--dark-gray);
+      @include animBlink;
+    }
   }
 
   &__wrapper {

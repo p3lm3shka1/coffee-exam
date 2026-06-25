@@ -3,17 +3,25 @@ import { API_URL } from "../../api/config";
 
 import useFetch from "../../hooks/useFetch";
 
+import { GiCoffeeCup } from "react-icons/gi";
+
 import "./ArticleDetails.scss";
 
 const ArticleDetails = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
   const {
     data: article,
     loading,
     error,
-  } = useFetch(`${API_URL}/api/articles/${id}`);
+  } = useFetch(`${API_URL}/api/articles/${slug}`);
 
-  if (loading) return <div className="article-page__state">Loading...</div>;
+  if (loading)
+    return (
+      <div className="article-page__state">
+        <GiCoffeeCup className="loading-icon" />
+        Loading...
+      </div>
+    );
   if (error) return <div className="article-page__state">Error: {error}</div>;
   if (!article) return null;
 

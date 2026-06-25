@@ -4,6 +4,8 @@ import { API_URL } from "../../api/config";
 
 import useFetch from "../../hooks/useFetch";
 
+import { GiCoffeeCup } from "react-icons/gi";
+
 import "./Articles.scss";
 
 const Articles = () => {
@@ -13,7 +15,13 @@ const Articles = () => {
     error,
   } = useFetch(`${API_URL}/api/articles`);
 
-  if (loading) return <div className="articles__state">Loading...</div>;
+  if (loading)
+    return (
+      <div className="articles__state">
+        {" "}
+        <GiCoffeeCup className="loading-icon" /> Loading...
+      </div>
+    );
   if (error) return <div className="articles__state">Error: {error}</div>;
   if (!articles || articles.length === 0)
     return <div className="articles__state">No articles found.</div>;
@@ -37,7 +45,7 @@ const Articles = () => {
                     {article.author}
                   </span>
                   <Link
-                    to={`/articles/${article._id}`}
+                    to={`/articles/${article.slug}`}
                     className="articles__card__link"
                   >
                     Read More
