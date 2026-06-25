@@ -4,12 +4,12 @@ const useFetch = (url) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [timer, setTimer] = useState(false);
+  const [getTimer, setGetTimer] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setTimer(true);
-    }, 3000);
+    const getTimer = setTimeout(() => {
+      setGetTimer(true);
+    }, 2000);
 
     const fetchData = async () => {
       try {
@@ -20,20 +20,20 @@ const useFetch = (url) => {
       } catch (err) {
         setError(err.message);
       } finally {
-        clearTimeout(timer);
+        clearTimeout(getTimer);
         setLoading(false);
-        setTimer(false);
+        setGetTimer(false);
       }
     };
 
     fetchData();
 
     return () => {
-      clearTimeout(timer);
+      clearTimeout(getTimer);
     };
   }, [url]);
 
-  return { data, loading, error, timer };
+  return { data, loading, error, getTimer };
 };
 
 export default useFetch;
