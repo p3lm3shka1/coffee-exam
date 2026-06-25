@@ -53,6 +53,7 @@ const Contact = () => {
           />
 
           <form className="contact__form">
+            <h1 className="contact__form__title">Get in Touch</h1>
             <div className="contact__form__row">
               <div className="contact__form__field">
                 <label>Name</label>
