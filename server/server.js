@@ -8,7 +8,11 @@ import articleRoute from "./routes/articleRoute.js";
 dotenv.config();
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: ["http://localhost:5173", "https://coffeeshop-exam.vercel.app"],
+  }),
+);
 app.use(express.json());
 
 app.use("/api/articles", articleRoute);
