@@ -15,6 +15,9 @@ import AccessoriesPage from "./pages/AccessoriesPage/AccessoriesPage";
 import EspressoPage from "./pages/CoffeePage/EspressoPage/Espresso";
 import FilterPage from "./pages/CoffeePage/FilterPage/Filter";
 import DecafPage from "./pages/CoffeePage/DecafPage/Decaf";
+import PaperFilters from "./pages/AccessoriesPage/PaperFilters/PaperFilters";
+import Grinders from "./pages/AccessoriesPage/Grinders/Grinders";
+import Brewing from "./pages/AccessoriesPage/Brewing/Brewing";
 
 import "./App.scss";
 
@@ -30,6 +33,9 @@ const App = () => {
           <Route path="/coffee/filter" element={<FilterPage />} />
           <Route path="/coffee/decaf" element={<DecafPage />} />
           <Route path="/accessories" element={<AccessoriesPage />} />
+          <Route path="/accessories/paper" element={<PaperFilters />} />
+          <Route path="/accessories/grinders" element={<Grinders />} />
+          <Route path="/accessories/brewing" element={<Brewing />} />
           <Route path="/articles" element={<Articles />} />
           <Route path="/articles/:slug" element={<ArticleDetails />} />
           <Route path="/about" element={<About />} />

@@ -1,31 +1,8 @@
 import { Link } from "react-router-dom";
 
+import { coffeeItems } from "../../constants/categories";
+
 import "./CoffeePage.scss";
-
-const coffeeItems = [
-  {
-    name: "Espresso",
-    image: espressoImage,
-    desc: "Bold and rich, best enjoyed in small, concentrated doses or with milk.",
-    link: "/coffee/espresso",
-  },
-  {
-    name: "Filter",
-    image: filterImage,
-    desc: "Smooth and balanced, ideal for a relaxing coffee break.",
-    link: "/coffee/filter",
-  },
-  {
-    name: "Decaf",
-    image: decafImage,
-    desc: "Enjoy the taste of coffee without the caffeine.",
-    link: "/coffee/decaf",
-  },
-];
-
-import espressoImage from "../../assets/logos/espresso-logo.png";
-import filterImage from "../../assets/logos/filter-logo.png";
-import decafImage from "../../assets/logos/decaf-logo.png";
 
 const CoffeePage = () => {
   return (
