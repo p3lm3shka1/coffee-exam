@@ -31,9 +31,14 @@ const Home = () => {
           <p className="home__hero__subtitle">
             Your daily caffeine provider discover blends, gear and more.
           </p>
-          <Link to="/shop" className="home__hero__button">
-            Explore Now
-          </Link>
+          <div className="home__hero__buttons">
+            <Link className="home__hero__button" to="/coffee">
+              Coffee
+            </Link>
+            <Link className="home__hero__button" to="/accessories">
+              Accessories
+            </Link>
+          </div>
         </div>
 
         <div className="home__section">

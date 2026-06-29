@@ -46,6 +46,13 @@
       max-width: 500px;
     }
 
+    &__buttons {
+      display: flex;
+      gap: $p-2;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
     &__button {
       @include button-home;
     }

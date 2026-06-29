@@ -5,7 +5,7 @@
 .article-page {
   background-color: var(--white);
   min-height: 100vh;
-  padding-top: 64px;
+  padding-top: $p-4;
 
   &__state {
     display: flex;

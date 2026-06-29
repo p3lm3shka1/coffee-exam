@@ -34,8 +34,8 @@ const Nav = () => {
   ];
 
   const shopSubmenu = [
-    { name: "Coffee Blends", href: "/shop/coffee" },
-    { name: "Accessories", href: "/shop/accessories" },
+    { name: "Coffee Blends", href: "/coffee" },
+    { name: "Accessories", href: "/accessories" },
   ];
 
   const handleLinkClick = () => {
