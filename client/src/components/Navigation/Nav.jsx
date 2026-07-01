@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 import { useHiddenScroll } from "../../hooks/useHiddenScroll";
-import { useDarkMode } from "../../Context/DarkModeProvider";
+import { useDarkMode } from "../../context/DarkModeProvider";
 
 import Profile from "../Profile/Profile";
 import Cart from "../Cart/Cart";

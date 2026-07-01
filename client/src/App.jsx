@@ -1,5 +1,5 @@
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-import DarkModeProvider from "./Context/DarkModeProvider";
+import DarkModeProvider from "./context/DarkModeProvider";
 
 import NotFound from "./components/NotFound/NotFound";
 import Nav from "./components/Navigation/Nav";

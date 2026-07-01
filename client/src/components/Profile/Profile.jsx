@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { HiX, HiOutlineUserCircle } from "react-icons/hi";
-import { useAuth } from "../../Context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 
 import "./Profile.scss";
 
