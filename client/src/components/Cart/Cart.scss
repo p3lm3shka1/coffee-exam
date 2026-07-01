@@ -1,0 +1,67 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+@use "../../styles/media" as *;
+
+.cart {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+
+  &__content {
+    @include profile-overlay;
+
+    padding: $p-1-5;
+    overflow-y: auto;
+
+    @include animFadeIn;
+  }
+
+  &__close {
+    position: absolute;
+    top: 22px;
+    right: 20px;
+    border: none;
+    background: transparent;
+    color: var(--black);
+    cursor: pointer;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: $p-0-5;
+    margin-bottom: $p-2;
+    color: var(--black);
+  }
+
+  &__items {
+    color: var(--black);
+    display: flex;
+    flex-direction: column;
+    gap: $p-1-5;
+    margin-bottom: $p-2;
+  }
+
+  &__footer {
+    display: flex;
+    flex-direction: column;
+    gap: $p-1;
+    margin-top: $p-2;
+    color: var(--black);
+
+    a {
+      @include button-form;
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  @include tablet {
+    gap: $p-1;
+  }
+
+  @include mobile {
+    width: 100%;
+    gap: $p-0-5;
+  }
+}

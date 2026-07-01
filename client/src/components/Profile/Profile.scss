@@ -5,7 +5,6 @@
 .profile {
   position: fixed;
   inset: 0;
-
   z-index: 999;
 
   &__content {
@@ -19,7 +18,7 @@
 
   &__close {
     position: absolute;
-    top: 25px;
+    top: 22px;
     right: 20px;
     border: none;
     background: transparent;
@@ -31,15 +30,15 @@
     display: flex;
     align-items: center;
     gap: $p-0-5;
-    margin-bottom: $p-1;
+    margin-bottom: $p-2;
     color: var(--black);
   }
 
   &__user {
-    margin-bottom: $p-1;
+    margin-bottom: $p-2;
     color: var(--black);
     p {
-      margin: 0.2rem 0;
+      margin: $p-1 0;
     }
   }
 

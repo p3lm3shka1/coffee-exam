@@ -6,6 +6,7 @@ import { useHiddenScroll } from "../../hooks/useHiddenScroll";
 import { useDarkMode } from "../../context/DarkModeProvider";
 
 import Profile from "../Profile/Profile";
+import Cart from "../Cart/Cart";
 
 import "./Nav.scss";
 
@@ -27,6 +28,7 @@ const Nav = () => {
   const { theme, toggleTheme } = useDarkMode();
   const [subMenu, setSubMenu] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -125,7 +127,10 @@ const Nav = () => {
             <HiOutlineUserCircle size={24} />
           </button>
 
-          <button className="navbar__actions__cart">
+          <button
+            className="navbar__actions__cart"
+            onClick={() => setCartOpen(true)}
+          >
             <HiOutlineShoppingCart size={20} />
             <span>Your Cart</span>
           </button>
@@ -139,6 +144,7 @@ const Nav = () => {
         </div>
       </div>
       <Profile isOpen={profileOpen} onClose={() => setProfileOpen(false)} />
+      <Cart isOpen={cartOpen} onClose={() => setCartOpen(false)} />
     </motion.nav>
   );
 };
