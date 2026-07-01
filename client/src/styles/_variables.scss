@@ -33,6 +33,8 @@ $p-5: 5rem;
     saturate(7500%) hue-rotate(214deg) brightness(112%) contrast(110%);
 
   --filter-map: none;
+
+  --error: #d64545;
 }
 
 [data-theme="dark"] {
@@ -49,4 +51,6 @@ $p-5: 5rem;
     saturate(43%) hue-rotate(94deg) brightness(123%) contrast(100%);
 
   --filter-map: grayscale(100%) invert(92%) contrast(85%);
+
+  --error: #ff7b7b;
 }

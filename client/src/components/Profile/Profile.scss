@@ -1,3 +1,115 @@
 @use "../../styles/variables" as *;
 @use "../../styles/mixins" as *;
 @use "../../styles/media" as *;
+
+.profile {
+  position: fixed;
+  inset: 0;
+
+  z-index: 999;
+
+  &__content {
+    @include profile-overlay;
+
+    padding: $p-1-5;
+    overflow-y: auto;
+
+    @include animFadeIn;
+  }
+
+  &__close {
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    border: none;
+    background: transparent;
+    color: var(--black);
+    cursor: pointer;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: $p-0-5;
+    margin-bottom: $p-1;
+    color: var(--black);
+  }
+
+  &__user {
+    margin-bottom: $p-1;
+    color: var(--black);
+    p {
+      margin: 0.2rem 0;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: $p-0-5;
+
+    button {
+      @include button-form;
+      width: 100%;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    margin-top: $p-1;
+    gap: $p-1;
+
+    input {
+      padding: $p-1 0.5rem;
+      border: 1px solid var(--gray);
+      border-radius: 8px;
+      background-color: var(--white);
+      color: var(--black);
+      font-family: $font-primary;
+
+      &::placeholder {
+        color: var(--dark-gray);
+      }
+    }
+
+    button {
+      @include button-form;
+      width: 100%;
+    }
+
+    span {
+      font-size: 14px;
+      color: var(--dark-gray);
+      cursor: pointer;
+      text-align: center;
+      margin-top: $p-1;
+    }
+  }
+
+  &__link {
+    color: var(--black);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__error {
+    color: var(--error);
+    font-size: 14px;
+    text-align: center;
+  }
+
+  @include tablet {
+    &__content {
+      max-width: 90%;
+    }
+  }
+
+  @include mobile {
+    &__content {
+      max-width: 100%;
+    }
+  }
+}

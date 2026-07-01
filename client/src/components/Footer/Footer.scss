@@ -3,7 +3,6 @@
 @use "../../styles/media" as *;
 
 .footer {
-  height: 200px;
   width: 100%;
   padding: $p-2 0;
   background-color: var(--white);
@@ -11,7 +10,6 @@
 
   &__wrapper {
     max-width: 1440px;
-
     padding: $p-1-5;
     margin: 0 auto;
     display: flex;
@@ -60,8 +58,8 @@
     &__title {
       font-family: $font-primary;
       font-weight: $font-w-700;
-      font-size: 0.75rem;
-      letter-spacing: 0.08em;
+      font-size: 14px;
+      letter-spacing: 1px;
       text-transform: uppercase;
       color: var(--dark-gray);
       margin: 0;

@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { useHiddenScroll } from "../../hooks/useHiddenScroll";
 import { useDarkMode } from "../../context/DarkModeProvider";
 
+import Profile from "../Profile/Profile";
+
 import "./Nav.scss";
 
 import Logo from "../../assets/images/logo.png";
@@ -24,6 +26,7 @@ const Nav = () => {
   const hidden = useHiddenScroll({ threshold: 150, delta: 2 });
   const { theme, toggleTheme } = useDarkMode();
   const [subMenu, setSubMenu] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -115,7 +118,10 @@ const Nav = () => {
               )}
             </button>
           </div>
-          <button className="navbar__actions__account">
+          <button
+            className="navbar__actions__account"
+            onClick={() => setProfileOpen(true)}
+          >
             <HiOutlineUserCircle size={24} />
           </button>
 
@@ -132,6 +138,7 @@ const Nav = () => {
           </button>
         </div>
       </div>
+      <Profile isOpen={profileOpen} onClose={() => setProfileOpen(false)} />
     </motion.nav>
   );
 };
