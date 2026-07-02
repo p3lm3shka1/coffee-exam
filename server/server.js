@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import authRoute from "./routes/authRoute.js";
+import productRoute from "./routes/productRoute.js";
 
 import articleRoute from "./routes/articleRoute.js";
 
@@ -18,6 +19,7 @@ app.use(express.json());
 
 app.use("/api/auth", authRoute);
 app.use("/api/articles", articleRoute);
+app.use("/api/products", productRoute);
 
 app.listen(process.env.PORT, () => {
   console.log(`You're running on port ${process.env.PORT}`);

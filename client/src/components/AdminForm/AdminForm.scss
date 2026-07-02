@@ -1,0 +1,39 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+@use "../../styles/media" as *;
+
+.admin-form {
+  display: grid;
+  gap: $p-1;
+
+  input,
+  select,
+  textarea {
+    padding: $p-1;
+    border: 1px solid var(--gray);
+    border-radius: 8px;
+    background: var(--white);
+    color: var(--black);
+    font-family: $font-primary;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 90px;
+  }
+
+  &__checkbox {
+    display: flex;
+    align-items: center;
+    gap: $p-0-5;
+  }
+
+  &__actions {
+    display: flex;
+    gap: $p-0-5;
+
+    button {
+      @include button-form;
+    }
+  }
+}

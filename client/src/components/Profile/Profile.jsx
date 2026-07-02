@@ -45,6 +45,7 @@ const Profile = ({ isOpen, onClose }) => {
     } catch (err) {
       setError(err.message || "Login failed");
     }
+    alert(`Login successful! Welcome back ${form.name}.`);
   };
 
   const handleRegister = async (e) => {
@@ -57,12 +58,15 @@ const Profile = ({ isOpen, onClose }) => {
     } catch (err) {
       setError(err.message || "Register failed");
     }
+    alert("Registration successful! Please log in.");
   };
 
   const handleLogout = () => {
     logout();
     setMode("actions");
     onClose();
+    confirm("Are you sure you want to log out?") &&
+      alert("You have been logged out.");
   };
 
   return (

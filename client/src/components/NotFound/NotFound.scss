@@ -13,14 +13,14 @@
   text-align: center;
 
   &__icon {
-    font-size: 10rem;
+    font-size: 100px;
     color: var(--black);
   }
 
   &__text {
     font-family: $font-primary;
     font-weight: $font-w-400;
-    font-size: 5rem;
+    font-size: 72px;
     color: var(--black);
   }
 
@@ -30,21 +30,21 @@
 
   @include tablet {
     &__icon {
-      font-size: 6rem;
+      font-size: 72px;
     }
 
     &__text {
-      font-size: 1.5rem;
+      font-size: 42px;
     }
   }
 
   @include mobile {
     &__icon {
-      font-size: 2.5rem;
+      font-size: 60px;
     }
 
     &__text {
-      font-size: 0.9rem;
+      font-size: 32px;
     }
   }
 }
