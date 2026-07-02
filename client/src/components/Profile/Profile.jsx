@@ -1,11 +1,20 @@
 import { useState } from "react";
-import { HiX, HiOutlineUserCircle } from "react-icons/hi";
+import { Link } from "react-router-dom";
+import { useDarkMode } from "../../context/DarkModeProvider";
 import { useAuth } from "../../context/AuthContext";
+
+import {
+  HiX,
+  HiOutlineUserCircle,
+  HiOutlineSun,
+  HiOutlineMoon,
+} from "react-icons/hi";
 
 import "./Profile.scss";
 
 const Profile = ({ isOpen, onClose }) => {
   const { user, login, register, logout } = useAuth();
+  const { theme, toggleTheme } = useDarkMode();
 
   const [mode, setMode] = useState("actions");
   const [form, setForm] = useState({
@@ -63,6 +72,17 @@ const Profile = ({ isOpen, onClose }) => {
           <HiX size={22} />
         </button>
 
+        <div className="profile__theme">
+          <button onClick={toggleTheme}>
+            {theme === "light" ? (
+              <HiOutlineSun size={24} />
+            ) : (
+              <HiOutlineMoon size={24} />
+            )}
+            {theme === "light" ? <p>Light Mode</p> : <p>Dark Mode</p>}
+          </button>
+        </div>
+
         <div className="profile__header">
           <h3>Profile</h3>
         </div>
@@ -91,7 +111,14 @@ const Profile = ({ isOpen, onClose }) => {
                 </button>
               </>
             ) : (
-              <button onClick={handleLogout}>Logout</button>
+              <>
+                {user && user.role === "admin" && (
+                  <Link to="/admin" className="profile__admin-link">
+                    Admin
+                  </Link>
+                )}
+                <button onClick={handleLogout}>Logout</button>
+              </>
             )}
           </div>
         )}

@@ -16,9 +16,33 @@
     @include animFadeIn;
   }
 
+  &__theme {
+    margin-bottom: $p-2;
+
+    button {
+      max-width: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: $p-0-5;
+      border: 1px solid var(--gray);
+      background: var(--white);
+      color: var(--black);
+      border-radius: 999px;
+      padding: $p-0-5;
+      cursor: pointer;
+    }
+
+    p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--black);
+    }
+  }
+
   &__close {
     position: absolute;
-    top: 22px;
+    top: 35px;
     right: 20px;
     border: none;
     background: transparent;
@@ -47,9 +71,11 @@
     flex-direction: column;
     gap: $p-0-5;
 
-    button {
+    button,
+    a {
       @include button-form;
       width: 100%;
+      text-align: center;
     }
   }
 

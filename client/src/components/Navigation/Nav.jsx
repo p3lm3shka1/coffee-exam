@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 import { useHiddenScroll } from "../../hooks/useHiddenScroll";
-import { useDarkMode } from "../../context/DarkModeProvider";
 
 import Profile from "../Profile/Profile";
 import Cart from "../Cart/Cart";
@@ -25,7 +24,6 @@ import {
 const Nav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const hidden = useHiddenScroll({ threshold: 150, delta: 2 });
-  const { theme, toggleTheme } = useDarkMode();
   const [subMenu, setSubMenu] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
@@ -111,15 +109,6 @@ const Nav = () => {
         </ul>
 
         <div className="navbar__actions">
-          <div className="theme-switcher">
-            <button className="theme-switcher__button" onClick={toggleTheme}>
-              {theme === "light" ? (
-                <HiOutlineSun size={24} />
-              ) : (
-                <HiOutlineMoon size={24} />
-              )}
-            </button>
-          </div>
           <button
             className="navbar__actions__account"
             onClick={() => setProfileOpen(true)}
