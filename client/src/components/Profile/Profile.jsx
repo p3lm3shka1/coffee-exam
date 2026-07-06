@@ -39,34 +39,36 @@ const Profile = ({ isOpen, onClose }) => {
     e.preventDefault();
     try {
       setError("");
-      await login(form.email, form.password);
+      const loggedUser = await login(form.email, form.password);
       resetForm();
       setMode("actions");
+      alert(`Login successful! Welcome back ${loggedUser.name || "User"}.`);
     } catch (err) {
       setError(err.message || "Login failed");
     }
-    alert(`Login successful! Welcome back ${form.name}.`);
   };
 
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
       setError("");
-      await register(form.name, form.email, form.password);
+      const newUser = await register(form.name, form.email, form.password);
       resetForm();
       setMode("actions");
+      alert(
+        `Registration successful! Welcome ${newUser.name || "User"}! Please log in.`,
+      );
     } catch (err) {
       setError(err.message || "Register failed");
     }
-    alert("Registration successful! Please log in.");
   };
 
   const handleLogout = () => {
+    if (!confirm("Are you sure you want to logout?")) return;
     logout();
     setMode("actions");
     onClose();
-    confirm("Are you sure you want to log out?") &&
-      alert("You have been logged out.");
+    alert("You have been logged out.");
   };
 
   return (
@@ -77,30 +79,27 @@ const Profile = ({ isOpen, onClose }) => {
         </button>
 
         <div className="profile__theme">
-          <button onClick={toggleTheme}>
-            {theme === "light" ? (
-              <HiOutlineSun size={24} />
-            ) : (
-              <HiOutlineMoon size={24} />
-            )}
-            {theme === "light" ? <p>Light Mode</p> : <p>Dark Mode</p>}
-          </button>
+          <input type="checkbox" onClick={toggleTheme} />
+          {theme === "light" ? (
+            <HiOutlineSun size={24} />
+          ) : (
+            <HiOutlineMoon size={24} />
+          )}
+          {theme === "light" ? <p>Light Mode</p> : <p>Dark Mode</p>}
         </div>
 
-        <div className="profile__header">
-          <h3>Profile</h3>
-        </div>
+        <div className="profile__header"></div>
 
         {user && (
           <div className="profile__user">
-            <p>
-              <strong>Name:</strong> {user.name}
+            <p className="profile__user__name">
+              Welcome, <strong>{user.name}</strong>
             </p>
             <p>
-              <strong>Role:</strong> {user.role}
+              Role: <strong>{user.role}</strong>
             </p>
             <p>
-              <strong>Email:</strong> {user.email}
+              Email: <strong>{user.email}</strong>
             </p>
           </div>
         )}

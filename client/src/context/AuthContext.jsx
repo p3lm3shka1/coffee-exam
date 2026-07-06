@@ -15,9 +15,20 @@ export const AuthProvider = ({ children }) => {
       body: JSON.stringify({ name, email, password }),
     });
     const data = await res.json();
-    if (!res.ok) throw new Error(data.message);
-    setUser(data);
-    localStorage.setItem("user", JSON.stringify(data));
+    if (!res.ok) throw new Error(data.message || "Register failed");
+
+    const autoLogin = await fetch(`${API_URL}/api/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+    const loginData = await autoLogin.json();
+    if (!autoLogin.ok)
+      throw new Error(loginData.message || "Auto-login failed");
+
+    setUser(loginData);
+    localStorage.setItem("user", JSON.stringify(loginData));
+    return loginData;
   };
 
   const login = async (email, password) => {
@@ -27,9 +38,11 @@ export const AuthProvider = ({ children }) => {
       body: JSON.stringify({ email, password }),
     });
     const data = await res.json();
-    if (!res.ok) throw new Error(data.message);
+    if (!res.ok) throw new Error(data.message || "Login failed");
+
     setUser(data);
     localStorage.setItem("user", JSON.stringify(data));
+    return data;
   };
 
   const logout = () => {
@@ -37,9 +50,11 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("user");
   };
 
-  const value = { user, setUser, register, login, logout };
-
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ user, setUser, register, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 export const useAuth = () => useContext(AuthContext);

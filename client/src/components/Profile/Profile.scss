@@ -54,7 +54,7 @@
     display: flex;
     align-items: center;
     gap: $p-0-5;
-    margin-bottom: $p-2;
+
     color: var(--black);
   }
 
@@ -62,7 +62,12 @@
     margin-bottom: $p-2;
     color: var(--black);
     p {
-      margin: $p-1 0;
+      margin: $p-2 0;
+    }
+
+    &__name {
+      font-size: 32px;
+      color: var(--black);
     }
   }
 
