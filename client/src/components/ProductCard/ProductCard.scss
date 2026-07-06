@@ -1,0 +1,94 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+@use "../../styles/media" as *;
+
+.product-card {
+  position: relative;
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+
+  &__image {
+    width: 100%;
+    aspect-ratio: 16/10;
+    object-fit: contain;
+    display: block;
+  }
+
+  &__body {
+    padding: $p-2 0;
+    display: grid;
+    gap: $p-1;
+  }
+
+  &__meta {
+    font-size: 12px;
+    opacity: 0.7;
+    text-transform: capitalize;
+    color: var(--black);
+  }
+
+  &__title {
+    font-size: 18px;
+    color: var(--black);
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--black);
+  }
+
+  &__bottom {
+    margin-top: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--black);
+  }
+
+  &__in-stock {
+    color: var(--green);
+  }
+
+  &__out-stock {
+    color: var(--red);
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  &__overlay-link {
+    @include button-form;
+    text-decoration: none;
+  }
+
+  &:hover &__overlay {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  @include tablet {
+    &__body {
+      padding: $p-1 0;
+    }
+  }
+
+  @include mobile {
+    &__body {
+      padding: $p-0-5 0;
+    }
+  }
+}

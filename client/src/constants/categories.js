@@ -6,24 +6,23 @@ import espressoImage from "../assets/logos/espresso-logo.png";
 import filterImage from "../assets/logos/filter-logo.png";
 import decafImage from "../assets/logos/decaf-logo.png";
 
+import allCoffeeImage from "../assets/logos/all.png";
+
 export const accessoriesItems = [
   {
     name: "Paper Filters",
     image: paperImage,
-    desc: "High-quality paper filters for a clean and smooth coffee extraction.",
-    link: "/accessories/paper",
+    subcategory: "filters",
   },
   {
     name: "Brewing Methods",
     image: brewingImage,
-    desc: "Explore various brewing methods to enhance your coffee experience.",
-    link: "/accessories/brewing",
+    subcategory: "brewing",
   },
   {
     name: "Grinders",
     image: grinderImage,
-    desc: "High-quality grinders for a consistent and precise coffee grind.",
-    link: "/accessories/grinders",
+    subcategory: "grinders",
   },
 ];
 
@@ -31,19 +30,22 @@ export const coffeeItems = [
   {
     name: "Espresso",
     image: espressoImage,
-    desc: "Bold and rich, best enjoyed in small, concentrated doses or with milk.",
-    link: "/coffee/espresso",
+    subcategory: "espresso",
   },
   {
     name: "Filter",
     image: filterImage,
-    desc: "Smooth and balanced, ideal for a relaxing coffee break.",
-    link: "/coffee/filter",
+    subcategory: "filter",
   },
   {
     name: "Decaf",
     image: decafImage,
-    desc: "Enjoy the taste of coffee without the caffeine.",
-    link: "/coffee/decaf",
+    subcategory: "decaf",
   },
 ];
+
+export const allCoffeeItem = {
+  name: "All",
+  image: allCoffeeImage,
+  subcategory: "all",
+};

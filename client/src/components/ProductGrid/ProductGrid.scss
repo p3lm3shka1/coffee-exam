@@ -1,0 +1,18 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+@use "../../styles/media" as *;
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+  color: var(--black);
+}
+
+.no-products {
+  font-family: $font-primary;
+  font-size: 40px;
+  color: var(--black);
+  text-align: center;
+  margin-top: $p-3;
+}

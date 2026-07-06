@@ -29,13 +29,12 @@
   }
 
   &__hero {
-    padding: 0 0 $p-4 0;
     &__title {
       font-family: $font-secondary;
       font-size: 32px;
       color: var(--black);
       text-align: center;
-      margin-top: $p-2;
+      margin-top: $p-1;
     }
 
     &__subtitle {
@@ -51,23 +50,19 @@
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
-    justify-content: space-around;
-    gap: $p-2;
+    justify-content: space-between;
+    gap: $p-4;
 
     &__item {
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      max-width: 300px;
-      padding: $p-2;
-      border: 1px solid var(--gray);
+      max-width: 150px;
+      padding: $p-1 $p-3;
+      border: none;
       border-radius: 8px;
       @include transition;
-
-      &:hover {
-        transform: translateY(-2px);
-      }
 
       &__title {
         font-family: $font-secondary;
@@ -76,17 +71,34 @@
       }
 
       &__image {
-        width: 100%;
+        max-width: 70px;
         height: auto;
-        margin: $p-2 0;
-      }
+        @include transition;
 
-      &__description {
-        font-family: $font-primary;
-        font-size: 16px;
-        color: var(--dark-gray);
+        &:hover {
+          transform: scale(1.1);
+        }
       }
     }
+  }
+
+  &__products {
+    margin-top: $p-4;
+
+    &__title {
+      font-family: $font-secondary;
+      font-size: 32px;
+      color: var(--black);
+      text-align: center;
+      margin-bottom: $p-2;
+    }
+  }
+
+  &__loading {
+    margin-top: $p-4;
+    padding: $p-2;
+    text-align: center;
+    color: var(--dark-gray);
   }
 
   @include tablet {

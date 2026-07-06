@@ -9,14 +9,19 @@ export const fetchProducts = async (params = {}) => {
   const query = new URLSearchParams();
 
   if (params.category) query.append("category", params.category);
+  if (params.subcategory) query.append("subcategory", params.subcategory);
   if (params.search) query.append("search", params.search);
   if (params.sort) query.append("sort", params.sort);
-  if (params.minPrice !== undefined && params.minPrice !== "")
-    query.append("minPrice", params.minPrice);
-  if (params.maxPrice !== undefined && params.maxPrice !== "")
-    query.append("maxPrice", params.maxPrice);
 
-  const response = await fetch(`${API_URL}/api/products?${query.toString()}`);
+  if (params.minPrice !== undefined && params.minPrice !== "") {
+    query.append("minPrice", params.minPrice);
+  }
+  if (params.maxPrice !== undefined && params.maxPrice !== "") {
+    query.append("maxPrice", params.maxPrice);
+  }
+
+  const qs = query.toString();
+  const response = await fetch(`${API_URL}/api/products${qs ? `?${qs}` : ""}`);
   const data = await response.json();
 
   if (!response.ok) throw new Error(data.message || "Failed to fetch products");

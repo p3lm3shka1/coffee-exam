@@ -195,6 +195,7 @@
     align-items: center;
     gap: $p-1;
     flex-shrink: 0;
+    color: var(--black);
 
     &__cart {
       @include button-nav;
