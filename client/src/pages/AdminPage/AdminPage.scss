@@ -22,6 +22,15 @@
     align-items: start;
   }
 
+  &__form-column {
+    position: sticky;
+    top: 16px;
+    align-self: start;
+    max-height: calc(100vh - 32px);
+    overflow: auto;
+    padding-right: 4px;
+  }
+
   &__form {
     display: grid;
     gap: $p-1;
@@ -90,6 +99,12 @@
     }
   }
 
+  &__info {
+    max-height: calc(100vh - 32px);
+    overflow: auto;
+    padding-right: 6px;
+  }
+
   &__list {
     display: grid;
     gap: $p-1;
@@ -121,8 +136,18 @@
       grid-template-columns: 1fr;
     }
 
-    &__search {
-      max-width: 100%;
+    &__form-column,
+    &__info {
+      position: static;
+      max-height: none;
+      overflow: visible;
+      padding-right: 0;
+    }
+  }
+
+  @include mobile {
+    &__wrapper {
+      padding: $p-1;
     }
   }
 }

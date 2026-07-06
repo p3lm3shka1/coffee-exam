@@ -157,13 +157,15 @@ const AdminPage = () => {
     <section className="admin">
       <h1 className="admin__title">Admin Panel</h1>
       <div className="admin__wrapper">
-        <AdminForm
-          form={form}
-          editingId={editingId}
-          onChange={onChange}
-          onSubmit={onSubmit}
-          onCancelEdit={resetForm}
-        />
+        <div className="admin__form-column">
+          <AdminForm
+            form={form}
+            editingId={editingId}
+            onChange={onChange}
+            onSubmit={onSubmit}
+            onCancelEdit={resetForm}
+          />
+        </div>
         <div className="admin__info">
           <div className="admin__stats">
             <p>

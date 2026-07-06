@@ -46,7 +46,7 @@ export const getProducts = async (req, res) => {
       if (sort === "price_asc") query = query.sort({ price: 1 });
       else if (sort === "price_desc") query = query.sort({ price: -1 });
       else if (sort === "oldest") query = query.sort({ createdAt: 1 });
-      else query = query.sort({ createdAt: -1 }); // newest
+      else query = query.sort({ createdAt: -1 });
     }
 
     const products = await query;

@@ -45,7 +45,7 @@ const ProductCard = ({ product }) => {
         )}
 
         <div className="product-card__bottom">
-          <strong>${price}</strong>
+          <strong>${price.toFixed(2)}</strong>
           <span
             className={`product-card__${inStock ? "in-stock" : "out-stock"}`}
           >
