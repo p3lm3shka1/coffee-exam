@@ -15,7 +15,7 @@ export const accessoriesItems = [
     subcategory: "filters",
   },
   {
-    name: "Brewing Methods",
+    name: "Brewing Equipment",
     image: brewingImage,
     subcategory: "brewing",
   },
@@ -45,6 +45,12 @@ export const coffeeItems = [
 ];
 
 export const allCoffeeItem = {
+  name: "All",
+  image: allCoffeeImage,
+  subcategory: "all",
+};
+
+export const allAccessoriesItem = {
   name: "All",
   image: allCoffeeImage,
   subcategory: "all",

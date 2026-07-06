@@ -98,7 +98,14 @@ const AdminPage = () => {
       const payload = {
         ...form,
         price: Number(form.price),
+        roastLevel: form.roastLevel || null,
       };
+
+      if (payload.category === "accessories") {
+        payload.roastLevel = null;
+        payload.weight = null;
+        payload.origin = null;
+      }
 
       if (editingId) {
         await updateProduct(editingId, payload, token);

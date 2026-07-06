@@ -17,7 +17,7 @@ const productSchema = new mongoose.Schema(
         "espresso",
         "filter",
         "decaf",
-        "paper",
+        "filters",
         "grinders",
         "brewing",
         null,
