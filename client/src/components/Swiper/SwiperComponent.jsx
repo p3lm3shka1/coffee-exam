@@ -1,36 +1,52 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation } from "swiper/modules";
+import { Pagination } from "swiper/modules";
+import { Link } from "react-router-dom";
+
 import "swiper/css";
+import "swiper/css/pagination";
 
 import "./Swiper.scss";
 
-const SwiperComponent = ({ items }) => {
+const SwiperComponent = ({ items = [] }) => {
+  if (!items.length) return <p>No products yet.</p>;
+
   return (
     <Swiper
       slidesPerView={1}
       spaceBetween={24}
-      loop={true}
-      navigation={false}
+      loop={items.length > 4}
       pagination={{ clickable: true }}
       breakpoints={{
         480: { slidesPerView: 2 },
         768: { slidesPerView: 3 },
         1024: { slidesPerView: 4 },
       }}
-      modules={[Pagination, Navigation]}
+      modules={[Pagination]}
       className="product-swiper"
     >
       {items.map((item) => (
-        <SwiperSlide key={item.id}>
+        <SwiperSlide key={item._id}>
           <div className="product-swiper__card">
-            <div className="product-swiper__card__image" />
+            <img
+              className="product-swiper__card__image"
+              src={
+                item.image ||
+                "https://via.placeholder.com/300x200?text=No+Image"
+              }
+              alt={item.title}
+            />
             <div className="product-swiper__card__info">
-              <p className="product-swiper__card__name">{item.name}</p>
-              <p className="product-swiper__card__price">{item.price}</p>
+              <p className="product-swiper__card__name">{item.title}</p>
+              <p className="product-swiper__card__price">
+                ${Number(item.price).toFixed(2)}
+              </p>
             </div>
-            <button className="product-swiper__card__button">
-              Add to Cart
-            </button>
+            <Link
+              className="product-swiper__card__button"
+              to={`/products/${item._id}`}
+            >
+              Product Details
+            </Link>
           </div>
         </SwiperSlide>
       ))}

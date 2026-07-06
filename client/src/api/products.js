@@ -13,13 +13,6 @@ export const fetchProducts = async (params = {}) => {
   if (params.search) query.append("search", params.search);
   if (params.sort) query.append("sort", params.sort);
 
-  if (params.minPrice !== undefined && params.minPrice !== "") {
-    query.append("minPrice", params.minPrice);
-  }
-  if (params.maxPrice !== undefined && params.maxPrice !== "") {
-    query.append("maxPrice", params.maxPrice);
-  }
-
   const qs = query.toString();
   const response = await fetch(`${API_URL}/api/products${qs ? `?${qs}` : ""}`);
   const data = await response.json();
