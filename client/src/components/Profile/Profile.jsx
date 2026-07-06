@@ -79,13 +79,14 @@ const Profile = ({ isOpen, onClose }) => {
         </button>
 
         <div className="profile__theme">
-          <input type="checkbox" onClick={toggleTheme} />
-          {theme === "light" ? (
-            <HiOutlineSun size={24} />
-          ) : (
-            <HiOutlineMoon size={24} />
-          )}
-          {theme === "light" ? <p>Light Mode</p> : <p>Dark Mode</p>}
+          <button onClick={toggleTheme}>
+            {theme === "light" ? (
+              <HiOutlineSun size={24} />
+            ) : (
+              <HiOutlineMoon size={24} />
+            )}
+            {theme === "light" ? <p>Light Mode</p> : <p>Dark Mode</p>}
+          </button>
         </div>
 
         <div className="profile__header"></div>
@@ -93,13 +94,7 @@ const Profile = ({ isOpen, onClose }) => {
         {user && (
           <div className="profile__user">
             <p className="profile__user__name">
-              Welcome, <strong>{user.name}</strong>
-            </p>
-            <p>
-              Role: <strong>{user.role}</strong>
-            </p>
-            <p>
-              Email: <strong>{user.email}</strong>
+              Hello, <strong>{user.name}</strong>
             </p>
           </div>
         )}
@@ -115,12 +110,17 @@ const Profile = ({ isOpen, onClose }) => {
               </>
             ) : (
               <>
+                <Link to="/profile" className="profile__profile-link">
+                  Profile
+                </Link>
                 {user && user.role === "admin" && (
                   <Link to="/admin" className="profile__admin-link">
                     Admin
                   </Link>
                 )}
-                <button onClick={handleLogout}>Logout</button>
+                <button onClick={handleLogout} className="profile__logout">
+                  Logout
+                </button>
               </>
             )}
           </div>

@@ -59,10 +59,10 @@
   }
 
   &__user {
-    margin-bottom: $p-2;
+    margin-bottom: $p-1;
     color: var(--black);
     p {
-      margin: $p-2 0;
+      margin: $p-1 0;
     }
 
     &__name {
@@ -74,12 +74,13 @@
   &__actions {
     display: flex;
     flex-direction: column;
-    gap: $p-0-5;
+    gap: $p-1;
 
     button,
     a {
       @include button-form;
       width: 100%;
+      font-size: 14px;
       text-align: center;
     }
   }

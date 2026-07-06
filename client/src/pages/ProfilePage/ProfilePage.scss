@@ -1,0 +1,30 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+@use "../../styles/media" as *;
+
+.profile-page {
+  min-height: 100vh;
+  padding: $p-4 0;
+  background: var(--white);
+
+  &__wrapper {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: $p-0-5 $p-2;
+  }
+
+  h1 {
+    margin-top: $p-3;
+    color: var(--black);
+    font-size: 50px;
+    text-align: center;
+  }
+
+  @include tablet {
+    padding: $p-1;
+  }
+
+  @include mobile {
+    padding: $p-0-5;
+  }
+}

@@ -95,4 +95,11 @@
     line-height: 1.9;
     white-space: pre-line;
   }
+
+  &__subtitle {
+    font-family: $font-secondary;
+    font-weight: $font-w-700;
+    font-size: 24px;
+    color: var(--black);
+  }
 }

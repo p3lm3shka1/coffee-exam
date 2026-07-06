@@ -14,6 +14,7 @@ import Footer from "./components/Footer/Footer";
 import ArticleDetails from "./pages/Articles/ArticleDetails";
 import CoffeePage from "./pages/CoffeePage/CoffeePage";
 import AccessoriesPage from "./pages/AccessoriesPage/AccessoriesPage";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
 
 import "./App.scss";
 
@@ -29,6 +30,7 @@ const App = () => {
         <Route path="/articles/:slug" element={<ArticleDetails />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/profile" element={<ProfilePage />} />
         <Route path="*" element={<NotFound />} />
 
         <Route element={<AdminRoute />}>
