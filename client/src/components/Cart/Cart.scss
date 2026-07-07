@@ -5,15 +5,45 @@
 .cart {
   position: fixed;
   inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: flex-end;
   z-index: 999;
+  animation: slideIn 0.3s ease-out;
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 
   &__content {
     @include profile-overlay;
-
     padding: $p-1-5;
     overflow-y: auto;
-
     @include animFadeIn;
+    width: 100%;
+    max-width: 400px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    animation: slideRight 0.3s ease-out;
+
+    @keyframes slideRight {
+      from {
+        transform: translateX(100%);
+      }
+      to {
+        transform: translateX(0);
+      }
+    }
+
+    @include tablet {
+      max-width: 100%;
+    }
   }
 
   &__close {
@@ -24,14 +54,39 @@
     background: transparent;
     color: var(--black);
     cursor: pointer;
+    @include transition;
+
+    &:hover {
+      transform: rotate(90deg);
+    }
   }
 
   &__header {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: $p-0-5;
     margin-bottom: $p-2;
     color: var(--black);
+    border-bottom: 1px solid var(--gray);
+    padding-bottom: $p-1;
+
+    h3 {
+      font-family: $font-secondary;
+      font-size: 22px;
+      margin: 0;
+    }
+  }
+
+  &__count {
+    background: var(--black);
+    color: var(--white);
+    font-size: 12px;
+    font-weight: $font-w-700;
+    padding: 4px 8px;
+    border-radius: 50%;
+    min-width: 24px;
+    text-align: center;
   }
 
   &__items {
@@ -40,6 +95,144 @@
     flex-direction: column;
     gap: $p-1-5;
     margin-bottom: $p-2;
+    flex: 1;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: var(--light-gray, #f5f5f5);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--gray);
+      border-radius: 3px;
+
+      &:hover {
+        background: var(--dark-gray);
+      }
+    }
+  }
+
+  &__empty {
+    text-align: center;
+    color: var(--dark-gray);
+    margin-top: $p-4;
+    font-family: $font-primary;
+  }
+
+  &__item {
+    display: flex;
+    gap: $p-1-5;
+    padding: $p-1-5;
+    border: 1px solid var(--gray);
+    border-radius: 8px;
+    background: var(--white);
+    @include transition;
+
+    &:hover {
+      border-color: var(--black);
+    }
+
+    &__image-link {
+      display: block;
+      width: 80px;
+      height: 80px;
+      flex-shrink: 0;
+      border-radius: 6px;
+      overflow: hidden;
+      @include transition;
+
+      &:hover {
+        opacity: 0.8;
+        transform: scale(1.05);
+      }
+    }
+
+    &__image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: var(--light-gray);
+    }
+
+    &__info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-width: 0;
+
+      h4 {
+        font-family: $font-primary;
+        font-size: 14px;
+
+        color: var(--black);
+        margin: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+    }
+
+    &__price {
+      font-size: 14px;
+      color: var(--dark-gray);
+      margin: 0;
+    }
+
+    &__controls {
+      display: flex;
+      gap: $p-1;
+      align-items: center;
+    }
+
+    &__delete {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--dark-gray);
+      @include transition;
+      padding: 4px;
+
+      &:hover {
+        color: var(--red);
+      }
+    }
+  }
+
+  &__qty {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--gray);
+    border-radius: 4px;
+    background: var(--white);
+
+    &__btn {
+      background: none;
+      border: none;
+      width: 28px;
+      height: 28px;
+      cursor: pointer;
+      color: var(--black);
+      font-size: 18px;
+      @include transition;
+
+      &:hover {
+        background: var(--gray);
+      }
+    }
+
+    &__value {
+      min-width: 32px;
+      text-align: center;
+      font-size: 14px;
+    }
   }
 
   &__footer {
@@ -48,20 +241,110 @@
     gap: $p-1;
     margin-top: $p-2;
     color: var(--black);
+    border-top: 1px solid var(--gray);
+    padding-top: $p-1-5;
+  }
 
-    a {
-      @include button-form;
-      width: 100%;
-      text-align: center;
+  &__total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: $font-primary;
+    font-size: 18px;
+
+    span {
+      color: var(--dark-gray);
+    }
+
+    strong {
+      color: var(--black);
+      font-size: 20px;
     }
   }
 
+  &__checkout {
+    @include button-form;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+  }
+
   @include tablet {
-    gap: $p-1;
+    &__content {
+      max-width: 100%;
+      width: 100%;
+    }
+
+    &__items {
+      gap: $p-1;
+    }
+
+    &__item {
+      gap: $p-1;
+      padding: $p-1;
+
+      &__image {
+        width: 70px;
+        height: 70px;
+      }
+
+      &__info h4 {
+        font-size: 13px;
+      }
+    }
   }
 
   @include mobile {
-    width: 100%;
     gap: $p-0-5;
+
+    &__content {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    &__close {
+      top: 15px;
+      right: 15px;
+    }
+
+    &__header {
+      margin-bottom: $p-1-5;
+      padding-bottom: $p-0-5;
+
+      h3 {
+        font-size: 18px;
+      }
+    }
+
+    &__items {
+      gap: $p-1;
+      margin-bottom: $p-1;
+      padding: 0;
+    }
+
+    &__item {
+      gap: $p-1;
+      padding: $p-1;
+
+      &__image-link {
+        width: 60px;
+        height: 60px;
+      }
+
+      &__info h4 {
+        font-size: 13px;
+      }
+    }
+
+    &__footer {
+      margin-top: $p-1;
+      padding-top: $p-1;
+      gap: $p-0-5;
+    }
+
+    &__checkout {
+      padding: $p-1;
+    }
   }
 }
