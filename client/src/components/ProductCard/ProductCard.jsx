@@ -2,6 +2,8 @@ import "./ProductCard.scss";
 
 import { Link } from "react-router-dom";
 
+import { useCart } from "../../context/CartContext";
+
 const ProductCard = ({ product }) => {
   const {
     title,
@@ -16,6 +18,8 @@ const ProductCard = ({ product }) => {
     material,
     brand,
   } = product;
+
+  const { addToCart } = useCart();
 
   const isCoffee = category === "coffee";
   const isAccessories = category === "accessories";
@@ -60,6 +64,12 @@ const ProductCard = ({ product }) => {
         >
           Product Details
         </Link>
+        <button
+          className="product-card__overlay__add"
+          onClick={() => addToCart(product)}
+        >
+          Add to Cart
+        </button>
       </div>
     </section>
   );

@@ -10,9 +10,9 @@ import {
   HiOutlineMoon,
 } from "react-icons/hi";
 
-import "./Profile.scss";
+import "./ProfileOverlay.scss";
 
-const Profile = ({ isOpen, onClose }) => {
+const ProfileOverlay = ({ isOpen, onClose }) => {
   const { user, login, register, logout } = useAuth();
   const { theme, toggleTheme } = useDarkMode();
 
@@ -79,14 +79,17 @@ const Profile = ({ isOpen, onClose }) => {
         </button>
 
         <div className="profile__theme">
-          <button onClick={toggleTheme}>
-            {theme === "light" ? (
-              <HiOutlineSun size={24} />
-            ) : (
-              <HiOutlineMoon size={24} />
-            )}
-            {theme === "light" ? <p>Light Mode</p> : <p>Dark Mode</p>}
-          </button>
+          <input
+            className="profile__theme__checkbox"
+            type="checkbox"
+            checked={theme === "dark"}
+            onChange={toggleTheme}
+            id="theme-toggle"
+          />
+          <label className="profile__theme__label" htmlFor="theme-toggle">
+            <HiOutlineSun className="sun" />
+            <HiOutlineMoon className="moon" />
+          </label>
         </div>
 
         <div className="profile__header"></div>
@@ -200,4 +203,4 @@ const Profile = ({ isOpen, onClose }) => {
   );
 };
 
-export default Profile;
+export default ProfileOverlay;

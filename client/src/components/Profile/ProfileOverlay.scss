@@ -17,27 +17,7 @@
   }
 
   &__theme {
-    margin-bottom: $p-2;
-
-    button {
-      max-width: 200px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: $p-0-5;
-      border: 1px solid var(--gray);
-      background: var(--white);
-      color: var(--black);
-      border-radius: 999px;
-      padding: $p-0-5;
-      cursor: pointer;
-    }
-
-    p {
-      margin: 0;
-      font-size: 14px;
-      color: var(--black);
-    }
+    @include profile-theme-toggle;
   }
 
   &__close {

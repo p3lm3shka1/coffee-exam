@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { useHiddenScroll } from "../../hooks/useHiddenScroll";
 
-import Profile from "../Profile/Profile";
+import ProfileOverlay from "../Profile/ProfileOverlay";
 import Cart from "../Cart/Cart";
 
 import "./Nav.scss";
@@ -132,7 +132,10 @@ const Nav = () => {
           </button>
         </div>
       </div>
-      <Profile isOpen={profileOpen} onClose={() => setProfileOpen(false)} />
+      <ProfileOverlay
+        isOpen={profileOpen}
+        onClose={() => setProfileOpen(false)}
+      />
       <Cart isOpen={cartOpen} onClose={() => setCartOpen(false)} />
     </motion.nav>
   );

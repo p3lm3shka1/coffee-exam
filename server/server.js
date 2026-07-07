@@ -4,7 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import authRoute from "./routes/authRoute.js";
 import productRoute from "./routes/productRoute.js";
-
+import cartRoute from "./routes/cartRoute.js";
 import articleRoute from "./routes/articleRoute.js";
 
 dotenv.config();
@@ -20,7 +20,7 @@ app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/articles", articleRoute);
 app.use("/api/products", productRoute);
-
+app.use("/api/cart", cartRoute);
 app.listen(process.env.PORT, () => {
   console.log(`You're running on port ${process.env.PORT}`);
 });
