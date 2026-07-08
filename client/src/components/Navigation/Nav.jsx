@@ -6,6 +6,7 @@ import { useHiddenScroll } from "../../hooks/useHiddenScroll";
 
 import ProfileOverlay from "../Profile/ProfileOverlay";
 import Cart from "../Cart/Cart";
+import SearchBar from "../SearchBar/SearchBar";
 
 import "./Nav.scss";
 
@@ -16,9 +17,6 @@ import {
   HiOutlineUserCircle,
   HiOutlineViewList,
   HiX,
-  HiOutlineSun,
-  HiOutlineMoon,
-  HiOutlineSearch,
 } from "react-icons/hi";
 
 const Nav = () => {
@@ -59,10 +57,8 @@ const Nav = () => {
               <img src={Logo} alt="Logo" />
             </Link>
           </div>
-
           <div className="navbar__search">
-            <HiOutlineSearch className="navbar__search__icon" size={18} />
-            <input type="text" placeholder="Search..." />
+            <SearchBar />
           </div>
         </div>
 

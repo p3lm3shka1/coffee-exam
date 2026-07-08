@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { HiX } from "react-icons/hi";
-import { MdDeleteOutline } from "react-icons/md";
+import { HiOutlineTrash } from "react-icons/hi";
 import { useCart } from "../../context/CartContext";
 import "./Cart.scss";
 
@@ -12,13 +12,11 @@ const Cart = ({ isOpen, onClose }) => {
   return (
     <section className="cart" onClick={onClose}>
       <div className="cart__content" onClick={(e) => e.stopPropagation()}>
-        <button className="cart__close" onClick={onClose}>
-          <HiX size={24} />
-        </button>
-
         <div className="cart__header">
-          <h3>Your Cart</h3>
-          <span className="cart__count">{cartItems.length}</span>
+          <h3>Cart</h3>
+          <button className="cart__header__close" onClick={onClose}>
+            <HiX size={24} />
+          </button>
         </div>
 
         <div className="cart__items">
@@ -38,35 +36,45 @@ const Cart = ({ isOpen, onClose }) => {
                     alt={item.title}
                   />
                 </Link>
+
                 <div className="cart__item__info">
-                  <h4>{item.title}</h4>
-                  <p className="cart__item__price">
-                    ${Number(item.price).toFixed(2)}
-                  </p>
-                </div>
-                <div className="cart__item__controls">
-                  <div className="cart__qty">
-                    <button
-                      onClick={() => decrease(item._id)}
-                      className="cart__qty__btn"
+                  <div className="cart__item__header">
+                    <Link
+                      to={`/products/${item._id}`}
+                      className="cart__item__title-link"
+                      onClick={onClose}
                     >
-                      −
-                    </button>
-                    <span className="cart__qty__value">{item.quantity}</span>
+                      <h4>{item.title}</h4>
+                    </Link>
                     <button
-                      onClick={() => increase(item._id)}
-                      className="cart__qty__btn"
+                      onClick={() => removeFromCart(item._id)}
+                      className="cart__item__delete"
+                      title="Remove item"
                     >
-                      +
+                      <HiOutlineTrash size={18} />
                     </button>
                   </div>
-                  <button
-                    onClick={() => removeFromCart(item._id)}
-                    className="cart__item__delete"
-                    title="Remove item"
-                  >
-                    <MdDeleteOutline size={20} />
-                  </button>
+
+                  <div className="cart__item__footer">
+                    <div className="cart__qty">
+                      <button
+                        onClick={() => decrease(item._id)}
+                        className="cart__qty__btn"
+                      >
+                        &#x2212;
+                      </button>
+                      <span className="cart__qty__value">{item.quantity}</span>
+                      <button
+                        onClick={() => increase(item._id)}
+                        className="cart__qty__btn"
+                      >
+                        &#x002B;
+                      </button>
+                    </div>
+                    <span className="cart__item__price">
+                      ${(Number(item.price) * item.quantity).toFixed(2)}
+                    </span>
+                  </div>
                 </div>
               </div>
             ))

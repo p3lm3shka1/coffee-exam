@@ -26,7 +26,7 @@
     overflow-y: auto;
     @include animFadeIn;
     width: 100%;
-    max-width: 400px;
+    max-width: 420px;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -46,47 +46,29 @@
     }
   }
 
-  &__close {
-    position: absolute;
-    top: 22px;
-    right: 20px;
-    border: none;
-    background: transparent;
-    color: var(--black);
-    cursor: pointer;
-    @include transition;
-
-    &:hover {
-      transform: rotate(90deg);
-    }
-  }
-
   &__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: $p-0-5;
     margin-bottom: $p-2;
+    margin-top: $p-1;
     color: var(--black);
-    border-bottom: 1px solid var(--gray);
-    padding-bottom: $p-1;
 
     h3 {
       font-family: $font-secondary;
-      font-size: 22px;
+      font-size: 28px;
       margin: 0;
+      font-weight: $font-w-700;
     }
-  }
 
-  &__count {
-    background: var(--black);
-    color: var(--white);
-    font-size: 12px;
-    font-weight: $font-w-700;
-    padding: 4px 8px;
-    border-radius: 50%;
-    min-width: 24px;
-    text-align: center;
+    &__close {
+      border: none;
+      background: transparent;
+      color: var(--black);
+      cursor: pointer;
+      @include transition;
+    }
   }
 
   &__items {
@@ -97,13 +79,14 @@
     margin-bottom: $p-2;
     flex: 1;
     overflow-y: auto;
+    padding-right: $p-0-5;
 
     &::-webkit-scrollbar {
       width: 6px;
     }
 
     &::-webkit-scrollbar-track {
-      background: var(--light-gray, #f5f5f5);
+      background: transparent;
     }
 
     &::-webkit-scrollbar-thumb {
@@ -126,28 +109,26 @@
   &__item {
     display: flex;
     gap: $p-1-5;
-    padding: $p-1-5;
-    border: 1px solid var(--gray);
-    border-radius: 8px;
-    background: var(--white);
+    padding: $p-1;
+    border-bottom: 1px solid var(--light-gray);
     @include transition;
 
-    &:hover {
-      border-color: var(--black);
+    &:last-child {
+      border-bottom: none;
     }
 
     &__image-link {
       display: block;
-      width: 80px;
-      height: 80px;
+      width: 100px;
+      height: 100px;
       flex-shrink: 0;
       border-radius: 6px;
       overflow: hidden;
+      background: #f6f6f6;
       @include transition;
 
       &:hover {
         opacity: 0.8;
-        transform: scale(1.05);
       }
     }
 
@@ -155,7 +136,6 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
-      background: var(--light-gray);
     }
 
     &__info {
@@ -163,33 +143,32 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      min-width: 0;
+      gap: $p-0-5;
+    }
+
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: $p-1;
+    }
+
+    &__title-link {
+      text-decoration: none;
+      flex: 1;
 
       h4 {
         font-family: $font-primary;
-        font-size: 14px;
-
+        font-size: 16px;
+        font-weight: $font-w-600;
         color: var(--black);
         margin: 0;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        line-clamp: 2;
-        -webkit-box-orient: vertical;
+        line-height: 1.3;
       }
-    }
 
-    &__price {
-      font-size: 14px;
-      color: var(--dark-gray);
-      margin: 0;
-    }
-
-    &__controls {
-      display: flex;
-      gap: $p-1;
-      align-items: center;
+      &:hover h4 {
+        opacity: 0.7;
+      }
     }
 
     &__delete {
@@ -198,11 +177,33 @@
       cursor: pointer;
       color: var(--dark-gray);
       @include transition;
-      padding: 4px;
+      padding: 0;
+      flex-shrink: 0;
 
       &:hover {
         color: var(--red);
       }
+    }
+
+    &__detail {
+      font-size: 12px;
+      color: var(--dark-gray);
+      margin: 0;
+    }
+
+    &__footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: $p-1;
+    }
+
+    &__price {
+      font-size: 16px;
+      font-weight: $font-w-700;
+      color: var(--black);
+      min-width: 80px;
+      text-align: right;
     }
   }
 
@@ -216,21 +217,25 @@
     &__btn {
       background: none;
       border: none;
-      width: 28px;
-      height: 28px;
+      width: 32px;
+      height: 32px;
       cursor: pointer;
       color: var(--black);
-      font-size: 18px;
+      font-size: 16px;
       @include transition;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       &:hover {
-        background: var(--gray);
+        background: var(--light-gray);
       }
     }
 
     &__value {
-      min-width: 32px;
+      min-width: 40px;
       text-align: center;
+      font-weight: $font-w-600;
       font-size: 14px;
     }
   }
@@ -254,11 +259,13 @@
 
     span {
       color: var(--dark-gray);
+      font-weight: $font-w-600;
     }
 
     strong {
       color: var(--black);
       font-size: 20px;
+      font-weight: $font-w-700;
     }
   }
 
@@ -276,51 +283,49 @@
       width: 100%;
     }
 
-    &__items {
-      gap: $p-1;
-    }
-
     &__item {
       gap: $p-1;
       padding: $p-1;
 
-      &__image {
-        width: 70px;
-        height: 70px;
+      &__image-link {
+        width: 90px;
+        height: 90px;
       }
 
-      &__info h4 {
-        font-size: 13px;
+      &__title-link h4 {
+        font-size: 15px;
+      }
+
+      &__price {
+        font-size: 15px;
       }
     }
   }
 
   @include mobile {
-    gap: $p-0-5;
-
     &__content {
       width: 100%;
       max-width: 100%;
     }
 
-    &__close {
+    &__header__close {
       top: 15px;
       right: 15px;
     }
 
     &__header {
-      margin-bottom: $p-1-5;
-      padding-bottom: $p-0-5;
+      margin-bottom: $p-1;
+      margin-top: $p-0-5;
 
       h3 {
-        font-size: 18px;
+        font-size: 22px;
       }
     }
 
     &__items {
       gap: $p-1;
       margin-bottom: $p-1;
-      padding: 0;
+      padding-right: 0;
     }
 
     &__item {
@@ -328,12 +333,32 @@
       padding: $p-1;
 
       &__image-link {
-        width: 60px;
-        height: 60px;
+        width: 80px;
+        height: 80px;
       }
 
-      &__info h4 {
-        font-size: 13px;
+      &__title-link h4 {
+        font-size: 14px;
+      }
+
+      &__detail {
+        font-size: 11px;
+      }
+
+      &__price {
+        font-size: 14px;
+        min-width: 70px;
+      }
+    }
+
+    &__qty {
+      &__btn {
+        width: 28px;
+        height: 28px;
+      }
+
+      &__value {
+        min-width: 32px;
       }
     }
 
