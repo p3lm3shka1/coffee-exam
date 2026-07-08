@@ -100,7 +100,7 @@
 
     &__submenu {
       position: absolute;
-      top: calc(100% + 25px);
+      top: calc(100% + 40px);
       transform: translateX(-55%);
       min-width: 160px;
       background-color: var(--white);
@@ -135,7 +135,7 @@
         border: none;
         border-left: 2px solid var(--gray);
         border-radius: 0;
-        padding: 0 0 0 $p-1;
+        padding: $p-0-5 0 0 $p-1-5;
         max-height: 0;
         overflow: hidden;
         opacity: 0;
@@ -231,7 +231,11 @@
     }
 
     &__actions {
-      gap: $p-2;
+      gap: $p-3;
+    }
+
+    &__has-sub {
+      display: none;
     }
 
     &__actions__cart {
