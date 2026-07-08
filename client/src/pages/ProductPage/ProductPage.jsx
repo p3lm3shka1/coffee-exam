@@ -4,7 +4,6 @@ import { useCart } from "../../context/CartContext";
 import { useAuth } from "../../context/AuthContext";
 
 import { HiArrowLeft, HiOutlineShoppingCart, HiX } from "react-icons/hi";
-
 import { GiCoffeeCup } from "react-icons/gi";
 
 import "./ProductPage.scss";
@@ -15,15 +14,17 @@ const ProductPage = () => {
   const { addToCart } = useCart();
   const { user } = useAuth();
   const [product, setProduct] = useState(null);
+  const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showNotification, setShowNotification] = useState(false);
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
         setLoading(true);
         const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/products/${id}`,
+          `${import.meta.env.VITE_API_URL}/api/products/${id}`,
         );
         if (!response.ok) {
           throw new Error("Product not found");
@@ -37,14 +38,18 @@ const ProductPage = () => {
       }
     };
 
-    fetchProduct();
+    if (id) fetchProduct();
   }, [id]);
 
   useEffect(() => {
-    if (product.title) {
+    if (product?.title) {
       document.title = product.title + " | Coffee Explorer";
     }
   }, [product]);
+
+  const handleQuantityChange = (value) => {
+    if (value >= 1) setQuantity(value);
+  };
 
   const handleAddToCart = () => {
     if (!product) return;
@@ -53,22 +58,31 @@ const ProductPage = () => {
       addToCart(product);
     }
 
+    setShowNotification(true);
+    setTimeout(() => setShowNotification(false), 2000);
     setQuantity(1);
   };
 
   if (loading) {
     return (
-      <div className="product-page__loading">
-        <GiCoffeeCup />
+      <div className="product-page product-page--loading">
+        <div className="spinner">
+          <GiCoffeeCup size={50} />
+        </div>
       </div>
     );
   }
 
-  if (error) {
+  if (error || !product) {
     return (
-      <div className="product-page__error">
-        <p>{error}</p>
-        <button onClick={() => navigate(-1)}>Go Back</button>
+      <div className="product-page product-page--error">
+        <div className="error-content">
+          <h1>Oops! Product not found</h1>
+          <p>{error || "The product you're looking for doesn't exist."}</p>
+          <button className="error-button" onClick={() => navigate(-1)}>
+            Go Back
+          </button>
+        </div>
       </div>
     );
   }
@@ -149,7 +163,7 @@ const ProductPage = () => {
                     onClick={() => handleQuantityChange(quantity - 1)}
                     className="qty-btn"
                   >
-                    −
+                    &#x2212;
                   </button>
                   <input
                     id="quantity"
@@ -165,7 +179,7 @@ const ProductPage = () => {
                     onClick={() => handleQuantityChange(quantity + 1)}
                     className="qty-btn"
                   >
-                    +
+                    &#x002B;
                   </button>
                 </div>
               </div>
@@ -194,15 +208,10 @@ const ProductPage = () => {
 
             <div className="product-page__features">
               <div className="feature">
-                <span className="feature-icon">📦</span>
                 <p>Free shipping on orders over $50</p>
               </div>
+              <div className="feature"></div>
               <div className="feature">
-                <span className="feature-icon">↩️</span>
-                <p>30-day return policy</p>
-              </div>
-              <div className="feature">
-                <span className="feature-icon">🔒</span>
                 <p>Secure checkout</p>
               </div>
             </div>
