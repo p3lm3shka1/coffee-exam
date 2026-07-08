@@ -1,18 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-import { HiOutlineEmojiSad } from "react-icons/hi";
+import { GiCoffeeCup } from "react-icons/gi";
 
 import "./NotFound.scss";
 
 const NotFound = () => {
   return (
     <div className="notfound">
-      <HiOutlineEmojiSad className="notfound__icon" />
-      <p className="notfound__text">
-        Whoopsie <br />
-        There's nothing here!
-      </p>
-      <Link to="/" className="notfound__link">
+      <GiCoffeeCup className="notfound__icon" />
+      <h1 className="notfound__text">Oops! Product not found</h1>
+      <Link to="/" className="notfound__link" onClick={() => navigate(-1)}>
         Go back
       </Link>
     </div>

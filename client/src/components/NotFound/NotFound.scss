@@ -15,10 +15,11 @@
   &__icon {
     font-size: 100px;
     color: var(--black);
+    font-family: $font-secondary;
   }
 
   &__text {
-    font-family: $font-primary;
+    font-family: $font-secondary;
     font-weight: $font-w-400;
     font-size: 72px;
     color: var(--black);

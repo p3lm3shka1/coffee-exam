@@ -9,7 +9,8 @@ import { GiCoffeeCup } from "react-icons/gi";
 import "./ProductPage.scss";
 
 const ProductPage = () => {
-  const { identifier } = useParams();
+  //   console.log("useParams:", useParams());
+  const { id } = useParams();
   const navigate = useNavigate();
   const { addToCart } = useCart();
   const { user } = useAuth();
@@ -20,15 +21,17 @@ const ProductPage = () => {
   const [showNotification, setShowNotification] = useState(false);
 
   useEffect(() => {
+    if (!id) return;
+
     const fetchProduct = async () => {
       try {
         setLoading(true);
         // console.log(
         //   "Fetching from:",
-        //   `${import.meta.env.VITE_API_URL}/api/products/${identifier}`,
+        //   `${import.meta.env.VITE_API_URL}/api/products/${id}`,
         // );
         const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/products/${identifier}`,
+          `${import.meta.env.VITE_API_URL}/api/products/${id}`,
         );
         // console.log("Response status:", response.status);
         if (!response.ok) {
@@ -45,8 +48,8 @@ const ProductPage = () => {
       }
     };
 
-    if (identifier) fetchProduct();
-  }, [identifier]);
+    if (id) fetchProduct();
+  }, [id]);
 
   const handleQuantityChange = (value) => {
     if (value >= 1) setQuantity(value);
@@ -76,8 +79,8 @@ const ProductPage = () => {
     return (
       <div className="product-page product-page--error">
         <div className="error-content">
+          <GiCoffeeCup size={100} />
           <h1>Oops! Product not found</h1>
-
           <button className="error-button" onClick={() => navigate(-1)}>
             Go Back
           </button>
@@ -112,17 +115,6 @@ const ProductPage = () => {
                   {product.category}
                 </span>
               )}
-            </div>
-
-            <div className="product-page__rating">
-              <div className="product-page__stars">
-                {[...Array(5)].map((_, i) => (
-                  <span key={i} className="star">
-                    ★
-                  </span>
-                ))}
-              </div>
-              <span className="product-page__reviews">(42 reviews)</span>
             </div>
 
             <div className="product-page__price">
@@ -203,16 +195,6 @@ const ProductPage = () => {
                 </div>
               </div>
             )}
-
-            <div className="product-page__features">
-              <div className="feature">
-                <p>Free shipping on orders over $50</p>
-              </div>
-              <div className="feature"></div>
-              <div className="feature">
-                <p>Secure checkout</p>
-              </div>
-            </div>
           </div>
         </div>
       </div>

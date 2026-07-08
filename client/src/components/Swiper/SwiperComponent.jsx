@@ -43,7 +43,7 @@ const SwiperComponent = ({ items = [] }) => {
             </div>
             <Link
               className="product-swiper__card__button"
-              to={`/products/${item.slug || item._id}`}
+              to={`/products/${item._id}`}
             >
               Product Details
             </Link>

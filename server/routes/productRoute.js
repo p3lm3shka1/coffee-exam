@@ -13,7 +13,7 @@ import { adminOnly } from "../middleware/adminMiddleware.js";
 const router = express.Router();
 
 router.get("/", getProducts);
-router.get("/:identifier", getProductById);
+router.get("/:id", getProductById);
 router.post("/", protect, adminOnly, createProduct);
 router.put("/:id", protect, adminOnly, updateProduct);
 router.delete("/:id", protect, adminOnly, deleteProduct);

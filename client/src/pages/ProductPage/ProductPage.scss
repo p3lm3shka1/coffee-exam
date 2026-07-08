@@ -104,27 +104,6 @@
     text-transform: capitalize;
   }
 
-  &__rating {
-    display: flex;
-    align-items: center;
-    gap: $p-1;
-  }
-
-  &__stars {
-    display: flex;
-    gap: 2px;
-
-    .star {
-      color: #ffc107;
-      font-size: 18px;
-    }
-  }
-
-  &__reviews {
-    font-size: 14px;
-    color: var(--dark-gray);
-  }
-
   &__price {
     display: flex;
     align-items: center;
@@ -153,7 +132,7 @@
   }
 
   &__specs {
-    background: #f9f9f9;
+    background: var(--light-gray);
     border-left: 3px solid var(--black);
     padding: $p-1-5;
     border-radius: 6px;
@@ -300,37 +279,6 @@
     }
   }
 
-  &__features {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: $p-1;
-    margin-top: $p-2;
-    padding-top: $p-2;
-    border-top: 1px solid var(--gray);
-
-    @include tablet {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  .feature {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: $p-0-5;
-    text-align: center;
-
-    .feature-icon {
-      font-size: 28px;
-    }
-
-    p {
-      font-size: 13px;
-      color: var(--dark-gray);
-      margin: 0;
-    }
-  }
-
   &--loading {
     display: flex;
     align-items: center;
@@ -350,18 +298,13 @@
 
       h1 {
         font-family: $font-secondary;
-        font-size: 32px;
+        font-size: 72px;
         margin-bottom: $p-1;
-      }
-
-      p {
-        color: var(--dark-gray);
-        margin-bottom: $p-2;
+        font-weight: $font-w-400;
       }
 
       .error-button {
         @include button-form;
-        display: inline-block;
       }
     }
   }
