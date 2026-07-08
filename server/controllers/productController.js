@@ -57,6 +57,38 @@ export const getProducts = async (req, res) => {
   }
 };
 
+export const getProductById = async (req, res) => {
+  try {
+    const product = await Products.findById(req.params.id);
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+    res.json(product);
+  } catch (e) {
+    res.status(500).json({ message: e.message });
+  }
+};
+
+export const getProductByIdentifier = async (req, res) => {
+  try {
+    const { identifier } = req.params;
+
+    let product = await Products.findOne({ slug: identifier });
+
+    if (!product) {
+      product = await Products.findById(identifier);
+    }
+
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    res.json(product);
+  } catch (e) {
+    res.status(500).json({ message: e.message });
+  }
+};
+
 export const createProduct = async (req, res) => {
   try {
     const product = await Products.create(req.body);

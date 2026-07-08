@@ -3,13 +3,13 @@ import { useState, useEffect } from "react";
 import { useCart } from "../../context/CartContext";
 import { useAuth } from "../../context/AuthContext";
 
-import { HiArrowLeft, HiOutlineShoppingCart, HiX } from "react-icons/hi";
+import { HiOutlineShoppingCart, HiX } from "react-icons/hi";
 import { GiCoffeeCup } from "react-icons/gi";
 
 import "./ProductPage.scss";
 
 const ProductPage = () => {
-  const { id } = useParams();
+  const { identifier } = useParams();
   const navigate = useNavigate();
   const { addToCart } = useCart();
   const { user } = useAuth();
@@ -23,29 +23,30 @@ const ProductPage = () => {
     const fetchProduct = async () => {
       try {
         setLoading(true);
+        // console.log(
+        //   "Fetching from:",
+        //   `${import.meta.env.VITE_API_URL}/api/products/${identifier}`,
+        // );
         const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/products/${id}`,
+          `${import.meta.env.VITE_API_URL}/api/products/${identifier}`,
         );
+        // console.log("Response status:", response.status);
         if (!response.ok) {
           throw new Error("Product not found");
         }
         const data = await response.json();
+        // console.log("Product data:", data);
         setProduct(data);
       } catch (error) {
+        // console.error("Fetch error:", error);
         setError(error.message);
       } finally {
         setLoading(false);
       }
     };
 
-    if (id) fetchProduct();
-  }, [id]);
-
-  useEffect(() => {
-    if (product?.title) {
-      document.title = product.title + " | Coffee Explorer";
-    }
-  }, [product]);
+    if (identifier) fetchProduct();
+  }, [identifier]);
 
   const handleQuantityChange = (value) => {
     if (value >= 1) setQuantity(value);
@@ -66,9 +67,7 @@ const ProductPage = () => {
   if (loading) {
     return (
       <div className="product-page product-page--loading">
-        <div className="spinner">
-          <GiCoffeeCup size={50} />
-        </div>
+        <GiCoffeeCup size={50} />
       </div>
     );
   }
@@ -78,7 +77,7 @@ const ProductPage = () => {
       <div className="product-page product-page--error">
         <div className="error-content">
           <h1>Oops! Product not found</h1>
-          <p>{error || "The product you're looking for doesn't exist."}</p>
+
           <button className="error-button" onClick={() => navigate(-1)}>
             Go Back
           </button>
@@ -91,8 +90,7 @@ const ProductPage = () => {
     <section className="product-page">
       <div className="product-page__wrapper">
         <button className="product-page__back" onClick={() => navigate(-1)}>
-          <HiArrowLeft size={20} />
-          Back
+          Go Back
         </button>
 
         <div className="product-page__container">

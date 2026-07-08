@@ -19,8 +19,7 @@ const ArticleDetails = () => {
   if (loading)
     return (
       <div className="articles__state">
-        <GiCoffeeCup className="loading-icon" />
-        {getTimer && <p>Server is drinking coffee to wake up...</p>}
+        {getTimer && <GiCoffeeCup className="loading-icon" />}
       </div>
     );
   if (error) return <div className="article-page__state">Error: {error}</div>;

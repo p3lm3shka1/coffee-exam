@@ -87,7 +87,7 @@ const SearchBar = () => {
               {searchResults.map((product) => (
                 <Link
                   key={product._id}
-                  to={`/products/${product._id}`}
+                  to={`/products/${product.slug || product._id}`}
                   className="search-bar__result-item"
                   onClick={handleSearchResultClick}
                 >

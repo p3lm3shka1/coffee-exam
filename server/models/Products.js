@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const productSchema = new mongoose.Schema(
   {
     title: { type: String, required: true, trim: true },
+    slug: { type: String, required: true, unique: true, lowercase: true },
     price: { type: Number, required: true, min: 0 },
 
     category: {
@@ -40,6 +41,17 @@ const productSchema = new mongoose.Schema(
   },
   { timestamps: true },
 );
+
+productSchema.pre("save", function (next) {
+  if (!this.slug && this.title) {
+    this.slug = this.title
+      .toLowerCase()
+      .trim()
+      .replace(/[^\w\s-]/g, "")
+      .replace(/\s+/g, "-");
+  }
+  next();
+});
 
 productSchema.index({ title: "text", description: "text", origin: "text" });
 productSchema.index({ category: 1, subcategory: 1, createdAt: -1 });
