@@ -6,10 +6,11 @@ import { useAuth } from "../../context/AuthContext";
 import { HiOutlineShoppingCart, HiX } from "react-icons/hi";
 import { GiCoffeeCup } from "react-icons/gi";
 
+import Swiper from "../../components/Swiper/SwiperComponent";
+
 import "./ProductPage.scss";
 
 const ProductPage = () => {
-  //   console.log("useParams:", useParams());
   const { id } = useParams();
   const navigate = useNavigate();
   const { addToCart } = useCart();
@@ -26,22 +27,15 @@ const ProductPage = () => {
     const fetchProduct = async () => {
       try {
         setLoading(true);
-        // console.log(
-        //   "Fetching from:",
-        //   `${import.meta.env.VITE_API_URL}/api/products/${id}`,
-        // );
         const response = await fetch(
           `${import.meta.env.VITE_API_URL}/api/products/${id}`,
         );
-        // console.log("Response status:", response.status);
         if (!response.ok) {
           throw new Error("Product not found");
         }
         const data = await response.json();
-        // console.log("Product data:", data);
         setProduct(data);
       } catch (error) {
-        // console.error("Fetch error:", error);
         setError(error.message);
       } finally {
         setLoading(false);
@@ -51,6 +45,12 @@ const ProductPage = () => {
     if (id) fetchProduct();
   }, [id]);
 
+  useEffect(() => {
+    if (product?.title) {
+      document.title = product.title + " | Coffee Explorer";
+    }
+  }, [product]);
+
   const handleQuantityChange = (value) => {
     if (value >= 1) setQuantity(value);
   };
@@ -58,9 +58,7 @@ const ProductPage = () => {
   const handleAddToCart = () => {
     if (!product) return;
 
-    for (let i = 0; i < quantity; i++) {
-      addToCart(product);
-    }
+    addToCart(product, quantity);
 
     setShowNotification(true);
     setTimeout(() => setShowNotification(false), 2000);
@@ -89,6 +87,8 @@ const ProductPage = () => {
     );
   }
 
+  const isCoffee = product.category === "coffee";
+
   return (
     <section className="product-page">
       <div className="product-page__wrapper">
@@ -116,21 +116,37 @@ const ProductPage = () => {
                 </span>
               )}
             </div>
-
-            <div className="product-page__price">
-              <span className="product-page__price-value">
-                ${Number(product.price).toFixed(2)}
-              </span>
-              {product.originalPrice && (
-                <span className="product-page__price-original">
-                  ${Number(product.originalPrice).toFixed(2)}
-                </span>
-              )}
-            </div>
+            <p className="product-page__subtitle">
+              100% Arabica {product.origin && `from ${product.origin}`}
+            </p>
 
             <p className="product-page__description">
               {product.description || product.longDescription}
             </p>
+
+            {isCoffee &&
+              (product.weight || product.origin || product.roastLevel) && (
+                <div className="product-page__coffee-specs">
+                  {product.weight && (
+                    <div className="spec-item">
+                      <strong>Weight:</strong>
+                      <span>{product.weight}</span>
+                    </div>
+                  )}
+                  {product.origin && (
+                    <div className="spec-item">
+                      <strong>Origin:</strong>
+                      <span>{product.origin}</span>
+                    </div>
+                  )}
+                  {product.roastLevel && (
+                    <div className="spec-item">
+                      <strong>Roast Level:</strong>
+                      <span className="roast-badge">{product.roastLevel}</span>
+                    </div>
+                  )}
+                </div>
+              )}
 
             {product.specs && (
               <div className="product-page__specs">
@@ -145,9 +161,19 @@ const ProductPage = () => {
               </div>
             )}
 
+            <div className="product-page__price">
+              <span className="product-page__price-value">
+                ${Number(product.price).toFixed(2)}
+              </span>
+              {product.originalPrice && (
+                <span className="product-page__price-original">
+                  ${Number(product.originalPrice).toFixed(2)}
+                </span>
+              )}
+            </div>
+
             <div className="product-page__actions">
               <div className="product-page__quantity">
-                <label htmlFor="quantity">Quantity:</label>
                 <div className="quantity-control">
                   <button
                     onClick={() => handleQuantityChange(quantity - 1)}
@@ -159,10 +185,15 @@ const ProductPage = () => {
                     id="quantity"
                     type="number"
                     min="1"
+                    max="99"
                     value={quantity}
-                    onChange={(e) =>
-                      handleQuantityChange(Number(e.target.value))
-                    }
+                    onChange={(e) => {
+                      const value = Math.min(
+                        Math.max(Number(e.target.value), 1),
+                        99,
+                      );
+                      handleQuantityChange(value);
+                    }}
                     className="qty-input"
                   />
                   <button

@@ -7,41 +7,67 @@ export const CartProvider = ({ children }) => {
     JSON.parse(localStorage.getItem("cartItems")) || [],
   );
 
-  const saveToLocalStorage = (next) => {
-    setCartItems(next);
-    localStorage.setItem("cartItems", JSON.stringify(next));
+  const saveToLocalStorage = (items) => {
+    localStorage.setItem("cartItems", JSON.stringify(items));
   };
 
-  const addToCart = (product) => {
-    const existing = cartItems.find((i) => i._id === product._id);
-    if (existing) {
-      saveToLocalStorage(
-        cartItems.map((i) =>
-          i._id === product._id ? { ...i, quantity: i.quantity + 1 } : i,
-        ),
+  const addToCart = (product, qty = 1) => {
+    const limitedQty = Math.min(Math.max(qty, 1), 99);
+
+    setCartItems((prevItems) => {
+      const existing = prevItems.find((i) => i._id === product._id);
+
+      let updated;
+      if (existing) {
+        updated = prevItems.map((i) =>
+          i._id === product._id
+            ? { ...i, quantity: Math.min(i.quantity + limitedQty, 99) }
+            : i,
+        );
+      } else {
+        updated = [...prevItems, { ...product, quantity: limitedQty }];
+      }
+
+      saveToLocalStorage(updated);
+      return updated;
+    });
+  };
+
+  const increase = (id) => {
+    setCartItems((prevItems) => {
+      const updated = prevItems.map((i) =>
+        i._id === id ? { ...i, quantity: Math.min(i.quantity + 1, 99) } : i,
       );
-    } else {
-      saveToLocalStorage([...cartItems, { ...product, quantity: 1 }]);
-    }
+      saveToLocalStorage(updated);
+      return updated;
+    });
   };
 
-  const increase = (id) =>
-    saveToLocalStorage(
-      cartItems.map((i) =>
-        i._id === id ? { ...i, quantity: i.quantity + 1 } : i,
-      ),
-    );
+  const decrease = (id) => {
+    setCartItems((prevItems) => {
+      const updated = prevItems
+        .map((i) =>
+          i._id === id ? { ...i, quantity: Math.max(i.quantity - 1, 1) } : i,
+        )
+        .filter((i) => i.quantity > 0);
+      saveToLocalStorage(updated);
+      return updated;
+    });
+  };
 
-  const decrease = (id) =>
-    saveToLocalStorage(
-      cartItems
-        .map((i) => (i._id === id ? { ...i, quantity: i.quantity - 1 } : i))
-        .filter((i) => i.quantity > 0),
-    );
+  const removeFromCart = (id) => {
+    setCartItems((prevItems) => {
+      const updated = prevItems.filter((i) => i._id !== id);
+      saveToLocalStorage(updated);
+      return updated;
+    });
+  };
 
-  const removeFromCart = (id) =>
-    saveToLocalStorage(cartItems.filter((i) => i._id !== id));
-  const clearCart = () => saveToLocalStorage([]);
+  const clearCart = () => {
+    const updated = [];
+    saveToLocalStorage(updated);
+    setCartItems(updated);
+  };
 
   const total = useMemo(
     () => cartItems.reduce((sum, i) => sum + Number(i.price) * i.quantity, 0),
