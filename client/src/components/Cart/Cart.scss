@@ -5,7 +5,6 @@
 .cart {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: flex-end;
   z-index: 999;
@@ -30,16 +29,7 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    animation: slideRight 0.3s ease-out;
-
-    @keyframes slideRight {
-      from {
-        transform: translateX(100%);
-      }
-      to {
-        transform: translateX(0);
-      }
-    }
+    @include slideInRight;
 
     @include tablet {
       max-width: 100%;

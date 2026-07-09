@@ -92,6 +92,16 @@
     @include button-form;
     text-decoration: none;
     width: 100%;
+
+    @include tablet {
+      width: 100%;
+      text-align: center;
+    }
+
+    @include mobile {
+      width: 100%;
+      text-align: center;
+    }
   }
 
   &:hover &__overlay,
@@ -100,7 +110,36 @@
     visibility: visible;
   }
 
-  @media (max-width: 768px) {
+  &__notification {
+    position: fixed;
+    top: 80px;
+    right: $p-2;
+    background: var(--black);
+    color: var(--white);
+    padding: $p-1-5 $p-2;
+    border-radius: 8px;
+    z-index: 1000;
+    @include slideInRight;
+
+    .notification-content {
+      display: flex;
+      align-items: center;
+      gap: $p-1;
+      font-size: 14px;
+      font-weight: $font-w-600;
+    }
+
+    .close-icon {
+      color: var(--white);
+    }
+
+    @include tablet {
+      right: $p-1;
+      left: $p-1;
+    }
+  }
+
+  @include tablet {
     max-width: 100%;
     padding: $p-1-5;
 
@@ -113,7 +152,7 @@
     }
   }
 
-  @media (max-width: 480px) {
+  @include mobile {
     padding: $p-1;
 
     &__image {

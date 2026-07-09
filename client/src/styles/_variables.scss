@@ -10,6 +10,7 @@ $font-w-700: 700;
 
 //spacing
 $p-0-5: 0.5rem;
+$p-0-75: 0.75rem;
 $p-1: 1rem;
 $p-1-5: 1.5rem;
 $p-2: 2rem;
@@ -22,6 +23,7 @@ $p-5: 5rem;
 
 :root {
   --white: #ffffff;
+  --darker-white: #f5f5f5;
   --black: #2e3338;
   --gray: #d0d0d0;
   --dark-gray: #747f8d;
@@ -42,6 +44,7 @@ $p-5: 5rem;
 
 [data-theme="dark"] {
   --white: #313338;
+  --darker-white: #1e1e1e;
   --black: #dbdee1;
   --gray: #3f4248;
   --dark-gray: #949ba4;

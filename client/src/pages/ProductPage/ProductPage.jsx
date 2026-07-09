@@ -6,8 +6,6 @@ import { useAuth } from "../../context/AuthContext";
 import { HiOutlineShoppingCart, HiX } from "react-icons/hi";
 import { GiCoffeeCup } from "react-icons/gi";
 
-import Swiper from "../../components/Swiper/SwiperComponent";
-
 import "./ProductPage.scss";
 
 const ProductPage = () => {
@@ -44,12 +42,6 @@ const ProductPage = () => {
 
     if (id) fetchProduct();
   }, [id]);
-
-  useEffect(() => {
-    if (product?.title) {
-      document.title = product.title + " | Coffee Explorer";
-    }
-  }, [product]);
 
   const handleQuantityChange = (value) => {
     if (value >= 1) setQuantity(value);
@@ -88,6 +80,7 @@ const ProductPage = () => {
   }
 
   const isCoffee = product.category === "coffee";
+  const isInStock = product.inStock !== false;
 
   return (
     <section className="product-page">
@@ -165,11 +158,6 @@ const ProductPage = () => {
               <span className="product-page__price-value">
                 ${Number(product.price).toFixed(2)}
               </span>
-              {product.originalPrice && (
-                <span className="product-page__price-original">
-                  ${Number(product.originalPrice).toFixed(2)}
-                </span>
-              )}
             </div>
 
             <div className="product-page__actions">
@@ -205,23 +193,25 @@ const ProductPage = () => {
                 </div>
               </div>
 
-              <button
-                className="product-page__add-to-cart"
-                onClick={handleAddToCart}
-              >
-                <HiOutlineShoppingCart size={20} />
-                Add to Cart
-              </button>
+              {!isInStock && (
+                <>
+                  <div className="product-page__out-of-stock">Out of Stock</div>
+                </>
+              )}
+              {isInStock && (
+                <button
+                  className="product-page__add-to-cart"
+                  onClick={handleAddToCart}
+                >
+                  <HiOutlineShoppingCart size={20} />
+                  Add to Cart
+                </button>
+              )}
             </div>
-
-            {product.inStock === false && (
-              <div className="product-page__out-of-stock">Out of Stock</div>
-            )}
 
             {showNotification && (
               <div className="product-page__notification">
                 <div className="notification-content">
-                  <HiX className="close-icon" />
                   Added {quantity} item(s) to cart!
                 </div>
               </div>

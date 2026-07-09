@@ -22,10 +22,10 @@ app.use("/api/articles", articleRoute);
 app.use("/api/products", productRoute);
 app.use("/api/cart", cartRoute);
 app.listen(process.env.PORT, () => {
-  console.log(`You're running on port ${process.env.PORT}`);
+  console.log(`Using ${process.env.PORT}`);
 });
 
 mongoose
   .connect(process.env.MONGO_URI, {})
-  .then(() => console.log("You connected to MongoDB"))
+  .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("Error connecting to MongoDB:", err));

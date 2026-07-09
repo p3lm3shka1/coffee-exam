@@ -57,7 +57,7 @@ const SearchBar = () => {
         onClick={() => setSearchOpen(!searchOpen)}
         title="Search"
       >
-        <HiOutlineSearch size={20} />
+        <HiOutlineSearch size={24} />
       </button>
 
       {searchOpen && (
@@ -84,29 +84,24 @@ const SearchBar = () => {
 
           {searchResults.length > 0 && (
             <div className="search-bar__results">
-              {searchResults.map(
-                (product) => (
-                  console.log("Product from search:", product), // ← ДОБАВЬ
-                  (
-                    <Link
-                      key={product._id}
-                      to={`/products/${product._id}`}
-                      className="search-bar__result-item"
-                      onClick={handleSearchResultClick}
-                    >
-                      <img
-                        src={product.image}
-                        alt={product.title}
-                        className="search-bar__result-image"
-                      />
-                      <div className="search-bar__result-info">
-                        <h4>{product.title}</h4>
-                        <span>${Number(product.price).toFixed(2)}</span>
-                      </div>
-                    </Link>
-                  )
-                ),
-              )}
+              {searchResults.map((product) => (
+                <Link
+                  key={product._id}
+                  to={`/products/${product._id}`}
+                  className="search-bar__result-item"
+                  onClick={handleSearchResultClick}
+                >
+                  <img
+                    src={product.image}
+                    alt={product.title}
+                    className="search-bar__result-image"
+                  />
+                  <div className="search-bar__result-info">
+                    <h4>{product.title}</h4>
+                    <span>${Number(product.price).toFixed(2)}</span>
+                  </div>
+                </Link>
+              ))}
             </div>
           )}
         </div>

@@ -13,7 +13,6 @@ const Footer = () => {
       title: "Main Menu",
       links: [
         { name: "Home", href: "/" },
-        { name: "Shop", href: "/shop" },
         { name: "About", href: "/about" },
         { name: "Contact", href: "/contact" },
       ],
@@ -22,8 +21,8 @@ const Footer = () => {
       title: "Discover",
       links: [
         { name: "Articles", href: "/articles" },
-        { name: "History", href: "/history" },
-        { name: "Brand", href: "/brand" },
+        { name: "Coffee", href: "/coffee" },
+        { name: "Accessories", href: "/accessories" },
       ],
     },
   ];

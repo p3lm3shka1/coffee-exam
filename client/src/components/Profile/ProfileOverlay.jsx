@@ -3,12 +3,7 @@ import { Link } from "react-router-dom";
 import { useDarkMode } from "../../context/DarkModeProvider";
 import { useAuth } from "../../context/AuthContext";
 
-import {
-  HiX,
-  HiOutlineUserCircle,
-  HiOutlineSun,
-  HiOutlineMoon,
-} from "react-icons/hi";
+import { HiX, HiOutlineSun, HiOutlineMoon } from "react-icons/hi";
 
 import "./ProfileOverlay.scss";
 
@@ -113,11 +108,19 @@ const ProfileOverlay = ({ isOpen, onClose }) => {
               </>
             ) : (
               <>
-                <Link to="/profile" className="profile__profile-link">
+                <Link
+                  to="/profile"
+                  className="profile__profile-link"
+                  onClick={onClose}
+                >
                   Profile
                 </Link>
                 {user && user.role === "admin" && (
-                  <Link to="/admin" className="profile__admin-link">
+                  <Link
+                    to="/admin"
+                    className="profile__admin-link"
+                    onClick={onClose}
+                  >
                     Admin
                   </Link>
                 )}

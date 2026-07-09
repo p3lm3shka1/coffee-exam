@@ -158,9 +158,20 @@
   &__actions {
     display: flex;
     align-items: center;
-    gap: $p-3;
-    flex-shrink: 0;
+    gap: $p-1-5;
     color: var(--black);
+
+    &__account {
+      cursor: pointer;
+      font-weight: $font-w-400;
+      color: var(--black);
+      padding: $p-1;
+      @include transition;
+
+      &:hover {
+        opacity: 0.6;
+      }
+    }
 
     &__cart {
       @include button-nav;
@@ -231,7 +242,7 @@
     }
 
     &__actions {
-      gap: $p-3;
+      gap: $p-1;
     }
 
     &__has-sub {

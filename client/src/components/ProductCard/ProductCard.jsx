@@ -1,8 +1,8 @@
 import "./ProductCard.scss";
 
 import { Link } from "react-router-dom";
-
 import { useCart } from "../../context/CartContext";
+import { useState } from "react";
 
 const ProductCard = ({ product }) => {
   const {
@@ -19,7 +19,15 @@ const ProductCard = ({ product }) => {
     brand,
   } = product;
 
+  const [showNotification, setShowNotification] = useState(false);
+
   const { addToCart } = useCart();
+
+  const handleAddToCart = () => {
+    addToCart(product);
+    setShowNotification(true);
+    setTimeout(() => setShowNotification(false), 2000);
+  };
 
   const isCoffee = category === "coffee";
   const isAccessories = category === "accessories";
@@ -66,11 +74,16 @@ const ProductCard = ({ product }) => {
         </Link>
         <button
           className="product-card__overlay__add"
-          onClick={() => addToCart(product)}
+          onClick={handleAddToCart}
         >
           Add to Cart
         </button>
       </div>
+      {showNotification && (
+        <div className="product-card__notification">
+          <div className="notification-content">Added 1 item(s) to cart!</div>
+        </div>
+      )}
     </section>
   );
 };
