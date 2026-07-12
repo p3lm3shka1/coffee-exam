@@ -1,0 +1,94 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+@use "../../styles/media" as *;
+
+.newsletter {
+  background-color: var(--white);
+  padding: $p-4;
+  text-align: center;
+
+  &__wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  &__title {
+    font-family: $font-secondary;
+    font-size: 32px;
+    margin-bottom: $p-1;
+    color: var(--black);
+  }
+
+  &__description {
+    font-size: 16px;
+    margin-bottom: $p-2;
+    color: var(--dark-gray);
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $p-2;
+
+    @include tablet {
+      flex-direction: column;
+      gap: $p-2;
+      justify-content: center;
+    }
+  }
+
+  &__input {
+    width: calc(100% - 20px);
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--gray);
+    padding: $p-0-5 0;
+    font-family: $font-primary;
+    font-size: 16px;
+    color: var(--black);
+    outline: none;
+    resize: none;
+    @include transition;
+
+    &::placeholder {
+      color: var(--light-gray);
+    }
+
+    &:focus {
+      border-bottom-color: var(--black);
+    }
+
+    &.is-error {
+      border-bottom: 2px solid var(--red);
+    }
+  }
+
+  &__button {
+    padding: $p-3 $p-4;
+    @include button-home;
+  }
+
+  &__notification {
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--black);
+    color: var(--white);
+    padding: $p-1-5 $p-2;
+    border-radius: 8px;
+    z-index: 1000;
+    @include slideDown;
+
+    @include tablet {
+      right: $p-1;
+      left: $p-1;
+    }
+  }
+
+  &__error {
+    margin-top: $p-1;
+    color: var(--red);
+  }
+}

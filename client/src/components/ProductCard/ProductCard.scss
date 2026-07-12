@@ -92,6 +92,8 @@
     @include button-form;
     text-decoration: none;
     width: 100%;
+    font-size: 14px;
+    text-align: center;
 
     @include tablet {
       width: 100%;

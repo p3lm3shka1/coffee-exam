@@ -137,6 +137,10 @@
         &:focus {
           border-bottom-color: var(--black);
         }
+
+        &.is-error {
+          border-bottom: 2px solid var(--red);
+        }
       }
     }
 
@@ -147,6 +151,24 @@
       button {
         @include button-form;
       }
+    }
+  }
+
+  &__notification {
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--black);
+    color: var(--white);
+    padding: $p-1-5 $p-2;
+    border-radius: 8px;
+    z-index: 1000;
+    @include slideDown;
+
+    @include tablet {
+      right: $p-1;
+      left: $p-1;
     }
   }
 

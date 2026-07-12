@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-
+import Faq from "../../components/Faq/Faq";
+import Newsletter from "../../components/Newsletter/Newsletter";
 import Swiper from "../../components/Swiper/SwiperComponent";
 import { fetchProducts } from "../../api/products";
 
 import { GiCoffeeCup } from "react-icons/gi";
+
+import heroImage from "../../assets/images/coffee-shop-hero.jpg";
 
 import "./Home.scss";
 
@@ -43,6 +46,7 @@ const Home = () => {
 
   return (
     <section className="home">
+      <img className="home__image" src={heroImage} alt="Coffee Shop Hero" />
       <div className="home__wrapper">
         <div className="home__hero">
           <h1 className="home__hero__title">
@@ -70,6 +74,8 @@ const Home = () => {
           <h2 className="home__section__title">Coffee Accessories</h2>
           {accessoryItems.length > 0 && <Swiper items={accessoryItems} />}
         </div>
+        <Newsletter />
+        <Faq />
       </div>
     </section>
   );

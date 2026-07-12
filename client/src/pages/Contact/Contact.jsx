@@ -1,6 +1,53 @@
+import { useState } from "react";
+
 import "./Contact.scss";
 
 const Contact = () => {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const [errors, setErrors] = useState({
+    name: false,
+    email: false,
+    message: false,
+  });
+
+  const [showNotification, setShowNotification] = useState(false);
+
+  const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setForm((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: false }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const nextErrors = {
+      name: !form.name.trim(),
+      email: !validateEmail(form.email),
+      message: !form.message.trim(),
+    };
+
+    setErrors(nextErrors);
+
+    const hasErrors = Object.values(nextErrors).some(Boolean);
+    if (hasErrors) return;
+
+    setShowNotification(true);
+    setForm({ name: "", email: "", message: "" });
+
+    setTimeout(() => {
+      setShowNotification(false);
+    }, 2200);
+  };
+
   return (
     <section className="contact">
       <div className="contact__wrapper">
@@ -50,24 +97,51 @@ const Contact = () => {
             allowFullScreen=""
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
+            title="Coffee Explorer location"
           />
 
-          <form className="contact__form">
+          <form className="contact__form" onSubmit={handleSubmit}>
             <h1 className="contact__form__title">Get in Touch</h1>
+
             <div className="contact__form__row">
               <div className="contact__form__field">
-                <label>Name</label>
-                <input type="text" placeholder="John Doe" />
+                <label htmlFor="name">Name</label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  placeholder="John Doe"
+                  value={form.name}
+                  onChange={handleChange}
+                  className={errors.name ? "is-error" : ""}
+                />
               </div>
+
               <div className="contact__form__field">
-                <label>Email</label>
-                <input type="email" placeholder="john@example.com" />
+                <label htmlFor="email">Email</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="john@example.com"
+                  value={form.email}
+                  onChange={handleChange}
+                  className={errors.email ? "is-error" : ""}
+                />
               </div>
             </div>
 
             <div className="contact__form__field">
-              <label>Message</label>
-              <textarea rows={5} placeholder="Your message..." />
+              <label htmlFor="message">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                rows={5}
+                placeholder="Your message..."
+                value={form.message}
+                onChange={handleChange}
+                className={errors.message ? "is-error" : ""}
+              />
             </div>
 
             <div className="contact__form__footer">
@@ -76,6 +150,10 @@ const Contact = () => {
           </form>
         </div>
       </div>
+
+      {showNotification && (
+        <p className="contact__notification">Message sent successfully!</p>
+      )}
     </section>
   );
 };
