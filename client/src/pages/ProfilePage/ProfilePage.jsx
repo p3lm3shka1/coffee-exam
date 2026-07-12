@@ -50,7 +50,7 @@ const ProfilePage = () => {
 
               <div className="profile-page__info-list">
                 <div className="profile-page__info-item">
-                  <HiOutlineUser size={18} />
+                  <HiOutlineUser size={20} />
                   <div className="profile-page__info-text">
                     <span className="profile-page__info-label">Name</span>
                     <p className="profile-page__info-value">
@@ -60,7 +60,7 @@ const ProfilePage = () => {
                 </div>
 
                 <div className="profile-page__info-item">
-                  <HiOutlineMail size={18} />
+                  <HiOutlineMail size={20} />
                   <div className="profile-page__info-text">
                     <span className="profile-page__info-label">Email</span>
                     <p className="profile-page__info-value">
@@ -70,7 +70,7 @@ const ProfilePage = () => {
                 </div>
 
                 <div className="profile-page__info-item">
-                  <HiOutlineHome size={18} />
+                  <HiOutlineHome size={20} />
                   <div className="profile-page__info-text">
                     <span className="profile-page__info-label">Address</span>
                     <p className="profile-page__info-value">
@@ -80,7 +80,7 @@ const ProfilePage = () => {
                 </div>
 
                 <div className="profile-page__info-item">
-                  <HiOutlinePhone size={18} />
+                  <HiOutlinePhone size={20} />
                   <div className="profile-page__info-text">
                     <span className="profile-page__info-label">Phone</span>
                     <p className="profile-page__info-value">

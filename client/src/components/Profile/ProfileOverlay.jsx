@@ -10,7 +10,7 @@ import "./ProfileOverlay.scss";
 const ProfileOverlay = ({ isOpen, onClose }) => {
   const { user, login, register, logout } = useAuth();
   const { theme, toggleTheme } = useDarkMode();
-
+  const [showNotification, setShowNotification] = useState(false);
   const [mode, setMode] = useState("actions");
   const [form, setForm] = useState({
     name: "",
@@ -30,6 +30,11 @@ const ProfileOverlay = ({ isOpen, onClose }) => {
     setError("");
   };
 
+  const handleNotification = (message) => {
+    setShowNotification(message);
+    setTimeout(() => setShowNotification(false), 2000);
+  };
+
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -37,7 +42,7 @@ const ProfileOverlay = ({ isOpen, onClose }) => {
       const loggedUser = await login(form.email, form.password);
       resetForm();
       setMode("actions");
-      alert(`Login successful! Welcome back ${loggedUser.name || "User"}.`);
+      handleNotification(`Welcome back, ${loggedUser.name || "User"}!`);
     } catch (err) {
       setError(err.message || "Login failed");
     }
@@ -50,7 +55,7 @@ const ProfileOverlay = ({ isOpen, onClose }) => {
       const newUser = await register(form.name, form.email, form.password);
       resetForm();
       setMode("actions");
-      alert(
+      handleNotification(
         `Registration successful! Welcome ${newUser.name || "User"}! Please log in.`,
       );
     } catch (err) {
@@ -63,11 +68,11 @@ const ProfileOverlay = ({ isOpen, onClose }) => {
     logout();
     setMode("actions");
     onClose();
-    alert("You have been logged out.");
+    handleNotification("You have been logged out.");
   };
 
   return (
-    <div className="profile" onClick={onClose}>
+    <section className="profile" onClick={onClose}>
       <div className="profile__content" onClick={(e) => e.stopPropagation()}>
         <button className="profile__close" onClick={onClose}>
           <HiX size={22} />
@@ -202,7 +207,14 @@ const ProfileOverlay = ({ isOpen, onClose }) => {
           </form>
         )}
       </div>
-    </div>
+      {showNotification && (
+        <div className="profile__notification">
+          <div className="profile__notification__content">
+            {showNotification}
+          </div>
+        </div>
+      )}
+    </section>
   );
 };
 

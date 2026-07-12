@@ -1,9 +1,11 @@
 @use "../../styles/variables" as *;
 @use "../../styles/mixins" as *;
+@use "../../styles/media" as *;
 
 .product-swiper {
   width: 100%;
   padding-bottom: $p-2-5;
+  position: relative;
 
   .swiper-slide {
     height: auto;
@@ -16,6 +18,19 @@
 
     &-active {
       opacity: 1;
+    }
+  }
+
+  &__item {
+    position: relative;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+
+    &:hover .product-swiper__overlay,
+    &:focus-within .product-swiper__overlay {
+      opacity: 1;
+      visibility: visible;
     }
   }
 
@@ -67,6 +82,64 @@
     &__button {
       @include button-home-card;
       text-align: center;
+    }
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    opacity: 0;
+  }
+
+  &__overlay-link,
+  &__overlay__add {
+    @include button-form;
+    text-decoration: none;
+    width: 100%;
+    text-align: center;
+
+    @include tablet {
+      width: 100%;
+      text-align: center;
+    }
+
+    @include mobile {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  &__notification {
+    position: fixed;
+    top: 80px;
+    right: $p-2;
+    background: var(--black);
+    color: var(--white);
+    padding: $p-1-5 $p-2;
+    border-radius: 8px;
+    z-index: 1000;
+    @include slideInRight;
+
+    .notification-content {
+      display: flex;
+      align-items: center;
+      gap: $p-1;
+      font-size: 14px;
+      font-weight: $font-w-600;
+    }
+
+    .close-icon {
+      color: var(--white);
+    }
+
+    @include tablet {
+      right: $p-1;
+      left: $p-1;
     }
   }
 }
