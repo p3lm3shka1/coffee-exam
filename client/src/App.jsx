@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import DarkModeProvider from "./context/DarkModeProvider";
-
+import Checkout from "./pages/CheckoutPage/Checkout";
 import AdminRoute from "./routes/AdminRoute";
 import AdminPage from "./pages/AdminPage/AdminPage";
 import NotFound from "./components/NotFound/NotFound";
@@ -33,6 +33,7 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/checkout" element={<Checkout />} />
 
         <Route path="*" element={<NotFound />} />
 

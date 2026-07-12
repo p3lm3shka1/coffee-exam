@@ -167,8 +167,15 @@
     @include slideDown;
 
     @include tablet {
-      right: $p-1;
-      left: $p-1;
+      width: calc(100% - 20px);
+      text-align: center;
+      max-width: none;
+    }
+
+    @include mobile {
+      width: calc(100% - 20px);
+      text-align: center;
+      max-width: none;
     }
   }
 

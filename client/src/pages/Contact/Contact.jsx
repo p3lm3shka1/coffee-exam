@@ -92,13 +92,13 @@ const Contact = () => {
 
         <div className="contact__right">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d515696.4656081739!2d-90.06191022149919!3d31.882962117860856!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8882cf7f94f04001%3A0x647a5b60087cd76c!2sS%20C%20Rd%2057A%2C%20Mississippi%2C%20Jungtin%C4%97s%20Valstijos!5e0!3m2!1slt!2slt!4v1782155598688!5m2!1slt!2slt"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d147553.20047946303!2d25.088228018276077!3d54.70049582413158!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dd93fb5c6408f5%3A0x400d18c70e9dc40!2sVilnius%2C%20Vilniaus%20m.%20sav.!5e0!3m2!1slt!2slt!4v1783858529895!5m2!1slt!2slt"
             className="contact__map"
             allowFullScreen=""
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             title="Coffee Explorer location"
-          />
+          ></iframe>
 
           <form className="contact__form" onSubmit={handleSubmit}>
             <h1 className="contact__form__title">Get in Touch</h1>
