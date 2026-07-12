@@ -51,6 +51,19 @@
     }
   }
 
+  &__orders {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__order-item {
+    padding: 12px;
+    background: var(--white);
+    display: grid;
+    gap: 6px;
+  }
+
   &__panel {
     width: 100%;
     max-width: 900px;

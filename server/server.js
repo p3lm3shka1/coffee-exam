@@ -6,6 +6,7 @@ import authRoute from "./routes/authRoute.js";
 import productRoute from "./routes/productRoute.js";
 import cartRoute from "./routes/cartRoute.js";
 import articleRoute from "./routes/articleRoute.js";
+import orderRoute from "./routes/orderRoute.js";
 
 dotenv.config();
 const app = express();
@@ -21,6 +22,7 @@ app.use("/api/auth", authRoute);
 app.use("/api/articles", articleRoute);
 app.use("/api/products", productRoute);
 app.use("/api/cart", cartRoute);
+app.use("/api/orders", orderRoute);
 app.listen(process.env.PORT, () => {
   console.log(`Using ${process.env.PORT}`);
 });

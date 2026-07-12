@@ -1,6 +1,5 @@
 import { Route, Routes } from "react-router-dom";
 import DarkModeProvider from "./context/DarkModeProvider";
-import Checkout from "./pages/CheckoutPage/Checkout";
 import AdminRoute from "./routes/AdminRoute";
 import AdminPage from "./pages/AdminPage/AdminPage";
 import NotFound from "./components/NotFound/NotFound";
@@ -16,6 +15,9 @@ import CoffeePage from "./pages/CoffeePage/CoffeePage";
 import AccessoriesPage from "./pages/AccessoriesPage/AccessoriesPage";
 import ProductPage from "./pages/ProductPage/ProductPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import Checkout from "./pages/CheckoutPage/Checkout";
+import Payment from "./pages/PaymentPage/Payment";
+import OrderSuccess from "./pages/OrderSuccessPage/OrderSuccess";
 
 import "./App.scss";
 
@@ -34,6 +36,8 @@ const App = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/payment" element={<Payment />} />
+        <Route path="/order-success" element={<OrderSuccess />} />
 
         <Route path="*" element={<NotFound />} />
 

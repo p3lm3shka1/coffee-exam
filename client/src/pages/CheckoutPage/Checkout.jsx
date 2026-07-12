@@ -10,7 +10,7 @@ const Checkout = () => {
 
   const [form, setForm] = useState({
     name: "",
-    email: "",
+    phone: "",
     address: "",
     city: "",
     zip: "",
@@ -19,7 +19,7 @@ const Checkout = () => {
 
   const [errors, setErrors] = useState({
     name: false,
-    email: false,
+    phone: false,
     country: false,
     city: false,
     address: false,
@@ -47,7 +47,7 @@ const Checkout = () => {
 
     const nextErrors = {
       name: !form.name.trim(),
-      email: !form.email.trim(),
+      phone: !form.phone.trim(),
       country: !form.country.trim(),
       city: !form.city.trim(),
       address: !form.address.trim(),
@@ -84,11 +84,11 @@ const Checkout = () => {
             <h2 className="checkout-page__subtitle">Shipping address</h2>
 
             <input
-              name="fullName"
+              name="name"
               placeholder="Full name"
-              value={form.fullName}
+              value={form.name}
               onChange={handleChange}
-              className={errors.fullName ? "is-error" : ""}
+              className={errors.name ? "is-error" : ""}
             />
             <input
               name="phone"
@@ -119,11 +119,11 @@ const Checkout = () => {
               className={errors.address ? "is-error" : ""}
             />
             <input
-              name="zipCode"
+              name="zip"
               placeholder="ZIP code"
-              value={form.zipCode}
+              value={form.zip}
               onChange={handleChange}
-              className={errors.zipCode ? "is-error" : ""}
+              className={errors.zip ? "is-error" : ""}
             />
 
             <button type="submit">Continue to payment</button>

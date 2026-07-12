@@ -1,7 +1,7 @@
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const createOrder = async (payload, token) => {
-  const response = await fetch(`${API_URL}/orders`, {
+  const res = await fetch(`${API_URL}/api/orders`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -10,23 +10,25 @@ export const createOrder = async (payload, token) => {
     body: JSON.stringify(payload),
   });
 
-  if (!response.ok) {
-    throw new Error("Failed to create order");
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.message || "Failed to create order");
   }
-  return response.json();
+
+  return res.json();
 };
 
-export const getOrder = async (token) => {
-  const response = await fetch(`${API_URL}/orders`, {
-    method: "GET",
+export const getMyOrders = async (token) => {
+  const res = await fetch(`${API_URL}/api/orders`, {
     headers: {
-      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
   });
 
-  if (!response.ok) {
-    throw new Error("Failed to fetch order");
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.message || "Failed to fetch orders");
   }
-  return response.json();
+
+  return res.json();
 };

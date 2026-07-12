@@ -1,0 +1,84 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+@use "../../styles/media" as *;
+
+.order-success {
+  background-color: var(--white);
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__wrapper {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: $p-3 $p-2;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $p-1;
+  }
+
+  &__title {
+    font-family: $font-secondary;
+    font-weight: $font-w-700;
+    font-size: 42px;
+    color: var(--black);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  &__text {
+    max-width: 520px;
+    font-family: $font-primary;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--dark-gray);
+  }
+
+  &__button {
+    margin-top: $p-0-5;
+    @include button-form;
+  }
+
+  @include tablet {
+    padding: 64px $p-1 0;
+
+    &__wrapper {
+      padding: $p-2 $p-1-5;
+    }
+
+    &__title {
+      font-size: 34px;
+      letter-spacing: 1px;
+    }
+
+    &__text {
+      font-size: 16px;
+    }
+  }
+
+  @include mobile {
+    padding: 64px $p-1 0;
+
+    &__wrapper {
+      padding: $p-1-5 $p-1;
+      gap: $p-0-75;
+    }
+
+    &__title {
+      font-size: 28px;
+    }
+
+    &__text {
+      font-size: 15px;
+    }
+
+    &__button {
+      width: 100%;
+    }
+  }
+}
