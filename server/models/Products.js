@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 const productSchema = new mongoose.Schema(
   {
     title: { type: String, required: true, trim: true },
+    title_lt: { type: String, default: "", trim: true },
+
     price: { type: Number, required: true, min: 0 },
 
     category: {
@@ -26,7 +28,9 @@ const productSchema = new mongoose.Schema(
     },
 
     image: { type: String, default: "" },
+
     description: { type: String, default: "", trim: true },
+    description_lt: { type: String, default: "", trim: true },
 
     weight: { type: String, default: null },
     origin: { type: String, default: null },

@@ -87,7 +87,8 @@
     "go_back": "Grįžti atgal",
     "accessories": "Priedai",
     "coffee": "Kava",
-    "subtitle_arabica_from": "100% Arabica iš {{origin}}"
+    "subtitle_arabica_from": "100% Arabica iš {{origin}}",
+    "error_title": "Įvyko klaida"
   },
   "accessories": {
     "explore": "Atraskite mūsų reikmenis",

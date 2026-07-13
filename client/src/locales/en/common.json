@@ -89,7 +89,8 @@
     "go_back": "Go back",
     "accessories": "Accessories",
     "coffee": "Coffee",
-    "subtitle_arabica_from": "100% Arabica from {{origin}}"
+    "subtitle_arabica_from": "100% Arabica from {{origin}}",
+    "error_title": "An error occurred"
   },
   "accessories": {
     "explore": "Explore Our Accessories",

@@ -368,6 +368,11 @@
         font-size: 72px;
         margin-bottom: $p-1;
         font-weight: $font-w-400;
+        color: var(--black);
+      }
+
+      .error-icon {
+        color: var(--black);
       }
 
       .error-button {

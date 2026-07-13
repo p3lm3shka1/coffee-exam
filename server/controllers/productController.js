@@ -1,9 +1,28 @@
 import Products from "../models/Products.js";
 
+const pickLang = (lang) =>
+  String(lang || "en")
+    .toLowerCase()
+    .startsWith("lt")
+    ? "lt"
+    : "en";
+
+const localizeProduct = (doc, lang) => {
+  const p = doc.toObject ? doc.toObject() : doc;
+  if (lang !== "lt") return p;
+
+  return {
+    ...p,
+    title: p.title_lt || p.title,
+    description: p.description_lt || p.description,
+  };
+};
+
 export const getProducts = async (req, res) => {
   try {
     const { category, subcategory, search, minPrice, maxPrice, sort } =
       req.query;
+    const lang = pickLang(req.query.lang);
 
     const filter = {};
 
@@ -29,11 +48,13 @@ export const getProducts = async (req, res) => {
         .select({
           score: { $meta: "textScore" },
           title: 1,
+          title_lt: 1,
           price: 1,
           category: 1,
           subcategory: 1,
           image: 1,
           description: 1,
+          description_lt: 1,
           weight: 1,
           origin: 1,
           roastLevel: 1,
@@ -50,7 +71,7 @@ export const getProducts = async (req, res) => {
     }
 
     const products = await query;
-    res.json(products);
+    res.json(products.map((p) => localizeProduct(p, lang)));
   } catch (e) {
     console.error("getProducts error:", e);
     res.status(500).json({ message: "Server error", error: e.message });
@@ -59,11 +80,14 @@ export const getProducts = async (req, res) => {
 
 export const getProductById = async (req, res) => {
   try {
+    const lang = pickLang(req.query.lang);
     const product = await Products.findById(req.params.id);
+
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
     }
-    res.json(product);
+
+    res.json(localizeProduct(product, lang));
   } catch (e) {
     res.status(500).json({ message: e.message });
   }

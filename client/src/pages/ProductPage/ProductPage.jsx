@@ -43,7 +43,7 @@ const ProductPage = () => {
     };
 
     if (id) fetchProduct();
-  }, [id, i18n, lang]);
+  }, [id, lang]);
 
   const handleQuantityChange = (value) => {
     if (value >= 1) setQuantity(value);
@@ -71,7 +71,7 @@ const ProductPage = () => {
     return (
       <div className="product-page product-page--error">
         <div className="error-content">
-          <GiCoffeeCup size={100} />
+          <GiCoffeeCup size={100} className="error-icon" />
           <h1>{t("product.error_title")}</h1>
           <button className="error-button" onClick={() => navigate(-1)}>
             {t("product.go_back")}
@@ -84,15 +84,8 @@ const ProductPage = () => {
   const isCoffee = product.category === "coffee";
   const isInStock = product.inStock !== false;
 
-  const title =
-    typeof product.title === "object"
-      ? product.title?.[lang] || product.title?.en || ""
-      : product.title || "";
-
-  const description =
-    typeof product.description === "object"
-      ? product.description?.[lang] || product.description?.en || ""
-      : product.description || product.longDescription || "";
+  const title = product.title || "";
+  const description = product.description || product.longDescription || "";
 
   return (
     <section className="product-page">
