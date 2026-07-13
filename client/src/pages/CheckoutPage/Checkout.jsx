@@ -1,13 +1,14 @@
 import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
+import { useTranslation } from "react-i18next";
 
 import "./Checkout.scss";
 
 const Checkout = () => {
   const { cartItems, clearCart } = useCart();
   const navigate = useNavigate();
-
+  const { t } = useTranslation();
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -67,8 +68,8 @@ const Checkout = () => {
     return (
       <section className="checkout-page">
         <div className="checkout-page__wrapper">
-          <h1 className="checkout-page__title">Checkout</h1>
-          <p className="checkout-page__empty">Your cart is empty.</p>
+          <h1 className="checkout-page__title">{t("checkout.title")}</h1>
+          <p className="checkout-page__empty">{t("checkout.empty_cart")}</p>
         </div>
       </section>
     );
@@ -77,60 +78,64 @@ const Checkout = () => {
   return (
     <section className="checkout-page">
       <div className="checkout-page__wrapper">
-        <h1 className="checkout-page__title">Checkout</h1>
+        <h1 className="checkout-page__title">{t("checkout.title")}</h1>
 
         <div className="checkout-page__grid">
           <form className="checkout-page__form" onSubmit={handleContinue}>
-            <h2 className="checkout-page__subtitle">Shipping address</h2>
+            <h2 className="checkout-page__subtitle">
+              {t("checkout.shipping_address")}
+            </h2>
 
             <input
               name="name"
-              placeholder="Full name"
+              placeholder={t("checkout.full_name")}
               value={form.name}
               onChange={handleChange}
               className={errors.name ? "is-error" : ""}
             />
             <input
               name="phone"
-              placeholder="Phone"
+              placeholder={t("checkout.phone")}
               value={form.phone}
               onChange={handleChange}
               className={errors.phone ? "is-error" : ""}
             />
             <input
               name="country"
-              placeholder="Country"
+              placeholder={t("checkout.country")}
               value={form.country}
               onChange={handleChange}
               className={errors.country ? "is-error" : ""}
             />
             <input
               name="city"
-              placeholder="City"
+              placeholder={t("checkout.city")}
               value={form.city}
               onChange={handleChange}
               className={errors.city ? "is-error" : ""}
             />
             <input
               name="address"
-              placeholder="Address"
+              placeholder={t("checkout.address")}
               value={form.address}
               onChange={handleChange}
               className={errors.address ? "is-error" : ""}
             />
             <input
               name="zip"
-              placeholder="ZIP code"
+              placeholder={t("checkout.zip")}
               value={form.zip}
               onChange={handleChange}
               className={errors.zip ? "is-error" : ""}
             />
 
-            <button type="submit">Continue to payment</button>
+            <button type="submit">{t("checkout.continue_to_payment")}</button>
           </form>
 
           <aside className="checkout-page__summary">
-            <h2 className="checkout-page__subtitle">Order summary</h2>
+            <h2 className="checkout-page__subtitle">
+              {t("checkout.order_summary")}
+            </h2>
             {cartItems.map((item) => (
               <div className="checkout-page__item" key={item._id}>
                 <span>
@@ -143,7 +148,7 @@ const Checkout = () => {
               </div>
             ))}
             <div className="checkout-page__total">
-              <strong>Total</strong>
+              <strong>{t("checkout.total")}</strong>
               <strong>${total.toFixed(2)}</strong>
             </div>
           </aside>

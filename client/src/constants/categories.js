@@ -9,49 +9,31 @@ import decafImage from "../assets/logos/decaf-logo.png";
 import allCoffeeImage from "../assets/logos/all.png";
 
 export const accessoriesItems = [
+  { labelKey: "categories.all", image: allCoffeeImage, subcategory: "all" },
   {
-    name: "Paper Filters",
+    labelKey: "categories.paper_filters",
     image: paperImage,
     subcategory: "filters",
   },
   {
-    name: "Brewing Equipment",
+    labelKey: "categories.brewing_equipment",
     image: brewingImage,
     subcategory: "brewing",
   },
   {
-    name: "Grinders",
+    labelKey: "categories.grinders",
     image: grinderImage,
     subcategory: "grinders",
   },
 ];
 
 export const coffeeItems = [
+  { labelKey: "categories.all", image: allCoffeeImage, subcategory: "all" },
   {
-    name: "Espresso",
+    labelKey: "categories.espresso",
     image: espressoImage,
     subcategory: "espresso",
   },
-  {
-    name: "Filter",
-    image: filterImage,
-    subcategory: "filter",
-  },
-  {
-    name: "Decaf",
-    image: decafImage,
-    subcategory: "decaf",
-  },
+  { labelKey: "categories.filter", image: filterImage, subcategory: "filter" },
+  { labelKey: "categories.decaf", image: decafImage, subcategory: "decaf" },
 ];
-
-export const allCoffeeItem = {
-  name: "All",
-  image: allCoffeeImage,
-  subcategory: "all",
-};
-
-export const allAccessoriesItem = {
-  name: "All",
-  image: allCoffeeImage,
-  subcategory: "all",
-};

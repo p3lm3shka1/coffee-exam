@@ -1,15 +1,16 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 import { fetchProducts } from "../../api/products";
-import { coffeeItems, allCoffeeItem } from "../../constants/categories";
+import { coffeeItems } from "../../constants/categories";
 import ProductGrid from "../../components/ProductGrid/ProductGrid";
-
+import { useTranslation } from "react-i18next";
 import { GiCoffeeCup } from "react-icons/gi";
 
 import "./CoffeePage.scss";
 
 const CoffeePage = () => {
+  const { t } = useTranslation();
   const [products, setProducts] = useState([]);
   const [activeSubcategory, setActiveSubcategory] = useState("all");
   const [loading, setLoading] = useState(false);
@@ -26,7 +27,7 @@ const CoffeePage = () => {
       const data = await fetchProducts(params);
       setProducts(data);
     } catch (e) {
-      setError(e.message || "Failed to load products");
+      setError(e.message || t("common.something_went_wrong"));
     } finally {
       setLoading(false);
     }
@@ -36,63 +37,53 @@ const CoffeePage = () => {
     loadProducts(activeSubcategory);
   }, [activeSubcategory]);
 
+  const subcategoryTitleMap = useMemo(
+    () => ({
+      all: "coffee.all_products",
+      espresso: "categories.espresso",
+      filter: "categories.filter",
+      decaf: "categories.decaf",
+    }),
+    [],
+  );
+
   return (
     <section className="coffee-page">
       <div className="coffee-page__wrapper">
         <Link to="/" className="coffee-page__backlink">
-          Go Back
+          {t("common.go_back")}
         </Link>
 
         <div className="coffee-page__hero">
-          <h1 className="coffee-page__hero__title">Explore Our Coffee</h1>
-          <p className="coffee-page__hero__subtitle">
-            Discover our selection of premium coffee blends.
-          </p>
+          <h1 className="coffee-page__hero__title">{t("coffee.explore")}</h1>
+          <p className="coffee-page__hero__subtitle">{t("coffee.discover")}</p>
         </div>
 
         <section className="coffee-page__cards">
-          {allCoffeeItem && (
-            <button
-              className={`coffee-page__cards__item ${activeSubcategory === "all" ? "is-active" : ""}`}
-              onClick={() => setActiveSubcategory("all")}
-            >
-              <h2 className="coffee-page__cards__item__title">
-                {allCoffeeItem.name}
-              </h2>
-              <img
-                src={allCoffeeItem.image}
-                alt={allCoffeeItem.name}
-                className="coffee-page__cards__item__image"
-              />
-            </button>
-          )}
-
           {coffeeItems.map((item) => (
             <button
-              key={item.name}
+              type="button"
+              key={item.subcategory}
               className={`coffee-page__cards__item ${
                 activeSubcategory === item.subcategory ? "is-active" : ""
               }`}
               onClick={() => setActiveSubcategory(item.subcategory)}
             >
-              <h2 className="coffee-page__cards__item__title">{item.name}</h2>
+              <h2 className="coffee-page__cards__item__title">
+                {t(item.labelKey)}
+              </h2>
               <img
                 src={item.image}
-                alt={item.name}
+                alt={t(item.labelKey)}
                 className="coffee-page__cards__item__image"
               />
-              <p className="coffee-page__cards__item__description">
-                {item.desc}
-              </p>
             </button>
           ))}
         </section>
 
         <section className="coffee-page__products">
           <h2 className="coffee-page__products__title">
-            {activeSubcategory === "all"
-              ? "All Coffee Products"
-              : `${activeSubcategory[0].toUpperCase() + activeSubcategory.slice(1)} Coffee`}
+            {t(subcategoryTitleMap[activeSubcategory] || "coffee.all")}
           </h2>
 
           {loading && (

@@ -1,0 +1,21 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+@use "../../styles/media" as *;
+
+.lang-switcher {
+  width: 40px;
+
+  align-items: center;
+  justify-content: center;
+  color: var(--black);
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: 0.2s ease;
+
+  &:hover {
+    border-color: var(--black);
+  }
+}

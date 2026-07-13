@@ -1,0 +1,241 @@
+{
+  "common": {
+    "loading": "Įkeliama...",
+    "something_went_wrong": "Įvyko klaida",
+    "search": "Paieška",
+    "sort": "Rūšiuoti",
+    "category": "Kategorija",
+    "subcategory": "Pogrupis",
+    "price": "Kaina",
+    "total": "Iš viso",
+    "edit": "Redaguoti",
+    "delete": "Ištrinti",
+    "save": "Išsaugoti",
+    "cancel": "Atšaukti",
+    "reload": "Atnaujinti",
+    "go_back": "Grįžti atgal",
+    "not_set": "Nenustatyta"
+  },
+  "nav": {
+    "home": "Pagrindinis",
+    "shop": "Parduotuvė",
+    "coffee": "Kava",
+    "accessories": "Kavos priedai",
+    "articles": "Straipsniai",
+    "about": "Apie",
+    "contact": "Susisiekti",
+    "profile": "Profilis",
+    "admin": "Admin",
+    "cart": "Krepšelis",
+    "coffee_blends": "Kavos mišiniai"
+  },
+  "auth": {
+    "login": "Prisijungti",
+    "logout": "Atsijungti",
+    "register": "Registruotis",
+    "registration": "Registracija",
+    "no_account": "Neturite paskyros?",
+    "already_have_account": "Jau turite paskyrą?",
+    "register_failed": "Registracija nepavyko",
+    "autologin_failed": "Nepavyko prisijungti automatiškai",
+    "login_failed": "Prisijungti nepavyko"
+  },
+  "cart": {
+    "title": "Krepšelis",
+    "empty": "Jūsų krepšelis tuščias.",
+    "remove_item": "Pašalinti elementą",
+    "checkout": "Atsiskaityti",
+    "total": "Iš viso"
+  },
+  "newsletter": {
+    "title": "Prenumeruokite mūsų naujienlaiškį",
+    "description": "Būkite pirmieji, kurie sužinos apie kavos naujienas, nuolaidas ir naujus produktus.",
+    "subscribe": "Prenumeruoti",
+    "success": "Dėkojame už prenumeratą!",
+    "placeholder": "Įveskite savo el. paštą"
+  },
+  "faq": {
+    "title": "Turite klausimų?",
+    "subtitle": "Trumpi atsakymai prieš pateikiant užsakymą",
+    "q1": "Kiek laiko trunka pristatymas?",
+    "a1": "Paprastai per 2-5 darbo dienas ES teritorijoje. Tarptautiniai užsakymai gali būti pristatyti per 7-14 darbo dienų.",
+    "q2": "Kiek kainuoja pristatymas?",
+    "a2": "Pristatymo kaina apskaičiuojama atsiskaitymo metu pagal jūsų vietą. Nemokamas pristatymas galimas užsakymams virš 50 €.",
+    "q3": "Ar galiu grąžinti kavą ar priedus?",
+    "a3": "Priedus galima grąžinti per 30 dienų. Kavą galima grąžinti tik jei pakuotė nebuvo atidaryta."
+  },
+  "home": {
+    "hero_title": "Sveiki atvykę į Coffee ",
+    "hero_subtitle": "Jūsų kasdienis kofeino šaltinis. Atraskite kavos mišinius, reikmenis ir dar daugiau.",
+    "coffee_blends": "Mūsų kavos mišiniai",
+    "coffee_accessories": "Kavos reikmenys",
+    "coffee": "Kava",
+    "accessories": "Reikmenys"
+  },
+  "product": {
+    "details": "Informacija",
+    "add_to_cart": "Įdėti į krepšelį",
+    "added_to_cart": "Į krepšelį įdėta {{count}} prekė(s)!",
+    "in_stock": "Yra sandėlyje",
+    "out_of_stock": "Nėra sandėlyje",
+    "no_products_found": "Produktų nerasta.",
+    "weight": "Svoris",
+    "origin": "Kilmė",
+    "roast_level": "Skrudinimo lygis",
+    "specifications": "Techniniai duomenys",
+    "product_not_found": "Prekės nerasta",
+    "go_back": "Grįžti atgal",
+    "accessories": "Priedai",
+    "coffee": "Kava",
+    "subtitle_arabica_from": "100% Arabica iš {{origin}}"
+  },
+  "accessories": {
+    "explore": "Atraskite mūsų reikmenis",
+    "discover": "Atraskite mūsų pasirinkimą aukštos kokybės kavos reikmenų, kruopščiai parinktų tobulam puodeliui.",
+    "all_products": "Visi produktai",
+    "Brewing_Equipment": "Kavos ruošimo įranga",
+    "Grinders": "Malūnai",
+    "Paper_Filters": "Popieriniai filtrai"
+  },
+
+  "coffee": {
+    "explore": "Atraskite mūsų kavos mišinius",
+    "discover": "Atraskite mūsų pasirinkimą aukštos kokybės kavos mišinių, kruopščiai parinktų tobulam puodeliui.",
+    "all_products": "Visi produktai",
+    "coffee": "Kava"
+  },
+
+  "articles": {
+    "title": "Straipsniai",
+    "read_more": "Skaityti daugiau",
+    "no_articles_found": "Straipsnių nerasta.",
+    "back_to_articles": "Grįžti į straipsnius"
+  },
+  "checkout": {
+    "title": "Atsiskaityti",
+    "shipping_address": "Pristatymo adresas",
+    "full_name": "Pilnas vardas ir pavardė",
+    "phone": "Jūsų telefonas",
+    "address": "Jūsų adresas",
+    "city": "Jūsų miestas",
+    "zip": "Jūsų pašto kodas",
+    "country": "Jūsų šalis",
+    "order_summary": "Užsakymo santrauka",
+    "continue_to_payment": "Pereiti prie mokėjimo",
+    "empty_cart": "Jūsų krepšelis tuščias.",
+    "total": "Iš viso"
+  },
+  "payment": {
+    "title": "Apmokėjimas",
+    "card_holder": "Kortelės savinininkas",
+    "card_number": "Kortelės numeris",
+    "expiryM": "Mėnuo",
+    "expiryY": "Metai",
+    "cvv": "CVV",
+    "alt_title": "arba išbandykite kitus mokėjimo būdus",
+    "processing": "Apdorojama...",
+    "pay": "Sumokėti ${{total}}"
+  },
+  "orderSuccess": {
+    "title": "Ačiū!",
+    "text": "Jūsų užsakymas buvo sėkmingai pateiktas.",
+    "back_home": "Grįžti į pradinį puslapį"
+  },
+  "profile": {
+    "title": "Mano profilis",
+    "subtitle": "Valdykite savo paskyrą, peržiūrėkite užsakymus ir atnaujinkite nustatymus",
+    "account_information": "Sąskaitos informacija",
+    "profile_information": "Profilio informacija",
+    "order_history": "Užsakymų istorija",
+    "settings": "Nustatymai",
+    "name": "Vardas",
+    "email": "El. paštas",
+    "address": "Adresas",
+    "phone": "Telefonas",
+    "loading_orders": "Įkeliami užsakymai...",
+    "no_purchases": "Kol kas jokių pirkimų.",
+    "future_orders": "Čia bus rodomi jūsų būsimi užsakymai.",
+    "order": "Užsakymas:",
+    "date": "Data:",
+    "status": "Būklė:",
+    "items": "Elementai:",
+    "change_password": "Pakeisti slaptažodį (netrukus)",
+    "manage_addresses": "Adresų tvarkymas (netrukus)",
+    "newsletter_preferences": "Naujienlaiškio nustatymai (netrukus)",
+    "failed_to_load_orders": "Nepavyko įkelti užsakymų:",
+    "pending": "Laukiama",
+    "hello": "Sveiki,",
+    "login": "Prisijungti",
+    "registration": "Registracija",
+    "logout": "Atsijungti",
+    "profile_link": "Profilis",
+    "admin_link": "Admin",
+    "no_account": "Neturite paskyros?",
+    "already_have_account": "Jau turite paskyrą?",
+    "password": "Slaptažodis",
+    "welcome_back": "Sveiki sugrįžę, {{name}}!",
+    "register_success": "Registracija sėkminga! Sveiki atvykę {{name}}! Prašome prisijungti.",
+    "logout_confirm": "Ar tikrai norite atsijungti?",
+    "logout_success": "Jūs atsijungėte.",
+    "user_fallback": "Vartotojas"
+  },
+
+  "contact": {
+    "contact_us": "Susisiekite su mumis",
+    "subtitle": "Ar turite klausimų?",
+    "company": "„Coffee Explorer“",
+    "work_hours_week": "Pirmadieniais-penktadieniais 8:00-17:00",
+    "work_hours_sat": "Šeštadienis 9:00-16:00",
+    "address_line": "Kavos g. 123, Vilnius",
+    "credentials": "Kvalifikacija",
+    "reg_no": "Registracijos Nr. 123456789",
+    "vat": "PVM kodas: LT1234567890123",
+    "email": "El. paštas",
+    "message": "Pranešimas",
+    "message_placeholder": "Jūsų pranešimas...",
+    "send": "Siųsti",
+    "message_sent_successfully": "Pranešimas išsiųstas sėkmingai!",
+    "write_to_us": "Parašykite mums kontaktinėje formoje arba siųskite tiesiogiai į",
+    "work_weeks": "Darbo dienomis",
+    "work_saturday": "Šeštadieniais",
+    "name_placeholder": "Jūsų vardas",
+    "name": "Jūsų vardas",
+    "email_placeholder": "Jūsų el. paštas"
+  },
+  "footer": {
+    "location": "Vilnius, Lietuva",
+    "find_us_on": "Raskite mus",
+    "main_menu": "Pagrindinis meniu",
+    "discover": "Atraskite",
+    "copy": "Egzamino projektas VCS"
+  },
+  "notfound": {
+    "message": "Oops! Produktas nerastas",
+    "goBack": "Grįžti atgal"
+  },
+  "search": {
+    "placeholder": "Ieškoti produktų..."
+  },
+  "swiperComponent": {
+    "no_products_found": "Produktų nerasta.",
+    "details": "informacija",
+    "add_to_cart": "Įdėti į krepšelį",
+    "added_to_cart": "Į krepšelį įdėta 1 prekė!"
+  },
+  "about": {
+    "title": "Apie Coffee ",
+    "our_mission": "Misija",
+    "mission_desc": "Mūsų misija yra suartinti kavos mylėtojus su išskirtinėmis patirtimis. Kruopščiai atrenkame kokybiškus pupeles, kavos ruošimo įrangą ir aksesuarus, kad kiekvienas galėtų mėgautis tobula kava namuose. Nesvarbu, ar tik atrandate kavą, ar jau turite metų patirties, mes čia, kad įkvėptume jūsų kelionę.",
+    "our_story": "Apie mus",
+    "story_desc": "Sveiki! Aš esu asmuo, stovintis už šio projekto. Kava jau daugelį metų yra mano gyvenimo dalis. Dirbau barista daugiau nei trejus metus, kur išmokau, kad kiekvienas puikus puodelis prasideda nuo kokybiškų pupelių, tinkamos technikos ir dėmesio detalėms. Ši patirtis įkvėpė mane sukurti šią svetainę — dalintis produktais, kuriais nuoširdžiai tikiu, ir padėti kitiems atrasti džiaugsmą ruošiant puikią kavą."
+  },
+  "categories": {
+    "all": "Visi",
+    "paper_filters": "Popieriniai filtrai",
+    "brewing_equipment": "Kavos ruošimo įranga",
+    "grinders": "Malūnai",
+    "espresso": "Espreso",
+    "filter": "Filtras",
+    "decaf": "Be kofeino"
+  }
+}

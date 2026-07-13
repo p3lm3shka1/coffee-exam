@@ -1,8 +1,9 @@
 import { useState } from "react";
-
+import { useTranslation } from "react-i18next";
 import "./Newsletter.scss";
 
 const Newsletter = () => {
+  const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [showNotification, setShowNotification] = useState(false);
   const [error, setError] = useState(false);
@@ -32,15 +33,13 @@ const Newsletter = () => {
   return (
     <section className="newsletter">
       <div className="newsletter__wrapper">
-        <h2 className="newsletter__title">Subscribe to our Newsletter</h2>
-        <p className="newsletter__description">
-          Get coffee updates, discounts, and new arrivals first.
-        </p>
+        <h2 className="newsletter__title">{t("newsletter.title")}</h2>
+        <p className="newsletter__description">{t("newsletter.description")}</p>
         <form className="newsletter__form" onSubmit={handleSubmit}>
           <input
             type="email"
             className={`newsletter__input ${error ? "is-error" : ""}`}
-            placeholder="Enter your email"
+            placeholder={t("newsletter.placeholder")}
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);
@@ -48,11 +47,11 @@ const Newsletter = () => {
             }}
           />
           <button type="submit" className="newsletter__button">
-            Subscribe
+            {t("newsletter.subscribe")}
           </button>
         </form>
         {showNotification && (
-          <p className="newsletter__notification">Thank you for subscribing!</p>
+          <p className="newsletter__notification">{t("newsletter.success")}</p>
         )}
       </div>
     </section>

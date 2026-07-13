@@ -42,19 +42,16 @@
     justify-content: space-between;
     gap: $p-0-5;
     margin-bottom: $p-2;
-    margin-top: $p-1;
     color: var(--black);
 
     h3 {
       font-family: $font-secondary;
-      font-size: 28px;
-      margin: 0;
+      font-size: 32px;
       font-weight: $font-w-700;
     }
 
     &__close {
-      border: none;
-      background: transparent;
+      margin-top: $p-1;
       color: var(--black);
       cursor: pointer;
       @include transition;

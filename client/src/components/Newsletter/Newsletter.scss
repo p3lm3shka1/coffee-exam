@@ -66,6 +66,7 @@
 
   &__button {
     padding: $p-3 $p-4;
+    letter-spacing: 0;
     @include button-home;
   }
 

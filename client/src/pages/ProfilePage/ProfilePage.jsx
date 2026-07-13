@@ -5,24 +5,29 @@ import {
   HiOutlineHome,
 } from "react-icons/hi";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
+import { useTranslation } from "react-i18next";
 import { getMyOrders } from "../../api/orders";
 
 import "./ProfilePage.scss";
 
-const tabs = [
-  { key: "account", label: "Account Information" },
-  { key: "orders", label: "Order History" },
-  { key: "settings", label: "Settings" },
-];
-
 const ProfilePage = () => {
+  const { t } = useTranslation();
   const { user } = useAuth();
   const token = user?.token || null;
   const [activeTab, setActiveTab] = useState("account");
   const [orders, setOrders] = useState([]);
   const [loadingOrders, setLoadingOrders] = useState(false);
+
+  const tabs = useMemo(
+    () => [
+      { key: "account", label: t("profile.profile_information") },
+      { key: "orders", label: t("profile.order_history") },
+      { key: "settings", label: t("profile.settings") },
+    ],
+    [t],
+  );
 
   useEffect(() => {
     if (!token) return;
@@ -33,14 +38,14 @@ const ProfilePage = () => {
         const data = await getMyOrders(token);
         setOrders(Array.isArray(data) ? data : []);
       } catch (err) {
-        console.error("Failed to load orders:", err.message);
+        console.error(t("profile.failed_to_load_orders"), err.message);
       } finally {
         setLoadingOrders(false);
       }
     };
 
     loadOrders();
-  }, [token]);
+  }, [token, t]);
 
   const lastOrder = orders.length ? orders[orders.length - 1] : null;
   const shipping = lastOrder?.shippingAddress || {};
@@ -56,10 +61,8 @@ const ProfilePage = () => {
   return (
     <section className="profile-page">
       <div className="profile-page__wrapper">
-        <h1 className="profile-page__title">My Profile</h1>
-        <p className="profile-page__subtitle">
-          Manage your account, check orders, and update settings
-        </p>
+        <h1 className="profile-page__title">{t("profile.title")}</h1>
+        <p className="profile-page__subtitle">{t("profile.subtitle")}</p>
 
         <div className="profile-page__tabs">
           {tabs.map((tab) => (
@@ -79,15 +82,19 @@ const ProfilePage = () => {
         <div className="profile-page__panel">
           {activeTab === "account" && (
             <article className="profile-page__card">
-              <h2 className="profile-page__card-title">Account information</h2>
+              <h2 className="profile-page__card-title">
+                {t("profile.profile_information")}
+              </h2>
 
               <div className="profile-page__info-list">
                 <div className="profile-page__info-item">
                   <HiOutlineUser size={20} />
                   <div className="profile-page__info-text">
-                    <span className="profile-page__info-label">Name</span>
+                    <span className="profile-page__info-label">
+                      {t("profile.name")}
+                    </span>
                     <p className="profile-page__info-value">
-                      {user?.name || "Not set"}
+                      {user?.name || t("common.not_set")}
                     </p>
                   </div>
                 </div>
@@ -95,9 +102,11 @@ const ProfilePage = () => {
                 <div className="profile-page__info-item">
                   <HiOutlineMail size={20} />
                   <div className="profile-page__info-text">
-                    <span className="profile-page__info-label">Email</span>
+                    <span className="profile-page__info-label">
+                      {t("profile.email")}
+                    </span>
                     <p className="profile-page__info-value">
-                      {user?.email || "Not set"}
+                      {user?.email || t("common.not_set")}
                     </p>
                   </div>
                 </div>
@@ -105,9 +114,11 @@ const ProfilePage = () => {
                 <div className="profile-page__info-item">
                   <HiOutlineHome size={20} />
                   <div className="profile-page__info-text">
-                    <span className="profile-page__info-label">Address</span>
+                    <span className="profile-page__info-label">
+                      {t("profile.address")}
+                    </span>
                     <p className="profile-page__info-value">
-                      {profileAddress || "Not set"}
+                      {profileAddress || t("common.not_set")}
                     </p>
                   </div>
                 </div>
@@ -115,9 +126,11 @@ const ProfilePage = () => {
                 <div className="profile-page__info-item">
                   <HiOutlinePhone size={20} />
                   <div className="profile-page__info-text">
-                    <span className="profile-page__info-label">Phone</span>
+                    <span className="profile-page__info-label">
+                      {t("profile.phone")}
+                    </span>
                     <p className="profile-page__info-value">
-                      {user?.phone || shipping?.phone || "Not set"}
+                      {user?.phone || shipping?.phone || t("common.not_set")}
                     </p>
                   </div>
                 </div>
@@ -127,17 +140,21 @@ const ProfilePage = () => {
 
           {activeTab === "orders" && (
             <article className="profile-page__card">
-              <h2 className="profile-page__card-title">Order history</h2>
+              <h2 className="profile-page__card-title">
+                {t("profile.order_history")}
+              </h2>
 
               {loadingOrders ? (
-                <p className="profile-page__empty-title">Loading orders...</p>
+                <p className="profile-page__empty-title">
+                  {t("profile.loading_orders")}
+                </p>
               ) : orders.length === 0 ? (
                 <div className="profile-page__empty">
                   <p className="profile-page__empty-title">
-                    No purchases for now.
+                    {t("profile.no_purchases")}
                   </p>
                   <span className="profile-page__empty-text">
-                    Your future orders will appear here.
+                    {t("profile.future_orders")}
                   </span>
                 </div>
               ) : (
@@ -145,22 +162,24 @@ const ProfilePage = () => {
                   {orders.map((order) => (
                     <div className="profile-page__order-item" key={order._id}>
                       <div>
-                        <strong>Order:</strong> #
+                        <strong>{t("profile.order")}</strong> #
                         {order._id.slice(-6).toUpperCase()}
                       </div>
                       <div>
-                        <strong>Date:</strong>{" "}
+                        <strong>{t("profile.date")}</strong>{" "}
                         {new Date(order.createdAt).toLocaleDateString()}
                       </div>
                       <div>
-                        <strong>Status:</strong> {order.status || "pending"}
+                        <strong>{t("profile.status")}</strong>{" "}
+                        {order.status || t("profile.pending")}
                       </div>
                       <div>
-                        <strong>Total:</strong> $
+                        <strong>{t("common.total")}:</strong> $
                         {Number(order.totalPrice || 0).toFixed(2)}
                       </div>
                       <div>
-                        <strong>Items:</strong> {order.orderItems?.length || 0}
+                        <strong>{t("profile.items")}</strong>{" "}
+                        {order.orderItems?.length || 0}
                       </div>
                     </div>
                   ))}
@@ -171,16 +190,18 @@ const ProfilePage = () => {
 
           {activeTab === "settings" && (
             <article className="profile-page__card">
-              <h2 className="profile-page__card-title">Settings</h2>
+              <h2 className="profile-page__card-title">
+                {t("profile.settings")}
+              </h2>
               <ul className="profile-page__settings-list">
                 <li className="profile-page__settings-item">
-                  Change password (coming soon)
+                  {t("profile.change_password")}
                 </li>
                 <li className="profile-page__settings-item">
-                  Manage addresses (coming soon)
+                  {t("profile.manage_addresses")}
                 </li>
                 <li className="profile-page__settings-item">
-                  Newsletter preferences (coming soon)
+                  {t("profile.newsletter_preferences")}
                 </li>
               </ul>
             </article>

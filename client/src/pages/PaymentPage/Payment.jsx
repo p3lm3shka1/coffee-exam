@@ -3,20 +3,16 @@ import { useNavigate } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import { useAuth } from "../../context/AuthContext";
 import { createOrder } from "../../api/orders";
+import { useTranslation } from "react-i18next";
 
-import {
-  FaCcVisa,
-  FaCcMastercard,
-  FaCcAmex,
-  FaCcDiscover,
-  FaApplePay,
-  FaGooglePay,
-  FaPaypal,
-} from "react-icons/fa";
+import { FaApplePay, FaGooglePay, FaPaypal } from "react-icons/fa";
+
+import paymentImage from "../../assets/logos/payments.png";
 
 import "./Payment.scss";
 
 const Payment = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { cartItems, clearCart } = useCart();
   const { user } = useAuth();
@@ -25,14 +21,16 @@ const Payment = () => {
   const [form, setForm] = useState({
     cardName: "",
     cardNumber: "",
-    expiry: "",
+    expiryMonth: "",
+    expiryYear: "",
     cvv: "",
   });
 
   const [errors, setErrors] = useState({
     cardName: false,
     cardNumber: false,
-    expiry: false,
+    expiryMonth: false,
+    expiryYear: false,
     cvv: false,
   });
 
@@ -65,7 +63,8 @@ const Payment = () => {
     const nextErrors = {
       cardName: !form.cardName.trim(),
       cardNumber: !form.cardNumber.trim(),
-      expiry: !form.expiry.trim(),
+      expiryMonth: !form.expiryMonth.trim(),
+      expiryYear: !form.expiryYear.trim(),
       cvv: !form.cvv.trim(),
     };
 
@@ -111,56 +110,65 @@ const Payment = () => {
   return (
     <section className="payment-page">
       <div className="payment-page__wrapper">
-        <h1 className="payment-page__title">Payment</h1>
+        <h1 className="payment-page__title">{t("payment.title")}</h1>
 
         <form className="payment-page__form" onSubmit={handlePay}>
-          <div className="payment-page__logos">
-            <FaCcVisa className="payment-page__logo payment-page__logo--visa" />
-            <FaCcMastercard className="payment-page__logo payment-page__logo--mastercard" />
-            <FaCcAmex className="payment-page__logo payment-page__logo--amex" />
-            <FaCcDiscover className="payment-page__logo payment-page__logo--discover" />
-            <FaApplePay className="payment-page__logo payment-page__logo--apple" />
-            <FaGooglePay className="payment-page__logo payment-page__logo--google" />
-            <FaPaypal className="payment-page__logo payment-page__logo--paypal" />
+          <div className="payment-page__image">
+            <img src={paymentImage} alt="Payment Methods" />
           </div>
-
           <div className="payment-page__fields">
             <input
               name="cardName"
-              placeholder="Card holder"
+              placeholder={t("payment.card_holder")}
               value={form.cardName}
               onChange={handleChange}
               className={errors.cardName ? "is-error" : ""}
             />
+
             <input
               name="cardNumber"
-              placeholder="Card number"
+              placeholder={t("payment.card_number")}
               value={form.cardNumber}
               onChange={handleChange}
+              maxLength={16}
+              inputMode="numeric"
               className={errors.cardNumber ? "is-error" : ""}
             />
 
             <div className="payment-page__row">
               <input
-                name="expiry"
-                placeholder="MM/YY"
-                value={form.expiry}
+                name="expiryMonth"
+                placeholder={t("payment.expiryM")}
+                value={form.expiryMonth}
                 onChange={handleChange}
-                className={errors.expiry ? "is-error" : ""}
+                maxLength={2}
+                inputMode="numeric"
+                className={errors.expiryMonth ? "is-error" : ""}
               />
+
+              <input
+                name="expiryYear"
+                placeholder={t("payment.expiryY")}
+                value={form.expiryYear}
+                onChange={handleChange}
+                maxLength={2}
+                inputMode="numeric"
+                className={errors.expiryYear ? "is-error" : ""}
+              />
+
               <input
                 name="cvv"
-                placeholder="CVV"
+                placeholder={t("payment.cvv")}
                 value={form.cvv}
                 onChange={handleChange}
+                maxLength={3}
+                inputMode="numeric"
                 className={errors.cvv ? "is-error" : ""}
               />
             </div>
           </div>
 
-          <p className="payment-page__alt-title">
-            or try different payment methods
-          </p>
+          <p className="payment-page__alt-title">{t("payment.alt_title")}</p>
 
           <div className="payment-page__alt-methods">
             <button
@@ -170,7 +178,7 @@ const Payment = () => {
             >
               <FaApplePay
                 className="payment-page__alt-button--apple"
-                size={42}
+                size={30}
               />
             </button>
 
@@ -181,7 +189,7 @@ const Payment = () => {
             >
               <FaGooglePay
                 className="payment-page__alt-button--google"
-                size={42}
+                size={30}
               />
             </button>
 
@@ -192,7 +200,7 @@ const Payment = () => {
             >
               <FaPaypal
                 className="payment-page__alt-button--paypal"
-                size={38}
+                size={30}
               />
             </button>
           </div>
@@ -202,7 +210,9 @@ const Payment = () => {
             type="submit"
             disabled={loading}
           >
-            {loading ? "Processing..." : `Pay $${total.toFixed(2)}`}
+            {loading
+              ? t("payment.processing")
+              : t("payment.pay", { total: total.toFixed(2) })}
           </button>
         </form>
       </div>

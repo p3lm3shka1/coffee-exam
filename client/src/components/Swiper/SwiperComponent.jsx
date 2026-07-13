@@ -3,6 +3,7 @@ import { Pagination } from "swiper/modules";
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -10,6 +11,7 @@ import "swiper/css/pagination";
 import "./Swiper.scss";
 
 const SwiperComponent = ({ items = [] }) => {
+  const { t } = useTranslation();
   const { addToCart } = useCart();
   const [showNotification, setShowNotification] = useState(false);
 
@@ -19,7 +21,7 @@ const SwiperComponent = ({ items = [] }) => {
     setTimeout(() => setShowNotification(false), 2000);
   };
 
-  if (!items.length) return <p>No products yet.</p>;
+  if (!items.length) return <p>{t("swiperComponent.no_products_found")}</p>;
 
   return (
     <Swiper
@@ -60,13 +62,13 @@ const SwiperComponent = ({ items = [] }) => {
                 className="product-swiper__overlay-link"
                 to={`/products/${item._id}`}
               >
-                Product Details
+                {t("swiperComponent.details")}
               </Link>
               <button
                 className="product-swiper__overlay__add"
                 onClick={() => handleAddToCart(item)}
               >
-                Add to Cart
+                {t("swiperComponent.add_to_cart")}
               </button>
             </div>
           </div>
@@ -74,7 +76,9 @@ const SwiperComponent = ({ items = [] }) => {
       ))}
       {showNotification && (
         <div className="product-swiper__notification">
-          <div className="notification-content">Added 1 item(s) to cart!</div>
+          <div className="notification-content">
+            {t("swiperComponent.added_to_cart")}
+          </div>
         </div>
       )}
     </Swiper>

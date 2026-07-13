@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import "./Contact.scss";
 
 const Contact = () => {
+  const { t } = useTranslation();
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -52,12 +54,14 @@ const Contact = () => {
     <section className="contact">
       <div className="contact__wrapper">
         <div className="contact__left">
-          <h1 className="contact__left__title">Contact Us</h1>
+          <h1 className="contact__left__title">{t("contact.contact_us")}</h1>
 
           <div className="contact__left__block">
-            <h2 className="contact__left__block__heading">Any Questions?</h2>
+            <h2 className="contact__left__block__heading">
+              {t("contact.subtitle")}
+            </h2>
             <p className="contact__left__block__text">
-              Write to us in the contact form, or send directly to{" "}
+              {t("contact.write_to_us")}{" "}
               <a href="mailto:info@coffeeexplorer.com">
                 info@coffeeexplorer.com
               </a>
@@ -67,23 +71,25 @@ const Contact = () => {
           <div className="contact__left__block">
             <h2 className="contact__left__block__heading">Coffee Explorer</h2>
             <p className="contact__left__block__text">
-              Mon-Fri 8:00-17:00
+              {t("contact.work_weeks")} 8:00-17:00
               <br />
-              Saturday 9:00-16:00
+              {t("contact.work_saturday")} 9:00-16:00
               <br />
-              123 Coffee Street, Vilnius
+              {t("contact.address_line")}
               <br />
             </p>
           </div>
 
           <div className="contact__left__block">
-            <h2 className="contact__left__block__heading">Credentials</h2>
+            <h2 className="contact__left__block__heading">
+              {t("contact.credentials")}
+            </h2>
             <p className="contact__left__block__text">
               MB Coffee Explorer
               <br />
               Reg. No. 123456789
               <br />
-              123 Coffee St, LT-12345 Vilnius
+              {t("contact.address_line")}
               <br />
               VAT: LT1234567890123
             </p>
@@ -101,16 +107,16 @@ const Contact = () => {
           ></iframe>
 
           <form className="contact__form" onSubmit={handleSubmit}>
-            <h1 className="contact__form__title">Get in Touch</h1>
+            <h1 className="contact__form__title">{t("contact.contact_us")}</h1>
 
             <div className="contact__form__row">
               <div className="contact__form__field">
-                <label htmlFor="name">Name</label>
+                <label htmlFor="name">{t("contact.name")}</label>
                 <input
                   id="name"
                   name="name"
                   type="text"
-                  placeholder="John Doe"
+                  placeholder={t("contact.name_placeholder")}
                   value={form.name}
                   onChange={handleChange}
                   className={errors.name ? "is-error" : ""}
@@ -118,12 +124,12 @@ const Contact = () => {
               </div>
 
               <div className="contact__form__field">
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email">{t("contact.email")}</label>
                 <input
                   id="email"
                   name="email"
                   type="email"
-                  placeholder="john@example.com"
+                  placeholder={t("contact.email_placeholder")}
                   value={form.email}
                   onChange={handleChange}
                   className={errors.email ? "is-error" : ""}
@@ -132,12 +138,12 @@ const Contact = () => {
             </div>
 
             <div className="contact__form__field">
-              <label htmlFor="message">Message</label>
+              <label htmlFor="message">{t("contact.message")}</label>
               <textarea
                 id="message"
                 name="message"
                 rows={5}
-                placeholder="Your message..."
+                placeholder={t("contact.message_placeholder")}
                 value={form.message}
                 onChange={handleChange}
                 className={errors.message ? "is-error" : ""}
@@ -145,14 +151,16 @@ const Contact = () => {
             </div>
 
             <div className="contact__form__footer">
-              <button type="submit">Send</button>
+              <button type="submit">{t("contact.send")}</button>
             </div>
           </form>
         </div>
       </div>
 
       {showNotification && (
-        <p className="contact__notification">Message sent successfully!</p>
+        <p className="contact__notification">
+          {t("contact.message_sent_successfully")}
+        </p>
       )}
     </section>
   );

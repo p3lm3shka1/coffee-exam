@@ -1,28 +1,30 @@
 import { Link } from "react-router-dom";
 import { CiInstagram, CiFacebook, CiTwitter } from "react-icons/ci";
+import { useTranslation } from "react-i18next";
 
 import "./Footer.scss";
 
 import Logo from "../../assets/images/logo.png";
 
 const Footer = () => {
+  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
 
   const footerList = [
     {
-      title: "Main Menu",
+      title: t("footer.main_menu"),
       links: [
-        { name: "Home", href: "/" },
-        { name: "About", href: "/about" },
-        { name: "Contact", href: "/contact" },
+        { name: t("nav.home"), href: "/" },
+        { name: t("nav.about"), href: "/about" },
+        { name: t("nav.contact"), href: "/contact" },
       ],
     },
     {
-      title: "Discover",
+      title: t("footer.discover"),
       links: [
-        { name: "Articles", href: "/articles" },
-        { name: "Coffee", href: "/coffee" },
-        { name: "Accessories", href: "/accessories" },
+        { name: t("nav.articles"), href: "/articles" },
+        { name: t("nav.coffee"), href: "/coffee" },
+        { name: t("nav.accessories"), href: "/accessories" },
       ],
     },
   ];
@@ -51,7 +53,7 @@ const Footer = () => {
           </div>
           <p className="footer__brand__address">Vilnius, Lithuania</p>
           <p className="footer__brand__copy">
-            &copy; {currentYear} Exam Project for VCS
+            &copy; {currentYear} {t("footer.copy")}
           </p>
         </div>
 
@@ -69,7 +71,7 @@ const Footer = () => {
         ))}
 
         <div className="footer__col">
-          <h4 className="footer__col__title">Find Us On</h4>
+          <h4 className="footer__col__title">{t("footer.find_us_on")}</h4>
           <ul className="footer__col__social">
             {socialLinks.map((social) => (
               <li key={social.url}>

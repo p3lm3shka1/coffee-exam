@@ -158,14 +158,16 @@
   &__actions {
     display: flex;
     align-items: center;
-    gap: $p-1-5;
+    gap: $p-0-5;
     color: var(--black);
+    min-width: 170px;
+    justify-content: center;
 
     &__account {
       cursor: pointer;
       font-weight: $font-w-400;
       color: var(--black);
-      padding: $p-1;
+      padding: $p-0-5;
       @include transition;
 
       &:hover {

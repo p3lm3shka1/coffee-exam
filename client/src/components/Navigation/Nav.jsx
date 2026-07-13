@@ -7,6 +7,8 @@ import { useHiddenScroll } from "../../hooks/useHiddenScroll";
 import ProfileOverlay from "../Profile/ProfileOverlay";
 import Cart from "../Cart/Cart";
 import SearchBar from "../SearchBar/SearchBar";
+import LangSwitcher from "../LangSwitcher/LangSwitcher";
+import { useTranslation } from "react-i18next";
 
 import "./Nav.scss";
 
@@ -20,6 +22,7 @@ import {
 } from "react-icons/hi";
 
 const Nav = () => {
+  const { t } = useTranslation();
   const [menuOpen, setMenuOpen] = useState(false);
   const hidden = useHiddenScroll({ threshold: 150, delta: 2 });
   const [subMenu, setSubMenu] = useState(false);
@@ -27,16 +30,16 @@ const Nav = () => {
   const [cartOpen, setCartOpen] = useState(false);
 
   const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "Shop", href: "/shop", hasSubmenu: true },
-    { name: "Articles", href: "/articles" },
-    { name: "About", href: "/about" },
-    { name: "Contact", href: "/contact" },
+    { name: t("nav.home"), href: "/" },
+    { name: t("nav.shop"), href: "/shop", hasSubmenu: true },
+    { name: t("nav.articles"), href: "/articles" },
+    { name: t("nav.about"), href: "/about" },
+    { name: t("nav.contact"), href: "/contact" },
   ];
 
   const shopSubmenu = [
-    { name: "Coffee Blends", href: "/coffee" },
-    { name: "Accessories", href: "/accessories" },
+    { name: t("nav.coffee_blends"), href: "/coffee" },
+    { name: t("nav.accessories"), href: "/accessories" },
   ];
 
   const handleLinkClick = () => {
@@ -105,6 +108,7 @@ const Nav = () => {
         </ul>
 
         <div className="navbar__actions">
+          <LangSwitcher className="navbar__actions__lang" />
           <button
             className="navbar__actions__account"
             onClick={() => setProfileOpen(true)}
@@ -117,7 +121,7 @@ const Nav = () => {
             onClick={() => setCartOpen(true)}
           >
             <HiOutlineShoppingCart size={20} />
-            <span>Your Cart</span>
+            <span>{t("cart.title")}</span>
           </button>
 
           <button

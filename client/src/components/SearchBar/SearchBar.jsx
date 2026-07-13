@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-
+import { useTranslation } from "react-i18next";
 import { HiOutlineSearch } from "react-icons/hi";
 
 import "./SearchBar.scss";
@@ -11,6 +11,7 @@ const SearchBar = () => {
   const [searchResults, setSearchResults] = useState([]);
   const searchRef = useRef(null);
   const searchInputRef = useRef(null);
+  const { t } = useTranslation();
 
   const handleSearch = async (query) => {
     setSearchQuery(query);
@@ -65,7 +66,7 @@ const SearchBar = () => {
           <input
             ref={searchInputRef}
             type="text"
-            placeholder="Search products..."
+            placeholder={t("search.placeholder")}
             value={searchQuery}
             onChange={(e) => handleSearch(e.target.value)}
             className="search-bar__input"

@@ -2,9 +2,11 @@ import { Link } from "react-router-dom";
 import { HiX } from "react-icons/hi";
 import { HiOutlineTrash } from "react-icons/hi";
 import { useCart } from "../../context/CartContext";
+import { useTranslation } from "react-i18next";
 import "./Cart.scss";
 
 const Cart = ({ isOpen, onClose }) => {
+  const { t } = useTranslation();
   const { cartItems, increase, decrease, removeFromCart, total } = useCart();
 
   if (!isOpen) return null;
@@ -13,7 +15,7 @@ const Cart = ({ isOpen, onClose }) => {
     <section className="cart" onClick={onClose}>
       <div className="cart__content" onClick={(e) => e.stopPropagation()}>
         <div className="cart__header">
-          <h3>Cart</h3>
+          <h3>{t("cart.title")}</h3>
           <button className="cart__header__close" onClick={onClose}>
             <HiX size={24} />
           </button>
@@ -21,7 +23,7 @@ const Cart = ({ isOpen, onClose }) => {
 
         <div className="cart__items">
           {cartItems.length === 0 ? (
-            <p className="cart__empty">Your cart is empty.</p>
+            <p className="cart__empty">{t("cart.empty")}</p>
           ) : (
             cartItems.map((item) => (
               <div key={item._id} className="cart__item">
@@ -49,7 +51,7 @@ const Cart = ({ isOpen, onClose }) => {
                     <button
                       onClick={() => removeFromCart(item._id)}
                       className="cart__item__delete"
-                      title="Remove item"
+                      title={t("cart.remove_item")}
                     >
                       <HiOutlineTrash size={18} />
                     </button>
@@ -84,11 +86,11 @@ const Cart = ({ isOpen, onClose }) => {
         {cartItems.length > 0 && (
           <div className="cart__footer">
             <div className="cart__total">
-              <span>Total:</span>
+              <span>{t("cart.total")}:</span>
               <strong>${total.toFixed(2)}</strong>
             </div>
             <Link to="/checkout" className="cart__checkout" onClick={onClose}>
-              Checkout
+              {t("cart.checkout")}
             </Link>
           </div>
         )}

@@ -1,0 +1,235 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "something_went_wrong": "Something went wrong",
+    "search": "Search",
+    "sort": "Sort",
+    "category": "Category",
+    "subcategory": "Subcategory",
+    "price": "Price",
+    "total": "Total",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel",
+    "reload": "Reload",
+    "go_back": "Go back",
+    "not_set": "Not set",
+    "category_coffee": "Coffee",
+    "category_accessories": "Accessories"
+  },
+  "nav": {
+    "home": "Home",
+    "shop": "Shop",
+    "coffee": "Coffee",
+    "accessories": "Accessories",
+    "articles": "Articles",
+    "about": "About",
+    "contact": "Contact",
+    "profile": "Profile",
+    "admin": "Admin",
+    "cart": "Your Cart",
+    "coffee_blends": "Coffee Blends"
+  },
+  "auth": {
+    "login": "Login",
+    "logout": "Logout",
+    "register": "Register",
+    "registration": "Registration",
+    "no_account": "No account?",
+    "already_have_account": "Already have account?",
+    "register_failed": "Register failed",
+    "autologin_failed": "Auto-login failed",
+    "login_failed": "Login failed"
+  },
+  "cart": {
+    "title": "Your Cart",
+    "empty": "Your cart is empty.",
+    "remove_item": "Remove item",
+    "checkout": "Checkout",
+    "total": "Total"
+  },
+  "newsletter": {
+    "title": "Subscribe to our Newsletter",
+    "description": "Get coffee updates, discounts, and new arrivals first.",
+    "subscribe": "Subscribe",
+    "success": "Thank you for subscribing!",
+    "placeholder": "Enter your email"
+  },
+  "faq": {
+    "title": "Have questions?",
+    "subtitle": "Quick answers before your order",
+    "q1": "How long does delivery take?",
+    "a1": "Usually 2-5 business days within the EU. International orders may take 7-14 business days.",
+    "q2": "How much does shipping cost?",
+    "a2": "Shipping cost is calculated at checkout based on your location. Free shipping is available for orders over €50.",
+    "q3": "Can I return coffee or accessories?",
+    "a3": "Accessories can be returned within 30 days. Coffee can only be returned if the package is unopened."
+  },
+  "home": {
+    "hero_title": "Welcome to Coffee ",
+    "hero_subtitle": "Your daily caffeine provider. Discover blends, gear, and more.",
+    "coffee_blends": "Our Coffee Blends",
+    "coffee_accessories": "Coffee Accessories",
+    "coffee": "Coffee",
+    "accessories": "Accessories"
+  },
+  "product": {
+    "details": "Details",
+    "add_to_cart": "Add to Cart",
+    "added_to_cart": "Added 1 item(s) to cart!",
+    "in_stock": "In stock",
+    "out_of_stock": "Out of stock",
+    "no_products_found": "No products found.",
+    "weight": "Weight",
+    "origin": "Origin",
+    "roast_level": "Roast Level:",
+    "specifications": "Specifications",
+    "product_not_found": "Product not found",
+    "go_back": "Go back",
+    "accessories": "Accessories",
+    "coffee": "Coffee",
+    "subtitle_arabica_from": "100% Arabica from {{origin}}"
+  },
+  "accessories": {
+    "explore": "Explore Our Accessories",
+    "discover": "Discover our selection of premium coffee accessories, carefully curated for the perfect cup.",
+    "all_products": "All Products",
+    "Brewing_Equipment": "Brewing Equipment",
+    "Grinders": "Grinders",
+    "Paper_Filters": "Paper Filters",
+    "added_to_cart": "Added 1 item(s) to cart!"
+  },
+  "coffee": {
+    "explore": "Explore Our Coffee Blends",
+    "discover": "Discover our selection of premium coffee blends, carefully curated for the perfect cup.",
+    "all_products": "All",
+    "coffee": "Coffee"
+  },
+  "articles": {
+    "title": "Articles",
+    "read_more": "Read More",
+    "no_articles_found": "No articles found.",
+    "back_to_articles": "Back to Articles"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "shipping_address": "Shipping address",
+    "full_name": "Full name",
+    "phone": "Phone",
+    "address": "Address",
+    "city": "City",
+    "zip": "ZIP",
+    "country": "Country",
+    "order_summary": "Order summary",
+    "continue_to_payment": "Continue to payment",
+    "empty_cart": "Your cart is empty.",
+    "total": "Total"
+  },
+  "payment": {
+    "title": "Payment",
+    "card_holder": "Card holder",
+    "card_number": "Card number",
+    "expiryM": "Month",
+    "expiryY": "Year",
+    "cvv": "CVV",
+    "alt_title": "or try different payment methods",
+    "processing": "Processing...",
+    "pay": "Pay ${{total}}"
+  },
+  "orderSuccess": {
+    "title": "Thank you!",
+    "text": "Your order has been placed successfully.",
+    "back_home": "Back to Home"
+  },
+  "profile": {
+    "title": "My Profile",
+    "subtitle": "Manage your account, check orders, and update settings",
+    "account_information": "Account Information",
+    "profile_information": "Profile Information",
+    "order_history": "Order History",
+    "settings": "Settings",
+    "name": "Name",
+    "email": "Email",
+    "address": "Address",
+    "phone": "Phone",
+    "loading_orders": "Loading orders...",
+    "no_purchases": "No purchases for now.",
+    "future_orders": "Your future orders will appear here.",
+    "order": "Order:",
+    "date": "Date:",
+    "status": "Status:",
+    "items": "Items:",
+    "change_password": "Change password (coming soon)",
+    "manage_addresses": "Manage addresses (coming soon)",
+    "newsletter_preferences": "Newsletter preferences (coming soon)",
+    "failed_to_load_orders": "Failed to load orders:",
+    "pending": "Pending",
+    "hello": "Hello,",
+    "login": "Login",
+    "registration": "Registration",
+    "logout": "Logout",
+    "profile_link": "Profile",
+    "admin_link": "Admin",
+    "no_account": "No account?",
+    "already_have_account": "Already have account?",
+    "password": "Password",
+    "welcome_back": "Welcome back, {{name}}!",
+    "register_success": "Registration successful! Welcome {{name}}! Please log in.",
+    "logout_confirm": "Are you sure you want to logout?",
+    "logout_success": "You have been logged out.",
+    "user_fallback": "User"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Any Questions?",
+    "company": "Coffee Explorer",
+    "work_hours_week": "Mon-Fri 8:00-17:00",
+    "work_hours_sat": "Saturday 9:00-16:00",
+    "address_line": "123 Coffee Street, Vilnius",
+    "credentials": "Credentials",
+    "reg_no": "Reg. No. 123456789",
+    "vat": "VAT: LT1234567890123",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send",
+    "success": "Message sent successfully!"
+  },
+  "footer": {
+    "location": "Vilnius, Lithuania",
+    "find_us_on": "Find Us On",
+    "main_menu": "Main Menu",
+    "discover": "Discover",
+    "copy": "Exam Project for VCS"
+  },
+  "notfound": {
+    "message": "Oops! Product not found",
+    "goBack": "Go back"
+  },
+  "search": {
+    "placeholder": "Search products..."
+  },
+  "swiperComponent": {
+    "no_products_found": "No products found.",
+
+    "details": "Details",
+    "add_to_cart": "Add to Cart",
+    "added_to_cart": "Added 1 item(s) to cart!"
+  },
+  "about": {
+    "title": "About Coffee ",
+    "our_mission": "Mission",
+    "mission_desc": "Our mission is to bring coffee lovers closer to exceptional experiences. We carefully select quality beans, brewing equipment, and accessories to help everyone enjoy a perfect cup at home. Whether you're just discovering coffee or already have years of experience, we're here to inspire your journey.",
+    "our_story": "About",
+    "story_desc": "Hi! I'm the person behind this project. Coffee has been part of my life for years. I worked as a barista for over three years, where I learned that every great cup starts with quality beans, the right technique, and attention to detail. That experience inspired me to create this website — to share products I genuinely believe in and help others discover the joy of brewing great coffee."
+  },
+  "categories": {
+    "all": "All",
+    "paper_filters": "Paper Filters",
+    "brewing_equipment": "Brewing Equipment",
+    "grinders": "Grinders",
+    "espresso": "Espresso",
+    "filter": "Filter",
+    "decaf": "Decaf"
+  }
+}

@@ -2,12 +2,13 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDarkMode } from "../../context/DarkModeProvider";
 import { useAuth } from "../../context/AuthContext";
-
+import { useTranslation } from "react-i18next";
 import { HiX, HiOutlineSun, HiOutlineMoon } from "react-icons/hi";
 
 import "./ProfileOverlay.scss";
 
 const ProfileOverlay = ({ isOpen, onClose }) => {
+  const { t } = useTranslation();
   const { user, login, register, logout } = useAuth();
   const { theme, toggleTheme } = useDarkMode();
   const [showNotification, setShowNotification] = useState(false);
@@ -42,9 +43,13 @@ const ProfileOverlay = ({ isOpen, onClose }) => {
       const loggedUser = await login(form.email, form.password);
       resetForm();
       setMode("actions");
-      handleNotification(`Welcome back, ${loggedUser.name || "User"}!`);
+      handleNotification(
+        t("profile.welcome_back", {
+          name: loggedUser.name || t("profile.user_fallback"),
+        }),
+      );
     } catch (err) {
-      setError(err.message || "Login failed");
+      setError(err.message || t("auth.login_failed"));
     }
   };
 
@@ -56,19 +61,21 @@ const ProfileOverlay = ({ isOpen, onClose }) => {
       resetForm();
       setMode("actions");
       handleNotification(
-        `Registration successful! Welcome ${newUser.name || "User"}! Please log in.`,
+        t("profile.register_success", {
+          name: newUser.name || t("profile.user_fallback"),
+        }),
       );
     } catch (err) {
-      setError(err.message || "Register failed");
+      setError(err.message || t("auth.register_failed"));
     }
   };
 
   const handleLogout = () => {
-    if (!confirm("Are you sure you want to logout?")) return;
+    if (!confirm(t("profile.logout_confirm"))) return;
     logout();
     setMode("actions");
     onClose();
-    handleNotification("You have been logged out.");
+    handleNotification(t("profile.logout_success"));
   };
 
   return (
@@ -97,7 +104,7 @@ const ProfileOverlay = ({ isOpen, onClose }) => {
         {user && (
           <div className="profile__user">
             <p className="profile__user__name">
-              Hello, <strong>{user.name}</strong>
+              {t("profile.hello")} <strong>{user.name}</strong>
             </p>
           </div>
         )}
@@ -106,9 +113,11 @@ const ProfileOverlay = ({ isOpen, onClose }) => {
           <div className="profile__actions">
             {!user ? (
               <>
-                <button onClick={() => setMode("login")}>Login</button>
+                <button onClick={() => setMode("login")}>
+                  {t("profile.login")}
+                </button>
                 <button onClick={() => setMode("register")}>
-                  Registration
+                  {t("profile.registration")}
                 </button>
               </>
             ) : (
@@ -118,19 +127,19 @@ const ProfileOverlay = ({ isOpen, onClose }) => {
                   className="profile__profile-link"
                   onClick={onClose}
                 >
-                  Profile
+                  {t("profile.profile_link")}
                 </Link>
-                {user && user.role === "admin" && (
+                {user?.role === "admin" && (
                   <Link
                     to="/admin"
                     className="profile__admin-link"
                     onClick={onClose}
                   >
-                    Admin
+                    {t("profile.admin_link")}
                   </Link>
                 )}
                 <button onClick={handleLogout} className="profile__logout">
-                  Logout
+                  {t("profile.logout")}
                 </button>
               </>
             )}
@@ -142,7 +151,7 @@ const ProfileOverlay = ({ isOpen, onClose }) => {
             <input
               type="email"
               name="email"
-              placeholder="Email"
+              placeholder={t("profile.email")}
               value={form.email}
               onChange={onChange}
               required
@@ -150,20 +159,21 @@ const ProfileOverlay = ({ isOpen, onClose }) => {
             <input
               type="password"
               name="password"
-              placeholder="Password"
+              placeholder={t("profile.password")}
               value={form.password}
               onChange={onChange}
               required
             />
             {error && <p className="profile__error">{error}</p>}
-            <button type="submit">Login</button>
+            <button type="submit">{t("profile.login")}</button>
             <span
               onClick={() => {
                 setMode("register");
                 setError("");
               }}
             >
-              No account? <span className="profile__link">Register</span>
+              {t("profile.no_account")}{" "}
+              <span className="profile__link">{t("profile.registration")}</span>
             </span>
           </form>
         )}
@@ -173,7 +183,7 @@ const ProfileOverlay = ({ isOpen, onClose }) => {
             <input
               type="text"
               name="name"
-              placeholder="Name"
+              placeholder={t("profile.name")}
               value={form.name}
               onChange={onChange}
               required
@@ -181,7 +191,7 @@ const ProfileOverlay = ({ isOpen, onClose }) => {
             <input
               type="email"
               name="email"
-              placeholder="Email"
+              placeholder={t("profile.email")}
               value={form.email}
               onChange={onChange}
               required
@@ -189,24 +199,26 @@ const ProfileOverlay = ({ isOpen, onClose }) => {
             <input
               type="password"
               name="password"
-              placeholder="Password"
+              placeholder={t("profile.password")}
               value={form.password}
               onChange={onChange}
               required
             />
             {error && <p className="profile__error">{error}</p>}
-            <button type="submit">Registration</button>
+            <button type="submit">{t("profile.registration")}</button>
             <span
               onClick={() => {
                 setMode("login");
                 setError("");
               }}
             >
-              Already have account? <span className="profile__link">Login</span>
+              {t("profile.already_have_account")}{" "}
+              <span className="profile__link">{t("profile.login")}</span>
             </span>
           </form>
         )}
       </div>
+
       {showNotification && (
         <div className="profile__notification">
           <div className="profile__notification__content">

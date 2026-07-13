@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import "./AdminForm.scss";
 
 const subcategories = {
@@ -14,6 +15,7 @@ const subcategories = {
 };
 
 const AdminForm = ({ form, editingId, onChange, onSubmit, onCancelEdit }) => {
+  const { t } = useTranslation();
   return (
     <form onSubmit={onSubmit} className="admin-form">
       <input

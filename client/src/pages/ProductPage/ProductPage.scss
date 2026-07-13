@@ -111,6 +111,14 @@
     }
   }
 
+  &__subtitle {
+    font-family: $font-primary;
+    font-size: 16px;
+    font-weight: $font-w-400;
+    color: var(--dark-gray);
+    margin: 0;
+  }
+
   &__category {
     background: var(--black);
     color: var(--white);

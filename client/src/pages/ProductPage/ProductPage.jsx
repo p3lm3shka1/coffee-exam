@@ -2,13 +2,15 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useCart } from "../../context/CartContext";
 import { useAuth } from "../../context/AuthContext";
-
+import { useTranslation } from "react-i18next";
 import { HiOutlineShoppingCart, HiX } from "react-icons/hi";
 import { GiCoffeeCup } from "react-icons/gi";
 
 import "./ProductPage.scss";
 
 const ProductPage = () => {
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language?.startsWith("lt") ? "lt" : "en";
   const { id } = useParams();
   const navigate = useNavigate();
   const { addToCart } = useCart();
@@ -26,7 +28,7 @@ const ProductPage = () => {
       try {
         setLoading(true);
         const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/products/${id}`,
+          `${import.meta.env.VITE_API_URL}/api/products/${id}?lang=${lang}`,
         );
         if (!response.ok) {
           throw new Error("Product not found");
@@ -41,7 +43,7 @@ const ProductPage = () => {
     };
 
     if (id) fetchProduct();
-  }, [id]);
+  }, [id, i18n, lang]);
 
   const handleQuantityChange = (value) => {
     if (value >= 1) setQuantity(value);
@@ -70,9 +72,9 @@ const ProductPage = () => {
       <div className="product-page product-page--error">
         <div className="error-content">
           <GiCoffeeCup size={100} />
-          <h1>Oops! Product not found</h1>
+          <h1>{t("product.error_title")}</h1>
           <button className="error-button" onClick={() => navigate(-1)}>
-            Go Back
+            {t("product.go_back")}
           </button>
         </div>
       </div>
@@ -82,11 +84,21 @@ const ProductPage = () => {
   const isCoffee = product.category === "coffee";
   const isInStock = product.inStock !== false;
 
+  const title =
+    typeof product.title === "object"
+      ? product.title?.[lang] || product.title?.en || ""
+      : product.title || "";
+
+  const description =
+    typeof product.description === "object"
+      ? product.description?.[lang] || product.description?.en || ""
+      : product.description || product.longDescription || "";
+
   return (
     <section className="product-page">
       <div className="product-page__wrapper">
         <button className="product-page__back" onClick={() => navigate(-1)}>
-          Go Back
+          {t("product.go_back")}
         </button>
 
         <div className="product-page__container">
@@ -102,39 +114,44 @@ const ProductPage = () => {
 
           <div className="product-page__info-section">
             <div className="product-page__header">
-              <h1 className="product-page__title">{product.title}</h1>
+              <h1 className="product-page__title">{title}</h1>
               {product.category && (
                 <span className="product-page__category">
-                  {product.category}
+                  {t(`common.category_${product.category}`)}
                 </span>
               )}
             </div>
-            <p className="product-page__subtitle">
-              100% Arabica {product.origin && `from ${product.origin}`}
-            </p>
 
-            <p className="product-page__description">
-              {product.description || product.longDescription}
-            </p>
+            {isCoffee && (
+              <p className="product-page__subtitle">
+                {product.origin
+                  ? t("product.subtitle_arabica_from", {
+                      origin: product.origin,
+                    })
+                  : t("product.subtitle_arabica")}
+              </p>
+            )}
+
+            <p className="product-page__description">{description}</p>
 
             {isCoffee &&
               (product.weight || product.origin || product.roastLevel) && (
                 <div className="product-page__coffee-specs">
                   {product.weight && (
                     <div className="spec-item">
-                      <strong>Weight:</strong>
+                      <strong>{t("product.weight")}:</strong>
                       <span>{product.weight}</span>
                     </div>
                   )}
                   {product.origin && (
                     <div className="spec-item">
-                      <strong>Origin:</strong>
+                      <strong>{t("product.origin")}:</strong>
                       <span>{product.origin}</span>
                     </div>
                   )}
                   {product.roastLevel && (
                     <div className="spec-item">
-                      <strong>Roast Level:</strong>
+                      <strong>{t("product.roast_level")}:</strong>
                       <span className="roast-badge">{product.roastLevel}</span>
                     </div>
                   )}
@@ -143,7 +160,7 @@ const ProductPage = () => {
 
             {product.specs && (
               <div className="product-page__specs">
-                <h3>Specifications</h3>
+                <h3>{t("product.specifications")}</h3>
                 <ul>
                   {Object.entries(product.specs).map(([key, value]) => (
                     <li key={key}>
@@ -195,7 +212,9 @@ const ProductPage = () => {
 
               {!isInStock && (
                 <>
-                  <div className="product-page__out-of-stock">Out of Stock</div>
+                  <div className="product-page__out-of-stock">
+                    {t("product.out_of_stock")}
+                  </div>
                 </>
               )}
               {isInStock && (
@@ -204,7 +223,7 @@ const ProductPage = () => {
                   onClick={handleAddToCart}
                 >
                   <HiOutlineShoppingCart size={20} />
-                  Add to Cart
+                  {t("product.add_to_cart")}
                 </button>
               )}
             </div>
@@ -212,7 +231,7 @@ const ProductPage = () => {
             {showNotification && (
               <div className="product-page__notification">
                 <div className="notification-content">
-                  Added {quantity} item(s) to cart!
+                  {t("product.added_to_cart", { count: quantity })}
                 </div>
               </div>
             )}

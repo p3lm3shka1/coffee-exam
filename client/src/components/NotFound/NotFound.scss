@@ -27,6 +27,7 @@
 
   &__link {
     @include button-home;
+    width: 250px;
   }
 
   @include tablet {

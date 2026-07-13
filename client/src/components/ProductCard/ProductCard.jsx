@@ -3,8 +3,10 @@ import "./ProductCard.scss";
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const ProductCard = ({ product }) => {
+  const { t } = useTranslation();
   const {
     title,
     price,
@@ -44,15 +46,31 @@ const ProductCard = ({ product }) => {
 
         {isCoffee && (
           <div className="product-card__details">
-            {weight && <span>Weight: {weight}</span>}
-            {origin && <span>Origin: {origin}</span>}
+            {weight && (
+              <span>
+                {t("product.weight")}: {weight}
+              </span>
+            )}
+            {origin && (
+              <span>
+                {t("product.origin")}: {origin}
+              </span>
+            )}
           </div>
         )}
 
         {isAccessories && (
           <div className="product-card__details">
-            {material && <span>Material: {material}</span>}
-            {brand && <span>Brand: {brand}</span>}
+            {material && (
+              <span>
+                {t("product.material")}: {material}
+              </span>
+            )}
+            {brand && (
+              <span>
+                {t("product.brand")}: {brand}
+              </span>
+            )}
           </div>
         )}
 
@@ -61,7 +79,7 @@ const ProductCard = ({ product }) => {
           <span
             className={`product-card__${inStock ? "in-stock" : "out-stock"}`}
           >
-            {inStock ? "In stock" : "Out of stock"}
+            {inStock ? t("product.in_stock") : t("product.out_of_stock")}
           </span>
         </div>
       </div>
@@ -70,18 +88,20 @@ const ProductCard = ({ product }) => {
           className="product-card__overlay-link"
           to={`/products/${product._id}`}
         >
-          Product Details
+          {t("product.details")}
         </Link>
         <button
           className="product-card__overlay__add"
           onClick={handleAddToCart}
         >
-          Add to Cart
+          {t("product.add_to_cart")}
         </button>
       </div>
       {showNotification && (
         <div className="product-card__notification">
-          <div className="notification-content">Added 1 item(s) to cart!</div>
+          <div className="notification-content">
+            {t("product.added_to_cart", { count: 1 })}
+          </div>
         </div>
       )}
     </section>
