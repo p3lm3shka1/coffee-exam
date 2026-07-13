@@ -365,14 +365,20 @@
 
       h1 {
         font-family: $font-secondary;
-        font-size: 72px;
-        margin-bottom: $p-1;
+        font-size: 65px;
         font-weight: $font-w-400;
         color: var(--black);
       }
 
       .error-icon {
         color: var(--black);
+      }
+
+      .error-logo {
+        max-width: 600px;
+        width: 100%;
+        height: auto;
+        padding-bottom: $p-2;
       }
 
       .error-button {

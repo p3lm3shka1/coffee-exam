@@ -31,12 +31,16 @@
     gap: $p-1-5;
   }
 
-  &__logos {
+  &__image {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    gap: $p-1;
     padding-bottom: $p-1;
+
+    img {
+      max-width: 260px;
+      width: 100%;
+      height: auto;
+    }
   }
 
   &__fields {
@@ -91,10 +95,14 @@
 
   &__alt-button {
     @include button-form;
+    background: var(--white);
+    border: 1px solid var(--gray);
+    color: var(--black);
 
     svg {
       width: 100px;
       height: 30px;
+      color: currentColor;
     }
 
     &:hover {
@@ -104,8 +112,8 @@
 
     &.is-active {
       border-color: var(--black);
-      opacity: 0.6;
       box-shadow: inset 0 0 0 1px var(--black);
+      opacity: 1;
     }
   }
 

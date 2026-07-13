@@ -39,6 +39,13 @@
     color: var(--dark-gray);
   }
 
+  &__logo {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    margin: $p-2;
+  }
+
   &__button {
     margin-top: $p-0-5;
     @include button-form;

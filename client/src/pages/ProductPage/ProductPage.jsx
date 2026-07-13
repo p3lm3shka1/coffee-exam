@@ -6,6 +6,8 @@ import { useTranslation } from "react-i18next";
 import { HiOutlineShoppingCart, HiX } from "react-icons/hi";
 import { GiCoffeeCup } from "react-icons/gi";
 
+import notfoundLogo from "../../assets/logos/404.png";
+
 import "./ProductPage.scss";
 
 const ProductPage = () => {
@@ -71,7 +73,7 @@ const ProductPage = () => {
     return (
       <div className="product-page product-page--error">
         <div className="error-content">
-          <GiCoffeeCup size={100} className="error-icon" />
+          <img src={notfoundLogo} alt="Not Found" className="error-logo" />
           <h1>{t("product.error_title")}</h1>
           <button className="error-button" onClick={() => navigate(-1)}>
             {t("product.go_back")}
