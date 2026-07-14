@@ -108,7 +108,7 @@ const Nav = () => {
         </ul>
 
         <div className="navbar__actions">
-          <LangSwitcher className="navbar__actions__lang" />
+          <LangSwitcher />
           <button
             className="navbar__actions__account"
             onClick={() => setProfileOpen(true)}

@@ -58,7 +58,7 @@ const SearchBar = () => {
         onClick={() => setSearchOpen(!searchOpen)}
         title="Search"
       >
-        <HiOutlineSearch size={24} />
+        <HiOutlineSearch size={20} />
       </button>
 
       {searchOpen && (
