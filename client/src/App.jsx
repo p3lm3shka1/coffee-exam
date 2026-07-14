@@ -15,8 +15,7 @@ import CoffeePage from "./pages/CoffeePage/CoffeePage";
 import AccessoriesPage from "./pages/AccessoriesPage/AccessoriesPage";
 import ProductPage from "./pages/ProductPage/ProductPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
-import Checkout from "./pages/CheckoutPage/Checkout";
-import Payment from "./pages/PaymentPage/Payment";
+import CheckoutPage from "./pages/CheckoutPage/Checkout";
 import OrderSuccess from "./pages/OrderSuccessPage/OrderSuccess";
 
 import "./App.scss";
@@ -35,8 +34,7 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/payment" element={<Payment />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/order-success" element={<OrderSuccess />} />
 
         <Route path="*" element={<NotFound />} />

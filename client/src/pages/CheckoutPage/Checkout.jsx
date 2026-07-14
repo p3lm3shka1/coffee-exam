@@ -1,31 +1,49 @@
-import { useState, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { useMemo, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
+import { useAuth } from "../../context/AuthContext";
+import { createOrder } from "../../api/orders";
+import { API_URL } from "../../api/config";
 import { useTranslation } from "react-i18next";
+
+import CheckoutForm from "../../components/CheckoutForm/CheckoutForm";
+import PaymentForm from "../../components/PaymentForm/PaymentForm";
+import OrderSummary from "../../components/OrderSummary/OrderSummary";
 
 import "./Checkout.scss";
 
 const Checkout = () => {
-  const { cartItems, clearCart } = useCart();
-  const navigate = useNavigate();
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const { cartItems, clearCart } = useCart();
+  const { user } = useAuth();
+  const token = user?.token || null;
+
   const [form, setForm] = useState({
-    name: "",
+    firstName: user?.name?.split(" ")?.[0] || "",
+    lastName: user?.name?.split(" ")?.slice(1).join(" ") || "",
+    email: user?.email || "",
     phone: "",
-    address: "",
+    country: "Lithuania",
     city: "",
-    zip: "",
-    country: "",
+    region: "",
+    street: "",
+    postalCode: "",
+    notes: "",
   });
 
-  const [errors, setErrors] = useState({
-    name: false,
-    phone: false,
-    country: false,
-    city: false,
-    address: false,
-    zip: false,
+  const [payment, setPayment] = useState({
+    method: "apple-pay",
+    cardName: "",
+    cardNumber: "",
+    expiryMonth: "",
+    expiryYear: "",
+    cvv: "",
   });
+
+  const [agree, setAgree] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const total = useMemo(
     () =>
@@ -36,40 +54,105 @@ const Checkout = () => {
     [cartItems],
   );
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
+  const setField = (name, value) => {
     setForm((prev) => ({ ...prev, [name]: value }));
     setErrors((prev) => ({ ...prev, [name]: false }));
   };
 
-  const handleContinue = (e) => {
-    e.preventDefault();
+  const setPaymentField = (name, value) => {
+    setPayment((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: false }));
+  };
 
-    const nextErrors = {
-      name: !form.name.trim(),
+  const validate = () => {
+    const next = {
+      firstName: !form.firstName.trim(),
+      lastName: !form.lastName.trim(),
+      email: !form.email.trim(),
       phone: !form.phone.trim(),
-      country: !form.country.trim(),
       city: !form.city.trim(),
-      address: !form.address.trim(),
-      zip: !form.zip.trim(),
+      street: !form.street.trim(),
+      postalCode: !form.postalCode.trim(),
+      cardName: !payment.cardName.trim(),
+      cardNumber: !payment.cardNumber.trim(),
+      expiryMonth: !payment.expiryMonth.trim(),
+      expiryYear: !payment.expiryYear.trim(),
+      cvv: !payment.cvv.trim(),
+    };
+    setErrors(next);
+    return !Object.values(next).some(Boolean);
+  };
+
+  const createGuestOrder = async (payload) => {
+    const res = await fetch(`${API_URL}/api/orders/guest`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) throw new Error("Guest order failed");
+    return res.json();
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    if (!cartItems.length) return;
+    if (!validate()) return;
+
+    const shippingAddress = {
+      country: form.country,
+      city: form.city,
+      region: form.region,
+      street: form.street,
+      postalCode: form.postalCode,
+      phone: form.phone,
+      notes: form.notes,
     };
 
-    setErrors(nextErrors);
+    const orderPayload = {
+      orderItems: cartItems.map((item) => ({
+        product: item._id,
+        title: item.title,
+        price: Number(item.price),
+        quantity: Number(item.quantity || 1),
+        image: item.image,
+      })),
+      shippingAddress,
+      paymentMethod: payment.method || "mock-card",
+      totalPrice: Number(total.toFixed(2)),
+      isPaid: true,
+      paidAt: new Date().toISOString(),
+      status: "paid_mock",
+      customerName: `${form.firstName} ${form.lastName}`.trim(),
+      customerEmail: form.email,
+      customerPhone: form.phone,
+      isGuest: !token,
+    };
 
-    const hasErrors = Object.values(nextErrors).some(Boolean);
-    if (hasErrors) return;
-
-    localStorage.setItem("shippingAddress", JSON.stringify(form));
-    navigate("/payment");
+    try {
+      setLoading(true);
+      if (token) await createOrder(orderPayload, token);
+      else await createGuestOrder(orderPayload);
+      setTimeout(() => {
+        clearCart();
+        navigate("/order-success");
+      }, 2000);
+    } catch (err) {
+      console.error(err);
+      alert(t("common.something_went_wrong"));
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (!cartItems.length) {
     return (
       <section className="checkout-page">
-        <div className="checkout-page__wrapper">
-          <h1 className="checkout-page__title">{t("checkout.title")}</h1>
-          <p className="checkout-page__empty">{t("checkout.empty_cart")}</p>
+        <div className="checkout-page__empty">
+          <h1>{t("checkout.title")}</h1>
+          <p>{t("cart.empty")}</p>
+          <Link to="/shop" className="checkout-page__back">
+            {t("common.continue_shopping")}
+          </Link>
         </div>
       </section>
     );
@@ -80,79 +163,25 @@ const Checkout = () => {
       <div className="checkout-page__wrapper">
         <h1 className="checkout-page__title">{t("checkout.title")}</h1>
 
-        <div className="checkout-page__grid">
-          <form className="checkout-page__form" onSubmit={handleContinue}>
-            <h2 className="checkout-page__subtitle">
-              {t("checkout.shipping_address")}
-            </h2>
+        <form className="checkout-page__layout" onSubmit={onSubmit}>
+          <div className="checkout-page__left">
+            <CheckoutForm form={form} errors={errors} setField={setField} />
+            <PaymentForm
+              payment={payment}
+              errors={errors}
+              setPaymentField={setPaymentField}
+              agree={agree}
+              setAgree={setAgree}
+            />
+          </div>
 
-            <input
-              name="name"
-              placeholder={t("checkout.full_name")}
-              value={form.name}
-              onChange={handleChange}
-              className={errors.name ? "is-error" : ""}
-            />
-            <input
-              name="phone"
-              placeholder={t("checkout.phone")}
-              value={form.phone}
-              onChange={handleChange}
-              className={errors.phone ? "is-error" : ""}
-            />
-            <input
-              name="country"
-              placeholder={t("checkout.country")}
-              value={form.country}
-              onChange={handleChange}
-              className={errors.country ? "is-error" : ""}
-            />
-            <input
-              name="city"
-              placeholder={t("checkout.city")}
-              value={form.city}
-              onChange={handleChange}
-              className={errors.city ? "is-error" : ""}
-            />
-            <input
-              name="address"
-              placeholder={t("checkout.address")}
-              value={form.address}
-              onChange={handleChange}
-              className={errors.address ? "is-error" : ""}
-            />
-            <input
-              name="zip"
-              placeholder={t("checkout.zip")}
-              value={form.zip}
-              onChange={handleChange}
-              className={errors.zip ? "is-error" : ""}
-            />
-
-            <button type="submit">{t("checkout.continue_to_payment")}</button>
-          </form>
-
-          <aside className="checkout-page__summary">
-            <h2 className="checkout-page__subtitle">
-              {t("checkout.order_summary")}
-            </h2>
-            {cartItems.map((item) => (
-              <div className="checkout-page__item" key={item._id}>
-                <span>
-                  {item.title} x {item.quantity || 1}
-                </span>
-                <span>
-                  $
-                  {(Number(item.price) * Number(item.quantity || 1)).toFixed(2)}
-                </span>
-              </div>
-            ))}
-            <div className="checkout-page__total">
-              <strong>{t("checkout.total")}</strong>
-              <strong>${total.toFixed(2)}</strong>
-            </div>
-          </aside>
-        </div>
+          <OrderSummary
+            cartItems={cartItems}
+            total={total}
+            loading={loading}
+            onSubmit={onSubmit}
+          />
+        </form>
       </div>
     </section>
   );

@@ -2,172 +2,206 @@
 @use "../../styles/mixins" as *;
 @use "../../styles/media" as *;
 
-@use "../../styles/variables" as *;
-@use "../../styles/mixins" as *;
-@use "../../styles/media" as *;
-
 .checkout-page {
-  background-color: var(--white);
   min-height: 100vh;
   padding-top: 64px;
+  background: var(--white);
 
   &__wrapper {
-    max-width: 1440px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: $p-4 $p-2;
-    display: flex;
-    flex-direction: column;
-    gap: $p-2;
-  }
-
-  &__title {
-    font-family: $font-secondary;
-    font-weight: $font-w-700;
-    font-size: 32px;
-    color: var(--black);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-align: center;
-  }
-
-  &__grid {
-    display: grid;
-    grid-template-columns: 1.3fr 1fr;
-    gap: $p-3;
-    align-items: start;
-  }
-
-  &__subtitle {
-    font-family: $font-secondary;
-    font-weight: $font-w-700;
-    font-size: 24px;
-    color: var(--black);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: $p-0-5;
+    padding: $p-3 0;
   }
 
   &__empty {
     text-align: center;
-    color: var(--dark-gray);
-    font-size: 16px;
-    margin-top: $p-2;
+    padding: $p-3 0;
+    color: var(--black);
+
+    h1 {
+      font-size: 32px;
+      text-transform: uppercase;
+      margin-bottom: $p-1;
+      font-family: $font-secondary;
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: $p-1;
+    }
   }
 
-  &__form {
-    display: flex;
-    flex-direction: column;
-    gap: $p-1-5;
-    padding: $p-1-5;
+  &__title {
+    font-size: 32px;
+    text-transform: uppercase;
+    margin-bottom: $p-1;
+    color: var(--black);
+    font-family: $font-secondary;
+  }
 
-    input {
-      background: transparent;
-      border: none;
-      border-bottom: 1px solid var(--gray);
-      padding: $p-0-5 0;
-      font-family: $font-primary;
-      font-size: 16px;
-      color: var(--black);
-      outline: none;
-      @include transition;
+  &__layout {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: $p-2;
+  }
 
-      &::placeholder {
-        color: var(--light-gray);
-      }
+  &__left,
+  &__right {
+    padding: $p-1-5 $p-2 $p-1-5 0;
+  }
 
-      &:focus {
-        border-bottom-color: var(--black);
-      }
+  h2 {
+    color: var(--black);
+    padding: $p-2 0;
+  }
 
-      &.is-error {
-        border-bottom: 2px solid var(--red);
-      }
+  input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--gray);
+    padding: $p-1-5 0;
+    background: transparent;
+    color: var(--black);
+    font-size: 16px;
+    outline: none;
+    @include transition;
+
+    &.is-error {
+      border-bottom: 2px solid var(--red);
     }
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $p-1-5;
+
+    &.two {
+      gap: $p-1-5;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    &.three {
+      gap: $p-1-5;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  &__pay-methods {
+    display: flex;
+    gap: $p-0-75;
+    margin: $p-1 0;
 
     button {
       @include button-form;
-      align-self: flex-end;
-    }
-  }
+      flex: 1;
 
-  &__summary {
-    display: flex;
-    flex-direction: column;
-    gap: $p-1;
-    padding: $p-1-5;
+      &.is-active {
+        opacity: 0.6;
+      }
+    }
   }
 
   &__items {
     display: flex;
     flex-direction: column;
     gap: $p-0-75;
+    margin-bottom: $p-1;
   }
 
   &__item {
-    display: flex;
-    justify-content: space-between;
-    gap: $p-1;
-    font-family: $font-primary;
-    font-size: 15px;
-    color: var(--dark-gray);
-  }
-
-  &__total {
-    margin-top: $p-0-5;
-    padding-top: $p-1;
-    border-top: 1px solid var(--gray);
-    display: flex;
-    justify-content: space-between;
-    font-family: $font-primary;
-    font-size: 18px;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: $p-0-75;
+    border-bottom: 1px solid var(--light-gray);
+    padding-bottom: $p-1;
     color: var(--black);
   }
 
+  &__total {
+    display: flex;
+    justify-content: space-between;
+    margin: $p-1 0;
+    font-size: 20px;
+    color: var(--black);
+  }
+
+  &__submit {
+    @include button-form;
+    width: 100%;
+  }
+
+  &__back {
+    text-decoration: underline;
+  }
+
   @include tablet {
-    &__wrapper {
-      padding: $p-2 $p-1;
-      gap: $p-2;
-    }
-
-    &__grid {
+    &__layout {
       grid-template-columns: 1fr;
-      gap: $p-2;
-    }
-
-    &__form {
-      button {
-        width: 100%;
-      }
     }
   }
 
   @include mobile {
     &__wrapper {
-      padding: $p-2 $p-1;
-      gap: $p-2;
+      padding: $p-1 $p-0-75;
     }
 
     &__title {
-      font-size: 26px;
-      letter-spacing: 1px;
+      font-size: 24px;
+      letter-spacing: 0.5px;
     }
 
-    &__subtitle {
-      font-size: 20px;
-      letter-spacing: 1px;
+    h2 {
+      font-size: 18px;
+      padding: $p-0-75 0;
     }
 
-    &__form,
-    &__summary {
-      padding: $p-1;
+    input,
+    textarea {
+      font-size: 15px;
+      padding: $p-0-75 0;
+    }
+
+    &__row.two,
+    &__row.three {
+      grid-template-columns: 1fr;
+      gap: $p-0-75;
+    }
+
+    &__pay-methods {
+      flex-wrap: wrap;
+
+      button {
+        min-width: calc(50% - 6px);
+      }
     }
 
     &__item {
-      font-size: 14px;
+      grid-template-columns: 1fr auto;
+      grid-template-areas:
+        "title price"
+        "qty qty";
+      row-gap: 4px;
+
+      span:nth-child(1) {
+        grid-area: title;
+      }
+      span:nth-child(2) {
+        grid-area: qty;
+        color: var(--dark-gray);
+      }
+      span:nth-child(3) {
+        grid-area: price;
+        justify-self: end;
+      }
     }
 
     &__total {
-      font-size: 16px;
+      font-size: 18px;
+    }
+
+    &__submit {
+      min-height: 46px;
     }
   }
 }

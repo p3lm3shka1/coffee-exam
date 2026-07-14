@@ -14,7 +14,10 @@
     "cancel": "Atšaukti",
     "reload": "Atnaujinti",
     "go_back": "Grįžti atgal",
-    "not_set": "Nenustatyta"
+    "not_set": "Nenustatyta",
+    "category_coffee": "Kava",
+    "category_accessories": "Priedai",
+    "continue_shopping": "Tęsti apsipirkimą"
   },
   "nav": {
     "home": "Pagrindinis",
@@ -113,18 +116,31 @@
     "back_to_articles": "Grįžti į straipsnius"
   },
   "checkout": {
-    "title": "Atsiskaityti",
+    "title": "Atsiskaitymas",
     "shipping_address": "Pristatymo adresas",
-    "full_name": "Pilnas vardas ir pavardė",
-    "phone": "Jūsų telefonas",
-    "address": "Jūsų adresas",
-    "city": "Jūsų miestas",
-    "zip": "Jūsų pašto kodas",
-    "country": "Jūsų šalis",
+    "full_name": "Pilnas vardas",
+    "phone": "Telefonas",
+    "address": "Adresas",
+    "city": "Miestas",
+    "zip": "Pašto kodas",
+    "country": "Šalis",
     "order_summary": "Užsakymo santrauka",
     "continue_to_payment": "Pereiti prie mokėjimo",
     "empty_cart": "Jūsų krepšelis tuščias.",
-    "total": "Iš viso"
+    "total": "Iš viso",
+
+    "customer_info": "Kliento informacija",
+    "first_name": "Vardas",
+    "last_name": "Pavardė",
+    "email": "El. paštas",
+    "region": "Regionas",
+    "street": "Gatvė, namo numeris",
+    "postal_code": "Pašto kodas",
+    "notes": "Pastabos kurjeriui, durų kodas...",
+    "payment": "Mokėjimas",
+    "agree_terms": "Sutinku su pirkimo sąlygomis",
+    "your_order": "Jūsų užsakymas",
+    "pay_now": "Mokėti dabar"
   },
   "payment": {
     "title": "Apmokėjimas",

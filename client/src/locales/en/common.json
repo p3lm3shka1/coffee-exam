@@ -16,7 +16,8 @@
     "go_back": "Go back",
     "not_set": "Not set",
     "category_coffee": "Coffee",
-    "category_accessories": "Accessories"
+    "category_accessories": "Accessories",
+    "continue_shopping": "Continue Shopping"
   },
   "nav": {
     "home": "Home",
@@ -125,7 +126,20 @@
     "order_summary": "Order summary",
     "continue_to_payment": "Continue to payment",
     "empty_cart": "Your cart is empty.",
-    "total": "Total"
+    "total": "Total",
+
+    "customer_info": "Customer information",
+    "first_name": "First name",
+    "last_name": "Last name",
+    "email": "Email",
+    "region": "Region",
+    "street": "Street, house number",
+    "postal_code": "Postal code",
+    "notes": "Notes for courier, door code...",
+    "payment": "Payment",
+    "agree_terms": "I agree with purchase terms and conditions",
+    "your_order": "Your order",
+    "pay_now": "Pay now"
   },
   "payment": {
     "title": "Payment",
@@ -138,6 +152,7 @@
     "processing": "Processing...",
     "pay": "Pay ${{total}}"
   },
+
   "orderSuccess": {
     "title": "Thank you!",
     "text": "Your order has been placed successfully.",

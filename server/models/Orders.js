@@ -17,7 +17,17 @@ const orderItemSchema = new mongoose.Schema(
 
 const orderSchema = new mongoose.Schema(
   {
-    user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: false,
+    },
+
+    isGuest: { type: Boolean, default: false },
+    customerName: { type: String, default: "" },
+    customerEmail: { type: String, default: "" },
+    customerPhone: { type: String, default: "" },
+
     orderItems: [orderItemSchema],
     shippingAddress: {
       name: String,
@@ -26,6 +36,10 @@ const orderSchema = new mongoose.Schema(
       city: String,
       address: String,
       zip: String,
+      street: String,
+      postalCode: String,
+      region: String,
+      notes: String,
     },
     paymentMethod: { type: String, default: "mock-card" },
     totalPrice: { type: Number, required: true },
