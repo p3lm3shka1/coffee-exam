@@ -44,14 +44,11 @@
   &__links {
     display: flex;
     align-items: center;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    gap: 0;
 
     li {
       display: flex;
       align-items: center;
+      justify-content: center;
     }
 
     a {
@@ -95,7 +92,6 @@
 
     &__item--has-sub {
       position: relative;
-      margin-top: 5px;
     }
 
     &__submenu {
