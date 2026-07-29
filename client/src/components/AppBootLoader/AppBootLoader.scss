@@ -1,0 +1,18 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+@use "../../styles/media" as *;
+
+.app-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-content: center;
+  background-color: transparent;
+
+  &__icon {
+    font-size: 60px;
+    color: var(--black);
+    @include animBlink;
+  }
+}

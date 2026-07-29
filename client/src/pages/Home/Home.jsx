@@ -5,8 +5,7 @@ import Newsletter from "../../components/Newsletter/Newsletter";
 import Swiper from "../../components/Swiper/SwiperComponent";
 import { fetchProducts } from "../../api/products";
 import { useTranslation } from "react-i18next";
-
-import { GiCoffeeCup } from "react-icons/gi";
+import AppBootLoader from "../../components/AppBootLoader/AppBootLoader";
 
 import heroImage from "../../assets/images/coffee-shop-hero.jpg";
 
@@ -16,9 +15,11 @@ const Home = () => {
   const { t } = useTranslation();
   const [coffeeItems, setCoffeeItems] = useState([]);
   const [accessoryItems, setAccessoryItems] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let mounted = true;
+
     const fetchData = async () => {
       try {
         setLoading(true);
@@ -26,23 +27,29 @@ const Home = () => {
           fetchProducts({ category: "coffee" }),
           fetchProducts({ category: "accessories" }),
         ]);
-        setCoffeeItems(coffee);
-        setAccessoryItems(accessories);
+        if (!mounted) return;
+        setCoffeeItems(coffee || []);
+        setAccessoryItems(accessories || []);
       } catch (error) {
         console.error("Error fetching products:", error);
       } finally {
-        setLoading(false);
+        if (mounted) setLoading(false);
       }
     };
 
     fetchData();
+    return () => {
+      mounted = false;
+    };
   }, []);
 
   if (loading) {
     return (
-      <div className="loading">
-        <GiCoffeeCup />
-      </div>
+      <section className="home">
+        <div className="home__wrapper">
+          <AppBootLoader />
+        </div>
+      </section>
     );
   }
 
