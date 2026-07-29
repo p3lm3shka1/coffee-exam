@@ -55,8 +55,9 @@ coffee-exam/
 
 ### 1) Install dependencies
 ```bash
-cd server && npm install
-cd ../client && npm install
+cd server => npm install
+
+cd client => npm install
 ```
 
 ### 2) Start backend
