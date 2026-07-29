@@ -1,10 +1,9 @@
-# Coffee Explorer 
+# Coffee Explorer
 
 Coffee Explorer is a full-stack e-commerce project for coffee products and accessories.  
 It includes a customer storefront, authentication, cart flow, checkout, order creation, and a small admin area.
 
-### Link 
-
+### Link
 https://coffeeshop-exam.vercel.app/
 
 ## Tech Stack
@@ -49,25 +48,40 @@ coffee-exam/
   client/   # React frontend
   server/   # Express API
 ```
+
 ---
 
 ## Run Locally
 
-### 1) Install dependencies
-```bash
-cd server && npm install
-cd ../client && npm install
+### 1) Configure environment variables
+
+Create `server/.env`:
+
+```env
+PORT=3000
+MONGO_URI=your_mongodb_connection
+JWT_SECRET=your_jwt_secret
 ```
 
-### 2) Start backend
+> Use your own MongoDB connection string (Atlas or local MongoDB).
+
+Create `client/.env`:
+
+```env
+VITE_API_URL=http://localhost:3000
+```
+
+### 2) Configure and start backend
 ```bash
 cd server
+npm install
 nodemon server.js
 ```
 
-### 3) Start frontend
+### 3) Configure and start frontend
 ```bash
 cd client
+npm install
 npm run dev
 ```
 
